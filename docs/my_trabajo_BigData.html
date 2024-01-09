@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Ricardo Freire">
+<meta name="description" content="Exploración y Visualización de Tendencias Actuales (2023)">
+<title>Análisis Mercado Laboral - El Mercado Laboral en los Ojos de LinkedIn</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./imagenes/my_fav_icon_robot.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: white;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: white;
+background: #0e577f;
+      }
+</style>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="site_libs/plotly-binding-4.10.3/plotly.js"></script><script src="site_libs/typedarray-0.1/typedarray.min.js"></script><script src="site_libs/jquery-3.5.1/jquery.min.js"></script><link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script><link href="site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="site_libs/vis-9.1.0/vis-network.min.js"></script><script src="site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script><link rel="stylesheet" href="my_styles.css">
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./imagenes/my_fav_icon_robot.png  " alt="" class="navbar-logo"></a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Análisis Mercado Laboral</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="./index.html" rel="" target=""><i class="bi bi-house-door" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./my_trabajo_BigData.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Trabajo individual</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ricardofreirev" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:rifrei@alumni.uv.es" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <div class="quarto-title-block"><div><h1 class="title">El Mercado Laboral en los Ojos de LinkedIn</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+                  <div>
+        <div class="description">
+          <p>Exploración y Visualización de Tendencias Actuales (2023)</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">trabajo BigData</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Ricardo Freire </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.uv.es">
+              Universitat de València
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">8 de enero de 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Índice</h2>
+   
+  <ul>
+<li>
+<a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
+  <ul class="collapse">
+<li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#packages-y-carga-de-datos" id="toc-packages-y-carga-de-datos" class="nav-link" data-scroll-target="#packages-y-carga-de-datos">Packages y Carga de Datos</a></li>
+  <li><a href="#overview-de-las-posiciones-con-m%C3%A1s-demanda" id="toc-overview-de-las-posiciones-con-más-demanda" class="nav-link" data-scroll-target="#overview-de-las-posiciones-con-m%C3%A1s-demanda">1. Overview de las Posiciones con más Demanda</a></li>
+  <li><a href="#industrias-que-dominan-linkedin" id="toc-industrias-que-dominan-linkedin" class="nav-link" data-scroll-target="#industrias-que-dominan-linkedin">2. Industrias que Dominan LinkedIn?</a></li>
+  <li><a href="#top-skills-para-las-top-industrias" id="toc-top-skills-para-las-top-industrias" class="nav-link" data-scroll-target="#top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</a></li>
+  <li><a href="#conclusi%C3%B3n" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusi%C3%B3n">Conclusión</a></li>
+  <li><a href="#informaci%C3%B3n-sobre-la-sesi%C3%B3n" id="toc-información-sobre-la-sesión" class="nav-link" data-scroll-target="#informaci%C3%B3n-sobre-la-sesi%C3%B3n">Información sobre la sesión</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content"><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>El objetivo de este proyecto es analizar y visualizar datos clave del mercado laboral actual (2023). Se pretende dar un corto vistazo y analizar tres puntos claves de este mercado: tendencias en la demanda laboral, las diferentes industrias y las habilidades más valoradas en el mercado.</p>
+<section id="datos" class="level3"><h3 class="anchored" data-anchor-id="datos">Datos</h3>
+<p>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los <em>postings</em> que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv" target="_blank"><strong>LinkedIn Job Postings-2023</strong></a>, conjunto de datasets disponibles en Kaggle y del estudio <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual ya habia tratado las observaciones con datos faltantes. Por último, es necesario mencionar que los salarios se enceuntran en USD y que la gran mayoría de las observaciones provienen de USA.</p>
+</section><section id="packages-y-carga-de-datos" class="level3"><h3 class="anchored" data-anchor-id="packages-y-carga-de-datos">Packages y Carga de Datos</h3>
+<p>Aquí se podran ver los paquetes y los datasets que han sido usados para el trabajo.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(visNetwork)<span class="co"># Network Chart Interactivo</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#Data</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#Contains info. about job posting includ. benefits and companies </span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>job_posts_f <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_postings_companies.csv"</span>) </span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a>job_posts_f <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">description_job =</span> <span class="st">"description_x"</span>, <span class="at">description_company =</span> <span class="st">"description_y"</span>, <span class="at">benefit =</span> <span class="st">"type"</span>, <span class="at">level =</span> <span class="st">"formatted_experience_level"</span> )</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>job_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/job_industries.csv"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>job_skills <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/job_skills.csv"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a>job_salaries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/salaries.csv"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#- Companies</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>comp_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/company_details/company_industries.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<hr></section><section id="overview-de-las-posiciones-con-más-demanda" class="level3"><h3 class="anchored" data-anchor-id="overview-de-las-posiciones-con-más-demanda">1. Overview de las Posiciones con más Demanda</h3>
+<p>Para comenzar, analizaremos una métrica simple pero muy importante. Descubriremos cuáles son los títulos que aparecen más frecuentemente en los postings y que, por lo tanto, consideraremos como los trabajos más demandados. La siguiente tabla muestra los títulos con más posts en LinkedIn, el rango de salarios promedio para cada posición, el nivel de experiencia requerido y los beneficios más comunes asociados a cada título. <br> El gráfico de barras muestra el promedio del salario máximo y mínimo para cada trabajo.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#- Tidying</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#- 1)Sacamos top jobs</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>high_demand_vector <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">"Sales Director [Owner/Operator]"</span>) <span class="sc">%&gt;%</span> <span class="co">#Contiene datos vacios</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">count</span>(title, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">pull</span>(title)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>high_demand_vector</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  [1] "Retail Sales Associate"          "Senior Accountant"              </span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  [3] "Administrative Assistant"        "Project Manager"                </span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  [5] "Customer Service Representative" "Staff Accountant"               </span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  [7] "Controller"                      "Area Supervisor"                </span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  [9] "Sales Manager"                   "Sales Associate"</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a>high_demand <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">filter</span>(title <span class="sc">%in%</span> high_demand_vector) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">select</span>(title, min_salary, max_salary, benefit, level) </span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#-2) Sacamos los Datos que necesitamos</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#- Calculamos el promedio de (min-max salary)  </span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>salary_ranges <span class="ot">&lt;-</span>   high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">filter</span>(min_salary <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> max_salary <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> <span class="co">#Consideramos salarios anueles</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">mutate</span>(<span class="at">min_salary_mean =</span> <span class="fu">median</span>(min_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">mutate</span>(<span class="at">max_salary_mean =</span> <span class="fu">median</span>(max_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">select</span>(title, min_salary_mean,max_salary_mean) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb2-28"><a href="#cb2-28"></a></span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="co">#- Creamos var benefit más común para cada title</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="co">#- El mismo approach que antes</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a></span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="co">#- df con los job_titles y los 3 beneficios más comunes</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>high_demand_benefit <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>  <span class="fu">filter</span>(benefit <span class="sc">!=</span> <span class="st">"Not Specified"</span>) <span class="sc">%&gt;%</span> <span class="co">#Quitamos los que no nos dan info. de los beneficios</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>  <span class="fu">count</span>(title, benefit, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>  <span class="fu">summarize</span>(<span class="at">most_common_benefits =</span> <span class="fu">toString</span>(benefit)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb2-41"><a href="#cb2-41"></a></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="co"># Creamos var level más común para cada title</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>high_demand_level <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>  <span class="fu">count</span>(title, level, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a>  <span class="fu">mutate</span>(<span class="at">most_common_level =</span> <span class="fu">if_else</span>(level <span class="sc">==</span> <span class="st">"Not Specified"</span>, <span class="fu">lead</span>(level), level)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a>  <span class="fu">select</span>(title, most_common_level)</span>
+<span id="cb2-50"><a href="#cb2-50"></a></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="co">#- 3)Join</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>high_demand <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a>  <span class="fu">select</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb2-56"><a href="#cb2-56"></a></span>
+<span id="cb2-57"><a href="#cb2-57"></a>high_demand_final <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb2-58"><a href="#cb2-58"></a>  <span class="fu">left_join</span>(high_demand_benefit, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>  <span class="fu">left_join</span>(high_demand_level, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-60"><a href="#cb2-60"></a>  <span class="fu">left_join</span>(salary_ranges, <span class="at">by =</span> <span class="st">"title"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#----Tabla-------</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>t1 <span class="ot">&lt;-</span> high_demand_final <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"title"</span>, <span class="at">groupname_col =</span> <span class="st">"most_common_level"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()  <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">title =</span> <span class="st">"Trabajos con más Postings"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">subtitle =</span> <span class="st">"Información General. Ordenado por Niveles"</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  )<span class="sc">%&gt;%</span> <span class="fu">tab_footnote</span>(</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">footnote =</span> <span class="st">"*Salarios en USD"</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_label</span>(</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="at">title =</span> <span class="st">"Título"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="at">most_common_benefits =</span> <span class="st">"Beneficios Usuaes"</span>, </span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="at">most_common_level =</span> <span class="st">"Nivel"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="at">min_salary_mean =</span> <span class="st">"Sal_Min"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="at">max_salary_mean =</span> <span class="st">"Sal_Max"</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_move_to_end</span>(<span class="at">columns =</span> most_common_benefits)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>t1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div id="ouidwtcqtm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#ouidwtcqtm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ouidwtcqtm thead, #ouidwtcqtm tbody, #ouidwtcqtm tfoot, #ouidwtcqtm tr, #ouidwtcqtm td, #ouidwtcqtm th {
+  border-style: none;
+}
+
+#ouidwtcqtm p {
+  margin: 0;
+  padding: 0;
+}
+
+#ouidwtcqtm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ouidwtcqtm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ouidwtcqtm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ouidwtcqtm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ouidwtcqtm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ouidwtcqtm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ouidwtcqtm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ouidwtcqtm .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ouidwtcqtm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ouidwtcqtm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ouidwtcqtm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ouidwtcqtm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ouidwtcqtm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ouidwtcqtm .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ouidwtcqtm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouidwtcqtm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ouidwtcqtm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ouidwtcqtm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ouidwtcqtm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouidwtcqtm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ouidwtcqtm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouidwtcqtm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ouidwtcqtm .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+}
+
+#ouidwtcqtm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouidwtcqtm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ouidwtcqtm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ouidwtcqtm .gt_left {
+  text-align: left;
+}
+
+#ouidwtcqtm .gt_center {
+  text-align: center;
+}
+
+#ouidwtcqtm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ouidwtcqtm .gt_font_normal {
+  font-weight: normal;
+}
+
+#ouidwtcqtm .gt_font_bold {
+  font-weight: bold;
+}
+
+#ouidwtcqtm .gt_font_italic {
+  font-style: italic;
+}
+
+#ouidwtcqtm .gt_super {
+  font-size: 65%;
+}
+
+#ouidwtcqtm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ouidwtcqtm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ouidwtcqtm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ouidwtcqtm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ouidwtcqtm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ouidwtcqtm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ouidwtcqtm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading">
+<td colspan="4" class="gt_heading gt_title gt_font_normal" style="font-family: 'Libre Franklin'; font-weight: 800;">Trabajos con más Postings</td>
+    </tr>
+<tr class="gt_heading">
+<td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Información General. Ordenado por Niveles</td>
+    </tr>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="Sal_Min">Sal_Min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="Sal_Max">Sal_Max</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="Beneficios Usuaes">Beneficios Usuaes</th>
+    </tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row">
+<th colspan="4" class="gt_group_heading" scope="colgroup" id="Mid-Senior level">Mid-Senior level</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">Sales Manager</th>
+<td headers="Mid-Senior level stub_1_1 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">125000</td>
+<td headers="Mid-Senior level stub_1_1 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">350000</td>
+<td headers="Mid-Senior level stub_1_1 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Medical insurance, Vision insurance</td>
+</tr>
+<tr>
+<th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">Senior Accountant</th>
+<td headers="Mid-Senior level stub_1_2 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">85000</td>
+<td headers="Mid-Senior level stub_1_2 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">100000</td>
+<td headers="Mid-Senior level stub_1_2 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Vision insurance, Dental insurance</td>
+</tr>
+<tr>
+<th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub">Customer Service Representative</th>
+<td headers="Mid-Senior level stub_1_3 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">45000</td>
+<td headers="Mid-Senior level stub_1_3 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">47000</td>
+<td headers="Mid-Senior level stub_1_3 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Vision insurance, Medical insurance</td>
+</tr>
+<tr>
+<th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub">Project Manager</th>
+<td headers="Mid-Senior level stub_1_4 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">90000</td>
+<td headers="Mid-Senior level stub_1_4 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">115000</td>
+<td headers="Mid-Senior level stub_1_4 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Vision insurance, Medical insurance</td>
+</tr>
+<tr>
+<th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub">Controller</th>
+<td headers="Mid-Senior level stub_1_5 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">120000</td>
+<td headers="Mid-Senior level stub_1_5 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">160000</td>
+<td headers="Mid-Senior level stub_1_5 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Dental insurance, Medical insurance</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="4" class="gt_group_heading" scope="colgroup" id="Entry level">Entry level</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub">Sales Associate</th>
+<td headers="Entry level stub_1_6 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">50000</td>
+<td headers="Entry level stub_1_6 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">65000</td>
+<td headers="Entry level stub_1_6 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Dental insurance, Disability insurance</td>
+</tr>
+<tr>
+<th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub">Retail Sales Associate</th>
+<td headers="Entry level stub_1_7 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">43000</td>
+<td headers="Entry level stub_1_7 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">56000</td>
+<td headers="Entry level stub_1_7 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Tuition assistance, Vision insurance</td>
+</tr>
+<tr>
+<th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub">Administrative Assistant</th>
+<td headers="Entry level stub_1_8 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">55000</td>
+<td headers="Entry level stub_1_8 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">60000</td>
+<td headers="Entry level stub_1_8 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Disability insurance, Medical insurance</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="4" class="gt_group_heading" scope="colgroup" id="Associate">Associate</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub">Staff Accountant</th>
+<td headers="Associate stub_1_9 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">60000</td>
+<td headers="Associate stub_1_9 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">70000</td>
+<td headers="Associate stub_1_9 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">401(k), Medical insurance, Dental insurance</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="4" class="gt_group_heading" scope="colgroup" id="Director">Director</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub">Area Supervisor</th>
+<td headers="Director stub_1_10 min_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">NA</td>
+<td headers="Director stub_1_10 max_salary_mean" class="gt_row gt_right" style="font-family: 'Source Sans Pro'; font-weight: 400;">NA</td>
+<td headers="Director stub_1_10 most_common_benefits" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Medical insurance, Commuter benefits, Dental insurance</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes"><tr>
+<td class="gt_footnote" colspan="4"> *Salarios en USD</td>
+    </tr></tfoot>
+</table>
+</div>
+</div>
+</div>
+<p>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial, seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#---Plot------</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Customer Service Representative"</span>, <span class="st">"C.S. Rep."</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Retail Sales Associate"</span>, <span class="st">"Retail Sales Asso"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Administrative Assistant"</span>, <span class="st">"Adm. Assitant"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(high_demand_final, <span class="fu">aes</span>(<span class="at">x =</span> title, <span class="at">y =</span> min_salary_mean<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> title, <span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">10</span>), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Puestos de Trabajo con más Postings en LinkedIn"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12"></a>       <span class="at">subtitle =</span> <span class="st">"Rango salarial en Miles USD"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13"></a>       <span class="at">x =</span> <span class="st">"Puesto de Trabajo"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>       <span class="at">y =</span> <span class="st">"Salario Min./Max."</span>) <span class="sc">+</span> </span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="st">"blank"</span>),</span>
+<span id="cb4-16"><a href="#cb4-16"></a>                                                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb4-17"><a href="#cb4-17"></a>p1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="my_trabajo_BigData_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Nota:</strong> Para mantener el mayor nivel de consistencia posible, para los salarios se consideraron únicamente las observaciones que presentaban salarios anuales y se excluyeron las observaciones con salarios por hora. Razón por la que el rol de “Area Supervisor” no presenta datos del sueldo. Para ello, se consideró un valor arbitrario de 500, ya que se espera que ningún empleo ofrezca un salario anual menor a 500.</p>
+</section><section id="industrias-que-dominan-linkedin" class="level3"><h3 class="anchored" data-anchor-id="industrias-que-dominan-linkedin">2. Industrias que Dominan LinkedIn?</h3>
+<p>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <br> Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</p>
+<p>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de <em>postings</em> que las industrias más presentes.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>companies_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(company_id, name, employee_count)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#- Join</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>companies_data <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#- Función para ordenar los nombres de las industrias y evitar duplicados.</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>tidy_industrie_names <span class="ot">&lt;-</span> <span class="cf">function</span>(datos) {</span>
+<span id="cb5-10"><a href="#cb5-10"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Staffing and Recruiting"</span>, <span class="st">"Staffing &amp; Recruiting"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Human Resources Services"</span>, <span class="st">"SHuman Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Hospitals and Health Care"</span>, <span class="st">"Hospital &amp; Health Care"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Information Technology &amp; Services"</span>, <span class="st">"IT Services and IT Consulting"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-17"><a href="#cb5-17"></a>  </span>
+<span id="cb5-18"><a href="#cb5-18"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Computer Software"</span>, <span class="st">"Software Development"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-19"><a href="#cb5-19"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"SHuman Resources"</span>, <span class="st">"Human Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="fu">return</span>(datos)  </span>
+<span id="cb5-22"><a href="#cb5-22"></a>}</span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a>companies_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(companies_data)</span>
+<span id="cb5-25"><a href="#cb5-25"></a></span>
+<span id="cb5-26"><a href="#cb5-26"></a></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="co">#- Tidying</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>comp_plot_df <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="fu">summarise</span>(<span class="at">Total_Posts_Industry =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span><span class="dv">20</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb5-32"><a href="#cb5-32"></a></span>
+<span id="cb5-33"><a href="#cb5-33"></a></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="co">#------ Pie Chart ---------</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="fu">plot_ly</span>(</span>
+<span id="cb5-36"><a href="#cb5-36"></a>  comp_plot_df,</span>
+<span id="cb5-37"><a href="#cb5-37"></a>  <span class="at">labels =</span> <span class="sc">~</span>industry,</span>
+<span id="cb5-38"><a href="#cb5-38"></a>  <span class="at">parents =</span> <span class="sc">~</span><span class="st">""</span>,</span>
+<span id="cb5-39"><a href="#cb5-39"></a>  <span class="at">values =</span> <span class="sc">~</span>Total_Posts_Industry, <span class="co">#Se muestra cuando pones maus encima</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>  <span class="at">ids =</span> <span class="sc">~</span>industry,</span>
+<span id="cb5-41"><a href="#cb5-41"></a>  <span class="at">type =</span> <span class="st">"sunburst"</span>,</span>
+<span id="cb5-42"><a href="#cb5-42"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">colors =</span> <span class="st">'Viridis'</span>),</span>
+<span id="cb5-43"><a href="#cb5-43"></a>  <span class="at">textinfo =</span> <span class="st">"label+percent entry"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44"></a>  <span class="at">insidetextorientation =</span> <span class="st">"radial"</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a>  <span class="fu">layout</span>(</span>
+<span id="cb5-47"><a href="#cb5-47"></a>    <span class="at">title =</span> <span class="st">"Proporción de Postings en LinkedIn por Industria"</span>,</span>
+<span id="cb5-48"><a href="#cb5-48"></a>    <span class="at">subtitle =</span> <span class="st">"Top 20 Industrias"</span>,</span>
+<span id="cb5-49"><a href="#cb5-49"></a>    <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb5-50"><a href="#cb5-50"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">l =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">t =</span> <span class="dv">40</span>),</span>
+<span id="cb5-51"><a href="#cb5-51"></a>    <span class="at">sunburstcolorway =</span> <span class="fu">c</span>(<span class="st">"#3498db"</span>, <span class="st">"#e43725"</span>, <span class="st">"#3acc2e"</span>, <span class="st">"#8f4bab"</span>, <span class="st">"#f39c12"</span>, <span class="st">"#1abc9c"</span>),</span>
+<span id="cb5-52"><a href="#cb5-52"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb5-53"><a href="#cb5-53"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"black"</span>,</span>
+<span id="cb5-54"><a href="#cb5-54"></a>    <span class="at">hoverlabel =</span> <span class="fu">list</span>(</span>
+<span id="cb5-55"><a href="#cb5-55"></a>      <span class="at">bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb5-56"><a href="#cb5-56"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb5-57"><a href="#cb5-57"></a>    )</span>
+<span id="cb5-58"><a href="#cb5-58"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3c5c23b30d85180ccebc" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3c5c23b30d85180ccebc">{"x":{"visdat":{"135e479056c57":["function () ","plotlyVisDat"]},"cur_data":"135e479056c57","attrs":{"135e479056c57":{"labels":{},"parents":{},"values":{},"ids":{},"marker":{"colors":"Viridis"},"textinfo":"label+percent entry","insidetextorientation":"radial","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":0,"l":0,"t":40,"r":0},"title":"Proporción de Postings en LinkedIn por Industria","subtitle":"Top 20 Industrias","font":{"size":14},"sunburstcolorway":["#3498db","#e43725","#3acc2e","#8f4bab","#f39c12","#1abc9c"],"paper_bgcolor":"white","plot_bgcolor":"black","hoverlabel":{"bgcolor":"white","font":{"size":14}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"parents":["","","","","","","","","","","","","","","","","","","",""],"values":[32078,19462,14371,7429,5755,3092,2790,1649,1570,1553,1435,1422,1400,1345,1242,1212,1168,1008,960,942],"ids":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"marker":{"color":"rgba(31,119,180,1)","colors":["Viridis"],"line":{"color":"rgba(255,255,255,1)"}},"textinfo":"label+percent entry","insidetextorientation":"radial","type":"sunburst","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr></section><section id="top-skills-para-las-top-industrias" class="level3"><h3 class="anchored" data-anchor-id="top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</h3>
+<p>Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las <em>skills</em> más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las <em>skills</em> y la importancia de cada habilidad para cada industria se representará con el <em>thickness</em> de las conexiones.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#|warning: false</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># Network Graph Interactivo------</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#- Join</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>skills_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">select</span>(job_id, title, company_id, name, employee_count) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">left_join</span>(job_skills, <span class="at">by =</span> <span class="st">"job_id"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#- Reformat names </span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>skills_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(skills_data)</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#- Tidying: Sacamos las top 5 industries</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#Basandonos en número de posts</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>top5_ind <span class="ot">&lt;-</span> comp_plot_df <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb6-17"><a href="#cb6-17"></a></span>
+<span id="cb6-18"><a href="#cb6-18"></a>top5_ind_vector <span class="ot">&lt;-</span> top5_ind<span class="sc">$</span>industry </span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#- Filtramos las skills que estén en las top 5 indus.</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>skills_data <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">!=</span> <span class="st">"OTHR"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb6-23"><a href="#cb6-23"></a>  <span class="fu">filter</span>(industry <span class="sc">%in%</span> top5_ind_vector)</span>
+<span id="cb6-24"><a href="#cb6-24"></a></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#- Cuantas veces aparece cada skill dentro de cada top industria. (Degree centrality) </span></span>
+<span id="cb6-26"><a href="#cb6-26"></a>industry_degrees <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>  <span class="fu">group_by</span>(industry, skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  <span class="fu">summarise</span>(<span class="at">Degree =</span> <span class="fu">n</span>())</span>
+<span id="cb6-29"><a href="#cb6-29"></a></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#- Top N skills para cada industria</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>top_skills_by_industry <span class="ot">&lt;-</span> industry_degrees <span class="sc">%&gt;%</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Degree)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)  </span>
+<span id="cb6-35"><a href="#cb6-35"></a></span>
+<span id="cb6-36"><a href="#cb6-36"></a></span>
+<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#------NETWROK --------------------</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#-Vignette: https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#- Nodes</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#- Creamos nodes a partir de las columnas industry y skills</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a>my_nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    <span class="at">id =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb6-44"><a href="#cb6-44"></a>    <span class="at">label =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb6-45"><a href="#cb6-45"></a>   <span class="at">group =</span> <span class="fu">ifelse</span>(<span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)) <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>industry, <span class="st">"Industry"</span>, <span class="st">"Skill"</span>)) </span>
+<span id="cb6-46"><a href="#cb6-46"></a></span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#-My edges</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#-Creamos edges</span></span>
+<span id="cb6-49"><a href="#cb6-49"></a>my_edges <span class="ot">&lt;-</span> top_skills_by_industry <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">from =</span> skill_abr, <span class="at">to =</span> industry, <span class="at">value =</span> Degree)</span>
+<span id="cb6-50"><a href="#cb6-50"></a></span>
+<span id="cb6-51"><a href="#cb6-51"></a><span class="fu">visNetwork</span>(</span>
+<span id="cb6-52"><a href="#cb6-52"></a>  <span class="at">nodes =</span> my_nodes,</span>
+<span id="cb6-53"><a href="#cb6-53"></a>  <span class="at">edges =</span> my_edges,</span>
+<span id="cb6-54"><a href="#cb6-54"></a>  <span class="at">main =</span> <span class="st">"Relación Skills-Industrias"</span></span>
+<span id="cb6-55"><a href="#cb6-55"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-56"><a href="#cb6-56"></a>  <span class="fu">visIgraphLayout</span>(<span class="at">layout =</span> <span class="st">"layout_nicely"</span>) <span class="sc">%&gt;%</span> <span class="co">#default</span></span>
+<span id="cb6-57"><a href="#cb6-57"></a>  <span class="fu">visEdges</span>(</span>
+<span id="cb6-58"><a href="#cb6-58"></a>    <span class="at">arrows =</span> <span class="st">'to'</span>,</span>
+<span id="cb6-59"><a href="#cb6-59"></a>    <span class="at">smooth =</span> <span class="cn">FALSE</span>,  </span>
+<span id="cb6-60"><a href="#cb6-60"></a>    <span class="at">width =</span> <span class="st">"value"</span>,  <span class="co"># Degree indica que tan fuerte es la relación skill_industria</span></span>
+<span id="cb6-61"><a href="#cb6-61"></a>    <span class="at">shadow =</span> <span class="cn">TRUE</span>  <span class="co">#</span></span>
+<span id="cb6-62"><a href="#cb6-62"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-63"><a href="#cb6-63"></a>  <span class="fu">visOptions</span>(<span class="at">highlightNearest =</span> <span class="cn">TRUE</span>,<span class="at">nodesIdSelection =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co">#Permite seleccionar por ID</span></span>
+<span id="cb6-64"><a href="#cb6-64"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb6-65"><a href="#cb6-65"></a>    <span class="at">groupname =</span> <span class="st">"Industry"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66"></a>    <span class="at">shape =</span> <span class="st">"circle"</span></span>
+<span id="cb6-67"><a href="#cb6-67"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-68"><a href="#cb6-68"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb6-69"><a href="#cb6-69"></a>    <span class="at">groupname =</span> <span class="st">"Skill"</span>,</span>
+<span id="cb6-70"><a href="#cb6-70"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
+<span id="cb6-71"><a href="#cb6-71"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-daa91047c6ec6d6e6758" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-daa91047c6ec6d6e6758">{"x":{"nodes":{"id":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"label":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"group":["Industry","Industry","Industry","Industry","Industry","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill"],"x":[-0.5048815654363585,0.4479196120414879,0.0392075900612141,0.5015575312250331,-0.1315926245060197,-0.5217091278112669,-0.4446506504106511,0.01737249865958357,-1,-0.3143962752390754,0.2484839224979825,0.3148836559486456,0.8541577952291839,0.239158775025474,0.4495345098923111,0.07239298259636717,1,-0.3433755947248682],"y":[-0.08421381114041071,0.386080339167568,-0.5651326947101647,-0.00356833615203167,0.6012148454535498,0.3463535985029342,-0.5251388136464257,0.2023075264560765,-0.1389689966085534,-0.4053925663713277,0.3845340873454148,-0.1288837809644038,0.6503746381385025,0.7480377995280934,-0.443108839602262,-1,-0.09465317768480863,1]},"edges":{"from":["HCPR","MGMT","IT","ADM","MNFC","IT","ENG","SALE","ANLS","FIN","SALE","BD","MGMT","MNFC","CUST","IT","ENG","SALE","BD","MRKT","IT","ACCT","FIN","ENG","HCPR"],"to":["Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","Retail","Retail","Retail","Retail","Retail","Software Development","Software Development","Software Development","Software Development","Software Development","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting"],"value":[8901,1516,1297,1248,1054,9657,4178,1372,1269,1134,2079,1618,1171,989,811,2713,2143,1468,1342,933,6995,6065,5517,3972,3855]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"width":"value","arrows":"to","smooth":false,"shadow":true},"physics":{"stabilization":false},"groups":{"Industry":{"shape":"circle"},"useDefaultGroups":true,"Skill":{"shape":"square"}}},"groups":["Industry","Skill"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Relación Skills-Industrias","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><br> Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</p>
+<div class="cell" data-layout-align="center">
+<details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#- Añadimos el nombre completo para cada skill</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>skill_map <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/maps/skills.csv"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>skill_map <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">skill_abr =</span> <span class="st">"Abr."</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">skill_name =</span> <span class="st">"Skill"</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div id="hkfeomdier" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#hkfeomdier table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hkfeomdier thead, #hkfeomdier tbody, #hkfeomdier tfoot, #hkfeomdier tr, #hkfeomdier td, #hkfeomdier th {
+  border-style: none;
+}
+
+#hkfeomdier p {
+  margin: 0;
+  padding: 0;
+}
+
+#hkfeomdier .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hkfeomdier .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hkfeomdier .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hkfeomdier .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hkfeomdier .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hkfeomdier .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hkfeomdier .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hkfeomdier .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hkfeomdier .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hkfeomdier .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hkfeomdier .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hkfeomdier .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hkfeomdier .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hkfeomdier .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hkfeomdier .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hkfeomdier .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hkfeomdier .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hkfeomdier .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hkfeomdier .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hkfeomdier .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hkfeomdier .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hkfeomdier .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hkfeomdier .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+}
+
+#hkfeomdier .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hkfeomdier .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hkfeomdier .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hkfeomdier .gt_left {
+  text-align: left;
+}
+
+#hkfeomdier .gt_center {
+  text-align: center;
+}
+
+#hkfeomdier .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hkfeomdier .gt_font_normal {
+  font-weight: normal;
+}
+
+#hkfeomdier .gt_font_bold {
+  font-weight: bold;
+}
+
+#hkfeomdier .gt_font_italic {
+  font-style: italic;
+}
+
+#hkfeomdier .gt_super {
+  font-size: 65%;
+}
+
+#hkfeomdier .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hkfeomdier .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hkfeomdier .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hkfeomdier .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hkfeomdier .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hkfeomdier .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hkfeomdier .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="Abr.">Abr.</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="Skill">Skill</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">MRKT</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Marketing</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">ANLS</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Analyst</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">FIN</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Finance</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">SALE</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Sales</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">BD</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Business Development</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">MGMT</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Management</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">MNFC</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Manufacturing</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">CUST</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Customer Service</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">ENG</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Engineering</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">ACCT</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Accounting/Auditing</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">HCPR</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Health Care Provider</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">IT</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Information Technology</td>
+</tr>
+<tr>
+<td headers="skill_abr" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">ADM</td>
+<td headers="skill_name" class="gt_row gt_left" style="font-family: 'Source Sans Pro'; font-weight: 400;">Administrative</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Observando nuestro gráfico, se evidencia que en la industria de “Staffing and Recruitment, las habilidades más valoradas comprenden aspectos de IT, así como competencias financieras, tales como contabilidad (ACCT) y finazas (FIN). Adicionalmente, el conocimiento en ingeniería (ENG) también desempeña un papel significativo.</p>
+<p>Es relevante destacar que la ingeniería adquiere una aún mayor relevancia en las empresas dedicadas a servicios de IT y desarrollo de software. Este segmento, en particular, busca <em>hard skill</em> en técnológias específicas (IT), ventas (SALE) y analítica de negocios (ANLS).</p>
+<p>Por otra parte, hechando una mirada en el ámbito de médico y de salud se observa de manera clara que exeperiencia previa en la industria (HCPR) emerge como un requisito preeminente. En esta industria, también se valora considerablemente las habilidades empresariales (ADM y MNGM) y de producción industrial (MNFC).</p>
+<p>Finalmente, resulta interesante e innegable que las habilidades en IT son claves en todas las industrias líderes en LinkedIn y que poseerlas es esencial para ser competitivo en el ámbito laboral.</p>
+</section><section id="conclusión" class="level3"><h3 class="anchored" data-anchor-id="conclusión">Conclusión</h3>
+<p>En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.</p>
+<p>Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer principalmente el mismo tipo de benefios.</p>
+<p>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puedes a primera vista ser obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Aquí también nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social.</p>
+<p>Por último, se identificaron que las skills más relevantes para “Staffing and Recruitment,” son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que habilidades en IT son universales y necesarias.</p>
+<p>Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día.</p>
+<table class="table">
+<colgroup><col style="width: 100%"></colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><br></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Con esto acabo mi trabajo para la clase de Programación en la Era del BigData!!</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><br></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section><section id="información-sobre-la-sesión" class="level3"><h3 class="anchored" data-anchor-id="información-sobre-la-sesión">Información sobre la sesión</h3>
+<p>Abajo muestro mi entorno de trabajo y paquetes utilizados</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<details closed=""><summary><span title="Click to Expand"> current session info </span>
+</summary><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
+<span id="cb8-3"><a href="#cb8-3"></a> setting  value</span>
+<span id="cb8-4"><a href="#cb8-4"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span>)</span>
+<span id="cb8-5"><a href="#cb8-5"></a> os       macOS Sonoma <span class="fl">14.2</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a> system   aarch64, darwin20</span>
+<span id="cb8-7"><a href="#cb8-7"></a> ui       X11</span>
+<span id="cb8-8"><a href="#cb8-8"></a> <span class="fu">language</span> (EN)</span>
+<span id="cb8-9"><a href="#cb8-9"></a> collate  en_US.UTF<span class="dv">-8</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a> ctype    en_US.UTF<span class="dv">-8</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a> tz       Europe<span class="sc">/</span>Madrid</span>
+<span id="cb8-12"><a href="#cb8-12"></a> date     <span class="dv">2024-01-08</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> <span class="er">/</span>Applications<span class="sc">/</span>RStudio.app<span class="sc">/</span>Contents<span class="sc">/</span>Resources<span class="sc">/</span>app<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
+<span id="cb8-14"><a href="#cb8-14"></a></span>
+<span id="cb8-15"><a href="#cb8-15"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
+<span id="cb8-16"><a href="#cb8-16"></a> package     <span class="sc">*</span> version <span class="fu">date</span> (UTC) lib source</span>
+<span id="cb8-17"><a href="#cb8-17"></a> bit           <span class="dv">4</span>.<span class="fl">0.5</span>   <span class="dv">2022-11-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-18"><a href="#cb8-18"></a> bit64         <span class="dv">4</span>.<span class="fl">0.5</span>   <span class="dv">2020-08-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-19"><a href="#cb8-19"></a> cli           <span class="dv">3</span>.<span class="fl">6.1</span>   <span class="dv">2023-03-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-20"><a href="#cb8-20"></a> clipr         <span class="dv">0</span>.<span class="fl">8.0</span>   <span class="dv">2022-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-21"><a href="#cb8-21"></a> colorspace    <span class="fl">2.1</span><span class="dv">-0</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-22"><a href="#cb8-22"></a> crosstalk     <span class="dv">1</span>.<span class="fl">2.0</span>   <span class="dv">2021-11-04</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-23"><a href="#cb8-23"></a> data.table    <span class="dv">1</span>.<span class="fl">14.8</span>  <span class="dv">2023-02-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-24"><a href="#cb8-24"></a> desc          <span class="dv">1</span>.<span class="fl">4.2</span>   <span class="dv">2022-09-08</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-25"><a href="#cb8-25"></a> details       <span class="dv">0</span>.<span class="fl">3.0</span>   <span class="dv">2022-03-27</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-26"><a href="#cb8-26"></a> digest        <span class="dv">0</span>.<span class="fl">6.33</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-27"><a href="#cb8-27"></a> dplyr       <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">1.4</span>   <span class="dv">2023-11-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-28"><a href="#cb8-28"></a> ellipsis      <span class="dv">0</span>.<span class="fl">3.2</span>   <span class="dv">2021-04-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-29"><a href="#cb8-29"></a> evaluate      <span class="fl">0.21</span>    <span class="dv">2023-05-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-30"><a href="#cb8-30"></a> fansi         <span class="dv">1</span>.<span class="fl">0.4</span>   <span class="dv">2023-01-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-31"><a href="#cb8-31"></a> farver        <span class="dv">2</span>.<span class="fl">1.1</span>   <span class="dv">2022-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-32"><a href="#cb8-32"></a> fastmap       <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-33"><a href="#cb8-33"></a> fontawesome   <span class="dv">0</span>.<span class="fl">5.2</span>   <span class="dv">2023-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-34"><a href="#cb8-34"></a> forcats     <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.0</span>   <span class="dv">2023-01-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-35"><a href="#cb8-35"></a> generics      <span class="dv">0</span>.<span class="fl">1.3</span>   <span class="dv">2022-07-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-36"><a href="#cb8-36"></a> ggplot2     <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">4.4</span>   <span class="dv">2023-10-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-37"><a href="#cb8-37"></a> glue          <span class="dv">1</span>.<span class="fl">6.2</span>   <span class="dv">2022-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-38"><a href="#cb8-38"></a> gt          <span class="sc">*</span> <span class="dv">0</span>.<span class="fl">9.0</span>   <span class="dv">2023-03-31</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-39"><a href="#cb8-39"></a> gtable        <span class="dv">0</span>.<span class="fl">3.4</span>   <span class="dv">2023-08-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-40"><a href="#cb8-40"></a> gtExtras      <span class="dv">0</span>.<span class="fl">5.0</span>   <span class="dv">2023-09-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-41"><a href="#cb8-41"></a> hms           <span class="dv">1</span>.<span class="fl">1.3</span>   <span class="dv">2023-03-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-42"><a href="#cb8-42"></a> htmltools     <span class="dv">0</span>.<span class="fl">5.6</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-43"><a href="#cb8-43"></a> htmlwidgets   <span class="dv">1</span>.<span class="fl">6.2</span>   <span class="dv">2023-03-17</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-44"><a href="#cb8-44"></a> httr          <span class="dv">1</span>.<span class="fl">4.7</span>   <span class="dv">2023-08-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-45"><a href="#cb8-45"></a> igraph      <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">6.0</span>   <span class="dv">2023-12-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-46"><a href="#cb8-46"></a> jsonlite      <span class="dv">1</span>.<span class="fl">8.7</span>   <span class="dv">2023-06-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-47"><a href="#cb8-47"></a> knitr         <span class="fl">1.45</span>    <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-48"><a href="#cb8-48"></a> labeling      <span class="dv">0</span>.<span class="fl">4.3</span>   <span class="dv">2023-08-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-49"><a href="#cb8-49"></a> lazyeval      <span class="dv">0</span>.<span class="fl">2.2</span>   <span class="dv">2019-03-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-50"><a href="#cb8-50"></a> lifecycle     <span class="dv">1</span>.<span class="fl">0.3</span>   <span class="dv">2022-10-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-51"><a href="#cb8-51"></a> lubridate   <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">9.2</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-52"><a href="#cb8-52"></a> magrittr      <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-03-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-53"><a href="#cb8-53"></a> munsell       <span class="dv">0</span>.<span class="fl">5.0</span>   <span class="dv">2018-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-54"><a href="#cb8-54"></a> paletteer     <span class="dv">1</span>.<span class="fl">5.0</span>   <span class="dv">2022-10-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-55"><a href="#cb8-55"></a> pillar        <span class="dv">1</span>.<span class="fl">9.0</span>   <span class="dv">2023-03-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-56"><a href="#cb8-56"></a> pkgconfig     <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2019-09-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-57"><a href="#cb8-57"></a> plotly      <span class="sc">*</span> <span class="dv">4</span>.<span class="fl">10.3</span>  <span class="dv">2023-10-21</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-58"><a href="#cb8-58"></a> png           <span class="fl">0.1</span><span class="dv">-8</span>   <span class="dv">2022-11-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-59"><a href="#cb8-59"></a> purrr       <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.2</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-60"><a href="#cb8-60"></a> R.methodsS3   <span class="dv">1</span>.<span class="fl">8.2</span>   <span class="dv">2022-06-13</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-61"><a href="#cb8-61"></a> R.oo          <span class="dv">1</span>.<span class="fl">25.0</span>  <span class="dv">2022-06-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-62"><a href="#cb8-62"></a> R.utils       <span class="dv">2</span>.<span class="fl">12.2</span>  <span class="dv">2022-11-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-63"><a href="#cb8-63"></a> R6            <span class="dv">2</span>.<span class="fl">5.1</span>   <span class="dv">2021-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-64"><a href="#cb8-64"></a> readr       <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">1.4</span>   <span class="dv">2023-02-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-65"><a href="#cb8-65"></a> rematch2      <span class="dv">2</span>.<span class="fl">1.2</span>   <span class="dv">2020-05-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-66"><a href="#cb8-66"></a> rio         <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">0.1</span>   <span class="dv">2023-09-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-67"><a href="#cb8-67"></a> rlang         <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-68"><a href="#cb8-68"></a> rmarkdown     <span class="fl">2.24</span>    <span class="dv">2023-08-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-69"><a href="#cb8-69"></a> rprojroot     <span class="dv">2</span>.<span class="fl">0.3</span>   <span class="dv">2022-04-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-70"><a href="#cb8-70"></a> rstudioapi    <span class="dv">0</span>.<span class="fl">15.0</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-71"><a href="#cb8-71"></a> sass          <span class="dv">0</span>.<span class="fl">4.7</span>   <span class="dv">2023-07-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-72"><a href="#cb8-72"></a> scales        <span class="dv">1</span>.<span class="fl">2.1</span>   <span class="dv">2022-08-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-73"><a href="#cb8-73"></a> sessioninfo   <span class="dv">1</span>.<span class="fl">2.2</span>   <span class="dv">2021-12-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-74"><a href="#cb8-74"></a> stringi       <span class="dv">1</span>.<span class="fl">7.12</span>  <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-75"><a href="#cb8-75"></a> stringr     <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">5.0</span>   <span class="dv">2022-12-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-76"><a href="#cb8-76"></a> tibble      <span class="sc">*</span> <span class="dv">3</span>.<span class="fl">2.1</span>   <span class="dv">2023-03-20</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-77"><a href="#cb8-77"></a> tidyr       <span class="sc">*</span> <span class="dv">1</span>.<span class="fl">3.0</span>   <span class="dv">2023-01-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-78"><a href="#cb8-78"></a> tidyselect    <span class="dv">1</span>.<span class="fl">2.0</span>   <span class="dv">2022-10-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-79"><a href="#cb8-79"></a> tidyverse   <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">0.0</span>   <span class="dv">2023-02-22</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-80"><a href="#cb8-80"></a> timechange    <span class="dv">0</span>.<span class="fl">2.0</span>   <span class="dv">2023-01-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-81"><a href="#cb8-81"></a> tzdb          <span class="dv">0</span>.<span class="fl">4.0</span>   <span class="dv">2023-05-12</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-82"><a href="#cb8-82"></a> utf8          <span class="dv">1</span>.<span class="fl">2.3</span>   <span class="dv">2023-01-31</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-83"><a href="#cb8-83"></a> vctrs         <span class="dv">0</span>.<span class="fl">6.5</span>   <span class="dv">2023-12-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb8-84"><a href="#cb8-84"></a> viridisLite   <span class="dv">0</span>.<span class="fl">4.2</span>   <span class="dv">2023-05-02</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-85"><a href="#cb8-85"></a> visNetwork  <span class="sc">*</span> <span class="dv">2</span>.<span class="fl">1.2</span>   <span class="dv">2022-09-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-86"><a href="#cb8-86"></a> withr         <span class="dv">2</span>.<span class="fl">5.0</span>   <span class="dv">2022-03-03</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-87"><a href="#cb8-87"></a> xfun          <span class="fl">0.40</span>    <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-88"><a href="#cb8-88"></a> xml2          <span class="dv">1</span>.<span class="fl">3.5</span>   <span class="dv">2023-07-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-89"><a href="#cb8-89"></a> yaml          <span class="dv">2</span>.<span class="fl">3.7</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb8-90"><a href="#cb8-90"></a></span>
+<span id="cb8-91"><a href="#cb8-91"></a> [<span class="dv">1</span>] <span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Versions<span class="sc">/</span><span class="fl">4.3</span><span class="sc">-</span>arm64<span class="sc">/</span>Resources<span class="sc">/</span>library</span>
+<span id="cb8-92"><a href="#cb8-92"></a></span>
+<span id="cb8-93"><a href="#cb8-93"></a>──────────────────────────────────────────────────────────────────────────────</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><p><br></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="an">title:</span><span class="co"> "El Mercado Laboral en los Ojos de LinkedIn"</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">  Exploración y Visualización de Tendencias Actuales (2023)</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="an">author:</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">  - name: Ricardo Freire</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">    affiliation: Universitat de València</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">    affiliation-url: https://www.uv.es</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="an">date:</span><span class="co"> 2024-01-08                           #--</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="an">categories:</span><span class="co"> [trabajo BigData]   #--</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="an">image:</span><span class="co"> "./imagenes/foto_index.png"</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="an">title-block-banner:</span><span class="co"> "#0e577f" #Es un azul tipo LinkedIn #- {true, false, "green","#AA0000"}</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="an">title-block-banner-color:</span><span class="co"> "white"    #-"#FFFFFF" </span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="an">toc-depth:</span><span class="co"> 3</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="an">smooth-scroll:</span><span class="co"> true</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="co">  html:</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="co">    #backgroundcolor: "#F1F3F4"</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co">    #embed-resources: true</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="co">    #css: ./assets/my_css_file.css   #- CUIDADO!!!!</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="an">code-link:</span><span class="co"> true</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb9-25"><a href="#cb9-25"></a><span class="co">  warning: false</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a><span class="co">---</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a></span>
+<span id="cb9-28"><a href="#cb9-28"></a><span class="fu">## Intro</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a></span>
+<span id="cb9-30"><a href="#cb9-30"></a>El objetivo de este proyecto es analizar y visualizar datos clave del mercado laboral actual (2023). Se pretende dar un corto vistazo y analizar tres puntos claves de este mercado: tendencias en la demanda laboral, las diferentes industrias y las habilidades más valoradas en el mercado.</span>
+<span id="cb9-31"><a href="#cb9-31"></a></span>
+<span id="cb9-32"><a href="#cb9-32"></a><span class="fu">### Datos</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a></span>
+<span id="cb9-34"><a href="#cb9-34"></a>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual ya habia tratado las observaciones con datos faltantes. Por último, es necesario mencionar que los salarios se enceuntran en USD y que la gran mayoría de las observaciones provienen de USA.</span>
+<span id="cb9-35"><a href="#cb9-35"></a></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="fu">### Packages y Carga de Datos</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a></span>
+<span id="cb9-38"><a href="#cb9-38"></a>Aquí se podran ver los paquetes y los datasets que han sido usados para el trabajo.</span>
+<span id="cb9-39"><a href="#cb9-39"></a></span>
+<span id="cb9-42"><a href="#cb9-42"></a><span class="in">```{r}</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a><span class="co">#| message: false</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-45"><a href="#cb9-45"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-46"><a href="#cb9-46"></a><span class="fu">library</span>(rio)</span>
+<span id="cb9-47"><a href="#cb9-47"></a><span class="fu">library</span>(gt)</span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb9-49"><a href="#cb9-49"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb9-50"><a href="#cb9-50"></a><span class="fu">library</span>(visNetwork)<span class="co"># Network Chart Interactivo</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a></span>
+<span id="cb9-52"><a href="#cb9-52"></a><span class="co">#Data</span></span>
+<span id="cb9-53"><a href="#cb9-53"></a><span class="co">#Contains info. about job posting includ. benefits and companies </span></span>
+<span id="cb9-54"><a href="#cb9-54"></a>job_posts_f <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_postings_companies.csv"</span>) </span>
+<span id="cb9-55"><a href="#cb9-55"></a></span>
+<span id="cb9-56"><a href="#cb9-56"></a>job_posts_f <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">description_job =</span> <span class="st">"description_x"</span>, <span class="at">description_company =</span> <span class="st">"description_y"</span>, <span class="at">benefit =</span> <span class="st">"type"</span>, <span class="at">level =</span> <span class="st">"formatted_experience_level"</span> )</span>
+<span id="cb9-57"><a href="#cb9-57"></a></span>
+<span id="cb9-58"><a href="#cb9-58"></a></span>
+<span id="cb9-59"><a href="#cb9-59"></a>job_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/job_industries.csv"</span>)</span>
+<span id="cb9-60"><a href="#cb9-60"></a>job_skills <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/job_skills.csv"</span>)</span>
+<span id="cb9-61"><a href="#cb9-61"></a>job_salaries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/job_details/salaries.csv"</span>)</span>
+<span id="cb9-62"><a href="#cb9-62"></a></span>
+<span id="cb9-63"><a href="#cb9-63"></a><span class="co">#- Companies</span></span>
+<span id="cb9-64"><a href="#cb9-64"></a>comp_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/company_details/company_industries.csv"</span>)</span>
+<span id="cb9-65"><a href="#cb9-65"></a><span class="in">```</span></span>
+<span id="cb9-66"><a href="#cb9-66"></a></span>
+<span id="cb9-67"><a href="#cb9-67"></a>------------------------------------------------------------------------</span>
+<span id="cb9-68"><a href="#cb9-68"></a></span>
+<span id="cb9-69"><a href="#cb9-69"></a><span class="fu">### 1. Overview de las Posiciones con más Demanda</span></span>
+<span id="cb9-70"><a href="#cb9-70"></a></span>
+<span id="cb9-71"><a href="#cb9-71"></a>Para comenzar, analizaremos una métrica simple pero muy importante. Descubriremos cuáles son los títulos que aparecen más frecuentemente en los postings y que, por lo tanto, consideraremos como los trabajos más demandados. La siguiente tabla muestra los títulos con más posts en LinkedIn, el rango de salarios promedio para cada posición, el nivel de experiencia requerido y los beneficios más comunes asociados a cada título. <span class="kw">&lt;br&gt;</span> El gráfico de barras muestra el promedio del salario máximo y mínimo para cada trabajo.</span>
+<span id="cb9-72"><a href="#cb9-72"></a></span>
+<span id="cb9-75"><a href="#cb9-75"></a><span class="in">```{r}</span></span>
+<span id="cb9-76"><a href="#cb9-76"></a><span class="co">#- Tidying</span></span>
+<span id="cb9-77"><a href="#cb9-77"></a><span class="co">#- 1)Sacamos top jobs</span></span>
+<span id="cb9-78"><a href="#cb9-78"></a>high_demand_vector <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-79"><a href="#cb9-79"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">"Sales Director [Owner/Operator]"</span>) <span class="sc">%&gt;%</span> <span class="co">#Contiene datos vacios</span></span>
+<span id="cb9-80"><a href="#cb9-80"></a>  <span class="fu">count</span>(title, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-81"><a href="#cb9-81"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-82"><a href="#cb9-82"></a>  <span class="fu">pull</span>(title)</span>
+<span id="cb9-83"><a href="#cb9-83"></a>high_demand_vector</span>
+<span id="cb9-84"><a href="#cb9-84"></a></span>
+<span id="cb9-85"><a href="#cb9-85"></a>high_demand <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-86"><a href="#cb9-86"></a>  <span class="fu">filter</span>(title <span class="sc">%in%</span> high_demand_vector) <span class="sc">%&gt;%</span></span>
+<span id="cb9-87"><a href="#cb9-87"></a>  <span class="fu">select</span>(title, min_salary, max_salary, benefit, level) </span>
+<span id="cb9-88"><a href="#cb9-88"></a></span>
+<span id="cb9-89"><a href="#cb9-89"></a><span class="co">#-2) Sacamos los Datos que necesitamos</span></span>
+<span id="cb9-90"><a href="#cb9-90"></a><span class="co">#- Calculamos el promedio de (min-max salary)  </span></span>
+<span id="cb9-91"><a href="#cb9-91"></a>salary_ranges <span class="ot">&lt;-</span>   high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-92"><a href="#cb9-92"></a>  <span class="fu">filter</span>(min_salary <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> max_salary <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> <span class="co">#Consideramos salarios anueles</span></span>
+<span id="cb9-93"><a href="#cb9-93"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-94"><a href="#cb9-94"></a>  <span class="fu">mutate</span>(<span class="at">min_salary_mean =</span> <span class="fu">median</span>(min_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-95"><a href="#cb9-95"></a>  <span class="fu">mutate</span>(<span class="at">max_salary_mean =</span> <span class="fu">median</span>(max_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-96"><a href="#cb9-96"></a>  <span class="fu">select</span>(title, min_salary_mean,max_salary_mean) <span class="sc">%&gt;%</span></span>
+<span id="cb9-97"><a href="#cb9-97"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-98"><a href="#cb9-98"></a></span>
+<span id="cb9-99"><a href="#cb9-99"></a></span>
+<span id="cb9-100"><a href="#cb9-100"></a><span class="co">#- Creamos var benefit más común para cada title</span></span>
+<span id="cb9-101"><a href="#cb9-101"></a><span class="co">#- El mismo approach que antes</span></span>
+<span id="cb9-102"><a href="#cb9-102"></a></span>
+<span id="cb9-103"><a href="#cb9-103"></a><span class="co">#- df con los job_titles y los 3 beneficios más comunes</span></span>
+<span id="cb9-104"><a href="#cb9-104"></a>high_demand_benefit <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-105"><a href="#cb9-105"></a>  <span class="fu">filter</span>(benefit <span class="sc">!=</span> <span class="st">"Not Specified"</span>) <span class="sc">%&gt;%</span> <span class="co">#Quitamos los que no nos dan info. de los beneficios</span></span>
+<span id="cb9-106"><a href="#cb9-106"></a>  <span class="fu">count</span>(title, benefit, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-107"><a href="#cb9-107"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-108"><a href="#cb9-108"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-109"><a href="#cb9-109"></a>  <span class="fu">summarize</span>(<span class="at">most_common_benefits =</span> <span class="fu">toString</span>(benefit)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-110"><a href="#cb9-110"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb9-111"><a href="#cb9-111"></a></span>
+<span id="cb9-112"><a href="#cb9-112"></a><span class="co"># Creamos var level más común para cada title</span></span>
+<span id="cb9-113"><a href="#cb9-113"></a>high_demand_level <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-114"><a href="#cb9-114"></a>  <span class="fu">count</span>(title, level, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-115"><a href="#cb9-115"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-116"><a href="#cb9-116"></a>  <span class="fu">mutate</span>(<span class="at">most_common_level =</span> <span class="fu">if_else</span>(level <span class="sc">==</span> <span class="st">"Not Specified"</span>, <span class="fu">lead</span>(level), level)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-117"><a href="#cb9-117"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-118"><a href="#cb9-118"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-119"><a href="#cb9-119"></a>  <span class="fu">select</span>(title, most_common_level)</span>
+<span id="cb9-120"><a href="#cb9-120"></a></span>
+<span id="cb9-121"><a href="#cb9-121"></a><span class="co">#- 3)Join</span></span>
+<span id="cb9-122"><a href="#cb9-122"></a>high_demand <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-123"><a href="#cb9-123"></a>  <span class="fu">select</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-124"><a href="#cb9-124"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-125"><a href="#cb9-125"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-126"><a href="#cb9-126"></a></span>
+<span id="cb9-127"><a href="#cb9-127"></a>high_demand_final <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-128"><a href="#cb9-128"></a>  <span class="fu">left_join</span>(high_demand_benefit, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-129"><a href="#cb9-129"></a>  <span class="fu">left_join</span>(high_demand_level, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-130"><a href="#cb9-130"></a>  <span class="fu">left_join</span>(salary_ranges, <span class="at">by =</span> <span class="st">"title"</span>) </span>
+<span id="cb9-131"><a href="#cb9-131"></a></span>
+<span id="cb9-132"><a href="#cb9-132"></a><span class="in">```</span></span>
+<span id="cb9-133"><a href="#cb9-133"></a></span>
+<span id="cb9-136"><a href="#cb9-136"></a><span class="in">```{r}</span></span>
+<span id="cb9-137"><a href="#cb9-137"></a><span class="co">#----Tabla-------</span></span>
+<span id="cb9-138"><a href="#cb9-138"></a>t1 <span class="ot">&lt;-</span> high_demand_final <span class="sc">%&gt;%</span></span>
+<span id="cb9-139"><a href="#cb9-139"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"title"</span>, <span class="at">groupname_col =</span> <span class="st">"most_common_level"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-140"><a href="#cb9-140"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()  <span class="sc">%&gt;%</span></span>
+<span id="cb9-141"><a href="#cb9-141"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb9-142"><a href="#cb9-142"></a>    <span class="at">title =</span> <span class="st">"Trabajos con más Postings"</span>,</span>
+<span id="cb9-143"><a href="#cb9-143"></a>    <span class="at">subtitle =</span> <span class="st">"Información General. Ordenado por Niveles"</span></span>
+<span id="cb9-144"><a href="#cb9-144"></a>  )<span class="sc">%&gt;%</span> <span class="fu">tab_footnote</span>(</span>
+<span id="cb9-145"><a href="#cb9-145"></a>    <span class="at">footnote =</span> <span class="st">"*Salarios en USD"</span></span>
+<span id="cb9-146"><a href="#cb9-146"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_label</span>(</span>
+<span id="cb9-147"><a href="#cb9-147"></a>    <span class="at">title =</span> <span class="st">"Título"</span>,</span>
+<span id="cb9-148"><a href="#cb9-148"></a>    <span class="at">most_common_benefits =</span> <span class="st">"Beneficios Usuaes"</span>, </span>
+<span id="cb9-149"><a href="#cb9-149"></a>    <span class="at">most_common_level =</span> <span class="st">"Nivel"</span>,</span>
+<span id="cb9-150"><a href="#cb9-150"></a>    <span class="at">min_salary_mean =</span> <span class="st">"Sal_Min"</span>,</span>
+<span id="cb9-151"><a href="#cb9-151"></a>    <span class="at">max_salary_mean =</span> <span class="st">"Sal_Max"</span></span>
+<span id="cb9-152"><a href="#cb9-152"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_move_to_end</span>(<span class="at">columns =</span> most_common_benefits)</span>
+<span id="cb9-153"><a href="#cb9-153"></a>t1</span>
+<span id="cb9-154"><a href="#cb9-154"></a><span class="in">```</span></span>
+<span id="cb9-155"><a href="#cb9-155"></a></span>
+<span id="cb9-156"><a href="#cb9-156"></a>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial, seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos.</span>
+<span id="cb9-157"><a href="#cb9-157"></a></span>
+<span id="cb9-160"><a href="#cb9-160"></a><span class="in">```{r}</span></span>
+<span id="cb9-161"><a href="#cb9-161"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-162"><a href="#cb9-162"></a><span class="co">#---Plot------</span></span>
+<span id="cb9-163"><a href="#cb9-163"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
+<span id="cb9-164"><a href="#cb9-164"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Customer Service Representative"</span>, <span class="st">"C.S. Rep."</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-165"><a href="#cb9-165"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Retail Sales Associate"</span>, <span class="st">"Retail Sales Asso"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-166"><a href="#cb9-166"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Administrative Assistant"</span>, <span class="st">"Adm. Assitant"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-167"><a href="#cb9-167"></a></span>
+<span id="cb9-168"><a href="#cb9-168"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(high_demand_final, <span class="fu">aes</span>(<span class="at">x =</span> title, <span class="at">y =</span> min_salary_mean<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb9-169"><a href="#cb9-169"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-170"><a href="#cb9-170"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-171"><a href="#cb9-171"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> title, <span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">10</span>), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-172"><a href="#cb9-172"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Puestos de Trabajo con más Postings en LinkedIn"</span>,</span>
+<span id="cb9-173"><a href="#cb9-173"></a>       <span class="at">subtitle =</span> <span class="st">"Rango salarial en Miles USD"</span>,</span>
+<span id="cb9-174"><a href="#cb9-174"></a>       <span class="at">x =</span> <span class="st">"Puesto de Trabajo"</span>,</span>
+<span id="cb9-175"><a href="#cb9-175"></a>       <span class="at">y =</span> <span class="st">"Salario Min./Max."</span>) <span class="sc">+</span> </span>
+<span id="cb9-176"><a href="#cb9-176"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="st">"blank"</span>),</span>
+<span id="cb9-177"><a href="#cb9-177"></a>                                                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb9-178"><a href="#cb9-178"></a>p1</span>
+<span id="cb9-179"><a href="#cb9-179"></a><span class="in">```</span></span>
+<span id="cb9-180"><a href="#cb9-180"></a></span>
+<span id="cb9-181"><a href="#cb9-181"></a>**Nota:** Para mantener el mayor nivel de consistencia posible, para los salarios se consideraron únicamente las observaciones que presentaban salarios anuales y se excluyeron las observaciones con salarios por hora. Razón por la que el rol de "Area Supervisor" no presenta datos del sueldo. Para ello, se consideró un valor arbitrario de 500, ya que se espera que ningún empleo ofrezca un salario anual menor a 500.</span>
+<span id="cb9-182"><a href="#cb9-182"></a></span>
+<span id="cb9-183"><a href="#cb9-183"></a><span class="fu">### 2. Industrias que Dominan LinkedIn?</span></span>
+<span id="cb9-184"><a href="#cb9-184"></a></span>
+<span id="cb9-185"><a href="#cb9-185"></a>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <span class="kw">&lt;br&gt;</span> Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</span>
+<span id="cb9-186"><a href="#cb9-186"></a></span>
+<span id="cb9-187"><a href="#cb9-187"></a>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de *postings* que las industrias más presentes.</span>
+<span id="cb9-188"><a href="#cb9-188"></a></span>
+<span id="cb9-191"><a href="#cb9-191"></a><span class="in">```{r}</span></span>
+<span id="cb9-192"><a href="#cb9-192"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-193"><a href="#cb9-193"></a>companies_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-194"><a href="#cb9-194"></a>  <span class="fu">select</span>(company_id, name, employee_count)</span>
+<span id="cb9-195"><a href="#cb9-195"></a></span>
+<span id="cb9-196"><a href="#cb9-196"></a><span class="co">#- Join</span></span>
+<span id="cb9-197"><a href="#cb9-197"></a>companies_data <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-198"><a href="#cb9-198"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>)</span>
+<span id="cb9-199"><a href="#cb9-199"></a></span>
+<span id="cb9-200"><a href="#cb9-200"></a><span class="co">#- Función para ordenar los nombres de las industrias y evitar duplicados.</span></span>
+<span id="cb9-201"><a href="#cb9-201"></a>tidy_industrie_names <span class="ot">&lt;-</span> <span class="cf">function</span>(datos) {</span>
+<span id="cb9-202"><a href="#cb9-202"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Staffing and Recruiting"</span>, <span class="st">"Staffing &amp; Recruiting"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-203"><a href="#cb9-203"></a></span>
+<span id="cb9-204"><a href="#cb9-204"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Human Resources Services"</span>, <span class="st">"SHuman Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-205"><a href="#cb9-205"></a></span>
+<span id="cb9-206"><a href="#cb9-206"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Hospitals and Health Care"</span>, <span class="st">"Hospital &amp; Health Care"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-207"><a href="#cb9-207"></a></span>
+<span id="cb9-208"><a href="#cb9-208"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Information Technology &amp; Services"</span>, <span class="st">"IT Services and IT Consulting"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-209"><a href="#cb9-209"></a>  </span>
+<span id="cb9-210"><a href="#cb9-210"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Computer Software"</span>, <span class="st">"Software Development"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-211"><a href="#cb9-211"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"SHuman Resources"</span>, <span class="st">"Human Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-212"><a href="#cb9-212"></a></span>
+<span id="cb9-213"><a href="#cb9-213"></a><span class="fu">return</span>(datos)  </span>
+<span id="cb9-214"><a href="#cb9-214"></a>}</span>
+<span id="cb9-215"><a href="#cb9-215"></a></span>
+<span id="cb9-216"><a href="#cb9-216"></a>companies_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(companies_data)</span>
+<span id="cb9-217"><a href="#cb9-217"></a></span>
+<span id="cb9-218"><a href="#cb9-218"></a></span>
+<span id="cb9-219"><a href="#cb9-219"></a><span class="co">#- Tidying</span></span>
+<span id="cb9-220"><a href="#cb9-220"></a>comp_plot_df <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-221"><a href="#cb9-221"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb9-222"><a href="#cb9-222"></a>  <span class="fu">summarise</span>(<span class="at">Total_Posts_Industry =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb9-223"><a href="#cb9-223"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span><span class="dv">20</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb9-224"><a href="#cb9-224"></a></span>
+<span id="cb9-225"><a href="#cb9-225"></a></span>
+<span id="cb9-226"><a href="#cb9-226"></a><span class="co">#------ Pie Chart ---------</span></span>
+<span id="cb9-227"><a href="#cb9-227"></a><span class="fu">plot_ly</span>(</span>
+<span id="cb9-228"><a href="#cb9-228"></a>  comp_plot_df,</span>
+<span id="cb9-229"><a href="#cb9-229"></a>  <span class="at">labels =</span> <span class="sc">~</span>industry,</span>
+<span id="cb9-230"><a href="#cb9-230"></a>  <span class="at">parents =</span> <span class="sc">~</span><span class="st">""</span>,</span>
+<span id="cb9-231"><a href="#cb9-231"></a>  <span class="at">values =</span> <span class="sc">~</span>Total_Posts_Industry, <span class="co">#Se muestra cuando pones maus encima</span></span>
+<span id="cb9-232"><a href="#cb9-232"></a>  <span class="at">ids =</span> <span class="sc">~</span>industry,</span>
+<span id="cb9-233"><a href="#cb9-233"></a>  <span class="at">type =</span> <span class="st">"sunburst"</span>,</span>
+<span id="cb9-234"><a href="#cb9-234"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">colors =</span> <span class="st">'Viridis'</span>),</span>
+<span id="cb9-235"><a href="#cb9-235"></a>  <span class="at">textinfo =</span> <span class="st">"label+percent entry"</span>,</span>
+<span id="cb9-236"><a href="#cb9-236"></a>  <span class="at">insidetextorientation =</span> <span class="st">"radial"</span></span>
+<span id="cb9-237"><a href="#cb9-237"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-238"><a href="#cb9-238"></a>  <span class="fu">layout</span>(</span>
+<span id="cb9-239"><a href="#cb9-239"></a>    <span class="at">title =</span> <span class="st">"Proporción de Postings en LinkedIn por Industria"</span>,</span>
+<span id="cb9-240"><a href="#cb9-240"></a>    <span class="at">subtitle =</span> <span class="st">"Top 20 Industrias"</span>,</span>
+<span id="cb9-241"><a href="#cb9-241"></a>    <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb9-242"><a href="#cb9-242"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">l =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">t =</span> <span class="dv">40</span>),</span>
+<span id="cb9-243"><a href="#cb9-243"></a>    <span class="at">sunburstcolorway =</span> <span class="fu">c</span>(<span class="st">"#3498db"</span>, <span class="st">"#e43725"</span>, <span class="st">"#3acc2e"</span>, <span class="st">"#8f4bab"</span>, <span class="st">"#f39c12"</span>, <span class="st">"#1abc9c"</span>),</span>
+<span id="cb9-244"><a href="#cb9-244"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-245"><a href="#cb9-245"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"black"</span>,</span>
+<span id="cb9-246"><a href="#cb9-246"></a>    <span class="at">hoverlabel =</span> <span class="fu">list</span>(</span>
+<span id="cb9-247"><a href="#cb9-247"></a>      <span class="at">bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-248"><a href="#cb9-248"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb9-249"><a href="#cb9-249"></a>    )</span>
+<span id="cb9-250"><a href="#cb9-250"></a>  )</span>
+<span id="cb9-251"><a href="#cb9-251"></a></span>
+<span id="cb9-252"><a href="#cb9-252"></a><span class="in">```</span></span>
+<span id="cb9-253"><a href="#cb9-253"></a></span>
+<span id="cb9-254"><a href="#cb9-254"></a>------------------------------------------------------------------------</span>
+<span id="cb9-255"><a href="#cb9-255"></a></span>
+<span id="cb9-256"><a href="#cb9-256"></a><span class="fu">### 3.TOP Skills para las TOP Industrias</span></span>
+<span id="cb9-257"><a href="#cb9-257"></a></span>
+<span id="cb9-258"><a href="#cb9-258"></a>Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las *skills* más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las *skills*  y la importancia de cada habilidad para cada industria se representará con el *thickness* de las conexiones.</span>
+<span id="cb9-259"><a href="#cb9-259"></a></span>
+<span id="cb9-262"><a href="#cb9-262"></a><span class="in">```{r}</span></span>
+<span id="cb9-263"><a href="#cb9-263"></a><span class="co">#|warning: false</span></span>
+<span id="cb9-264"><a href="#cb9-264"></a><span class="co"># Network Graph Interactivo------</span></span>
+<span id="cb9-265"><a href="#cb9-265"></a></span>
+<span id="cb9-266"><a href="#cb9-266"></a><span class="co">#- Join</span></span>
+<span id="cb9-267"><a href="#cb9-267"></a>skills_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-268"><a href="#cb9-268"></a>  <span class="fu">select</span>(job_id, title, company_id, name, employee_count) <span class="sc">%&gt;%</span></span>
+<span id="cb9-269"><a href="#cb9-269"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-270"><a href="#cb9-270"></a>  <span class="fu">left_join</span>(job_skills, <span class="at">by =</span> <span class="st">"job_id"</span>)</span>
+<span id="cb9-271"><a href="#cb9-271"></a></span>
+<span id="cb9-272"><a href="#cb9-272"></a><span class="co">#- Reformat names </span></span>
+<span id="cb9-273"><a href="#cb9-273"></a>skills_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(skills_data)</span>
+<span id="cb9-274"><a href="#cb9-274"></a></span>
+<span id="cb9-275"><a href="#cb9-275"></a><span class="co">#- Tidying: Sacamos las top 5 industries</span></span>
+<span id="cb9-276"><a href="#cb9-276"></a><span class="co">#Basandonos en número de posts</span></span>
+<span id="cb9-277"><a href="#cb9-277"></a>top5_ind <span class="ot">&lt;-</span> comp_plot_df <span class="sc">%&gt;%</span></span>
+<span id="cb9-278"><a href="#cb9-278"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb9-279"><a href="#cb9-279"></a></span>
+<span id="cb9-280"><a href="#cb9-280"></a>top5_ind_vector <span class="ot">&lt;-</span> top5_ind<span class="sc">$</span>industry </span>
+<span id="cb9-281"><a href="#cb9-281"></a></span>
+<span id="cb9-282"><a href="#cb9-282"></a><span class="co">#- Filtramos las skills que estén en las top 5 indus.</span></span>
+<span id="cb9-283"><a href="#cb9-283"></a>skills_data <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-284"><a href="#cb9-284"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">!=</span> <span class="st">"OTHR"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb9-285"><a href="#cb9-285"></a>  <span class="fu">filter</span>(industry <span class="sc">%in%</span> top5_ind_vector)</span>
+<span id="cb9-286"><a href="#cb9-286"></a></span>
+<span id="cb9-287"><a href="#cb9-287"></a><span class="co">#- Cuantas veces aparece cada skill dentro de cada top industria. (Degree centrality) </span></span>
+<span id="cb9-288"><a href="#cb9-288"></a>industry_degrees <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-289"><a href="#cb9-289"></a>  <span class="fu">group_by</span>(industry, skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb9-290"><a href="#cb9-290"></a>  <span class="fu">summarise</span>(<span class="at">Degree =</span> <span class="fu">n</span>())</span>
+<span id="cb9-291"><a href="#cb9-291"></a></span>
+<span id="cb9-292"><a href="#cb9-292"></a><span class="co">#- Top N skills para cada industria</span></span>
+<span id="cb9-293"><a href="#cb9-293"></a>top_skills_by_industry <span class="ot">&lt;-</span> industry_degrees <span class="sc">%&gt;%</span></span>
+<span id="cb9-294"><a href="#cb9-294"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb9-295"><a href="#cb9-295"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Degree)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-296"><a href="#cb9-296"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)  </span>
+<span id="cb9-297"><a href="#cb9-297"></a></span>
+<span id="cb9-298"><a href="#cb9-298"></a></span>
+<span id="cb9-299"><a href="#cb9-299"></a><span class="co">#------NETWROK --------------------</span></span>
+<span id="cb9-300"><a href="#cb9-300"></a><span class="co">#-Vignette: https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html</span></span>
+<span id="cb9-301"><a href="#cb9-301"></a></span>
+<span id="cb9-302"><a href="#cb9-302"></a><span class="co">#- Nodes</span></span>
+<span id="cb9-303"><a href="#cb9-303"></a><span class="co">#- Creamos nodes a partir de las columnas industry y skills</span></span>
+<span id="cb9-304"><a href="#cb9-304"></a>my_nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-305"><a href="#cb9-305"></a>    <span class="at">id =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb9-306"><a href="#cb9-306"></a>    <span class="at">label =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb9-307"><a href="#cb9-307"></a>   <span class="at">group =</span> <span class="fu">ifelse</span>(<span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)) <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>industry, <span class="st">"Industry"</span>, <span class="st">"Skill"</span>)) </span>
+<span id="cb9-308"><a href="#cb9-308"></a></span>
+<span id="cb9-309"><a href="#cb9-309"></a><span class="co">#-My edges</span></span>
+<span id="cb9-310"><a href="#cb9-310"></a><span class="co">#-Creamos edges</span></span>
+<span id="cb9-311"><a href="#cb9-311"></a>my_edges <span class="ot">&lt;-</span> top_skills_by_industry <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">from =</span> skill_abr, <span class="at">to =</span> industry, <span class="at">value =</span> Degree)</span>
+<span id="cb9-312"><a href="#cb9-312"></a></span>
+<span id="cb9-313"><a href="#cb9-313"></a><span class="fu">visNetwork</span>(</span>
+<span id="cb9-314"><a href="#cb9-314"></a>  <span class="at">nodes =</span> my_nodes,</span>
+<span id="cb9-315"><a href="#cb9-315"></a>  <span class="at">edges =</span> my_edges,</span>
+<span id="cb9-316"><a href="#cb9-316"></a>  <span class="at">main =</span> <span class="st">"Relación Skills-Industrias"</span></span>
+<span id="cb9-317"><a href="#cb9-317"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-318"><a href="#cb9-318"></a>  <span class="fu">visIgraphLayout</span>(<span class="at">layout =</span> <span class="st">"layout_nicely"</span>) <span class="sc">%&gt;%</span> <span class="co">#default</span></span>
+<span id="cb9-319"><a href="#cb9-319"></a>  <span class="fu">visEdges</span>(</span>
+<span id="cb9-320"><a href="#cb9-320"></a>    <span class="at">arrows =</span> <span class="st">'to'</span>,</span>
+<span id="cb9-321"><a href="#cb9-321"></a>    <span class="at">smooth =</span> <span class="cn">FALSE</span>,  </span>
+<span id="cb9-322"><a href="#cb9-322"></a>    <span class="at">width =</span> <span class="st">"value"</span>,  <span class="co"># Degree indica que tan fuerte es la relación skill_industria</span></span>
+<span id="cb9-323"><a href="#cb9-323"></a>    <span class="at">shadow =</span> <span class="cn">TRUE</span>  <span class="co">#</span></span>
+<span id="cb9-324"><a href="#cb9-324"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-325"><a href="#cb9-325"></a>  <span class="fu">visOptions</span>(<span class="at">highlightNearest =</span> <span class="cn">TRUE</span>,<span class="at">nodesIdSelection =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co">#Permite seleccionar por ID</span></span>
+<span id="cb9-326"><a href="#cb9-326"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb9-327"><a href="#cb9-327"></a>    <span class="at">groupname =</span> <span class="st">"Industry"</span>,</span>
+<span id="cb9-328"><a href="#cb9-328"></a>    <span class="at">shape =</span> <span class="st">"circle"</span></span>
+<span id="cb9-329"><a href="#cb9-329"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-330"><a href="#cb9-330"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb9-331"><a href="#cb9-331"></a>    <span class="at">groupname =</span> <span class="st">"Skill"</span>,</span>
+<span id="cb9-332"><a href="#cb9-332"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
+<span id="cb9-333"><a href="#cb9-333"></a>  )</span>
+<span id="cb9-334"><a href="#cb9-334"></a></span>
+<span id="cb9-335"><a href="#cb9-335"></a><span class="in">```</span></span>
+<span id="cb9-336"><a href="#cb9-336"></a></span>
+<span id="cb9-337"><a href="#cb9-337"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb9-338"><a href="#cb9-338"></a>Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</span>
+<span id="cb9-339"><a href="#cb9-339"></a></span>
+<span id="cb9-342"><a href="#cb9-342"></a><span class="in">```{r}</span></span>
+<span id="cb9-343"><a href="#cb9-343"></a><span class="co">#- Añadimos el nombre completo para cada skill</span></span>
+<span id="cb9-344"><a href="#cb9-344"></a>skill_map <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/maps/skills.csv"</span>)</span>
+<span id="cb9-345"><a href="#cb9-345"></a>skill_map <span class="sc">%&gt;%</span></span>
+<span id="cb9-346"><a href="#cb9-346"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb9-347"><a href="#cb9-347"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-348"><a href="#cb9-348"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb9-349"><a href="#cb9-349"></a>    <span class="at">skill_abr =</span> <span class="st">"Abr."</span>,</span>
+<span id="cb9-350"><a href="#cb9-350"></a>    <span class="at">skill_name =</span> <span class="st">"Skill"</span></span>
+<span id="cb9-351"><a href="#cb9-351"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-352"><a href="#cb9-352"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span>
+<span id="cb9-353"><a href="#cb9-353"></a><span class="in">```</span></span>
+<span id="cb9-354"><a href="#cb9-354"></a></span>
+<span id="cb9-355"><a href="#cb9-355"></a>Observando nuestro gráfico, se evidencia que en la industria de "Staffing and Recruitment, las habilidades más valoradas comprenden aspectos de IT, así como competencias financieras, tales como contabilidad (ACCT) y finazas (FIN). Adicionalmente, el conocimiento en ingeniería (ENG) también desempeña un papel significativo.</span>
+<span id="cb9-356"><a href="#cb9-356"></a></span>
+<span id="cb9-357"><a href="#cb9-357"></a>Es relevante destacar que la ingeniería adquiere una aún mayor relevancia en las empresas dedicadas a servicios de IT y desarrollo de software. Este segmento, en particular, busca *hard skill* en técnológias específicas (IT), ventas (SALE) y analítica de negocios (ANLS).</span>
+<span id="cb9-358"><a href="#cb9-358"></a></span>
+<span id="cb9-359"><a href="#cb9-359"></a>Por otra parte, hechando una mirada en el ámbito de médico y de salud se observa de manera clara que exeperiencia previa en la industria (HCPR) emerge como un requisito preeminente. En esta industria, también se valora considerablemente las habilidades empresariales (ADM y MNGM) y de producción industrial (MNFC).</span>
+<span id="cb9-360"><a href="#cb9-360"></a></span>
+<span id="cb9-361"><a href="#cb9-361"></a>Finalmente, resulta interesante e innegable que las habilidades en IT son claves en todas las industrias líderes en LinkedIn y que poseerlas es esencial para ser competitivo en el ámbito laboral.</span>
+<span id="cb9-362"><a href="#cb9-362"></a></span>
+<span id="cb9-363"><a href="#cb9-363"></a></span>
+<span id="cb9-364"><a href="#cb9-364"></a><span class="fu">### Conclusión</span></span>
+<span id="cb9-365"><a href="#cb9-365"></a></span>
+<span id="cb9-366"><a href="#cb9-366"></a>En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.</span>
+<span id="cb9-367"><a href="#cb9-367"></a></span>
+<span id="cb9-368"><a href="#cb9-368"></a>Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer  principalmente el mismo tipo de benefios.</span>
+<span id="cb9-369"><a href="#cb9-369"></a></span>
+<span id="cb9-370"><a href="#cb9-370"></a>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puedes a primera vista ser obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y  los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Aquí también nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social. </span>
+<span id="cb9-371"><a href="#cb9-371"></a></span>
+<span id="cb9-372"><a href="#cb9-372"></a>Por último, se identificaron que las skills más relevantes para "Staffing and Recruitment," son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que habilidades en IT son universales y necesarias.</span>
+<span id="cb9-373"><a href="#cb9-373"></a></span>
+<span id="cb9-374"><a href="#cb9-374"></a>Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día. </span>
+<span id="cb9-375"><a href="#cb9-375"></a></span>
+<span id="cb9-376"><a href="#cb9-376"></a>|                                                                                 |</span>
+<span id="cb9-377"><a href="#cb9-377"></a>|:-----------------------|</span>
+<span id="cb9-378"><a href="#cb9-378"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
+<span id="cb9-379"><a href="#cb9-379"></a>| Con esto acabo mi trabajo para la clase de Programación en la Era del BigData!! |</span>
+<span id="cb9-380"><a href="#cb9-380"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
+<span id="cb9-381"><a href="#cb9-381"></a></span>
+<span id="cb9-382"><a href="#cb9-382"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb9-383"><a href="#cb9-383"></a></span>
+<span id="cb9-384"><a href="#cb9-384"></a><span class="fu">### Información sobre la sesión</span></span>
+<span id="cb9-385"><a href="#cb9-385"></a></span>
+<span id="cb9-386"><a href="#cb9-386"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
+<span id="cb9-387"><a href="#cb9-387"></a></span>
+<span id="cb9-390"><a href="#cb9-390"></a><span class="in">```{r}</span></span>
+<span id="cb9-391"><a href="#cb9-391"></a><span class="co">#| echo: false</span></span>
+<span id="cb9-392"><a href="#cb9-392"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-393"><a href="#cb9-393"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
+<span id="cb9-394"><a href="#cb9-394"></a><span class="in">```</span></span>
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">© 2023 Ricardo Freire</div>   
+    <div class="nav-footer-center">Hecho con <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ricardofreirev">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:rifrei@alumni.uv.es">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

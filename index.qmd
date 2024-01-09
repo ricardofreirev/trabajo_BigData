@@ -1,0 +1,31 @@
+---
+title: El Mercado Laboral en los Ojos de LinkedIn           #- 
+subtitle: Ricardo Freire
+image: imagenes/foto_index.jpg      #- 
+about:
+  template: trestles        #- {jolla, solana, ...}
+  image-width: 16em         #- https://cybmeta.com/em-y-rem
+  image-shape: rectangle    #- {rectangle, round, rounded}
+  links:
+    - icon: envelope
+      text: e-mail
+      url: "mailto:rifrei@alumni.uv.es"            #- pon tu e-mail
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/ricardofreirev    #- linkedin
+    - icon: github
+      text: Github
+      href: https://github.com/ricardofreirev        #- Github
+---
+        
+Hola, mi nombre es Ricardo!
+      
+Esta web sirve para presentar el trabajo final individual para la asignatura "Programación y manejo de datos en la era Del Big Data", optativa de GECO en la Facultad de Economía de la Universitat de València.
+
+La web de la asignatura está [aquí](https://perezp44.github.io/intro-ds-23-24-web/){target="_blank"} y los trabajos de mis compañeros de curso puedes verlos [aquí](https://perezp44.github.io/intro-ds-23-24-web/05-trabajos-estudiantes.html){target="_blank"}.
+
+
+Mi trabajo lleva por título : "El Mercado Laboral en los Ojos de LinkedIn". El objetivo es comprender la actual estructura del mercado (2023) reveleando información clave de las tendecias en el mundo laboral que se pueden observar a través de las publicaciones de LinkedIn. Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día.
+
+
+El trabajo puede verse [aquí](my_trabajo_BigData.html).
