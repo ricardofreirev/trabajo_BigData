@@ -12,7 +12,7 @@ about:
       url: "mailto:rifrei@alumni.uv.es"            #- pon tu e-mail
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com/ricardofreirev    #- linkedin
+      href: https://www.linkedin.com/in/ricardofreirev/    #- linkedin
     - icon: github
       text: Github
       href: https://github.com/ricardofreirev        #- Github
