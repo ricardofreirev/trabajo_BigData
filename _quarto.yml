@@ -26,7 +26,7 @@ website:
   page-footer:
     border: true
     background: "#0e577f"         #--
-    left: "© 2023 Ricardo Freire"   #--
+    left: "© 2024 Ricardo Freire"   #--
     center: "Hecho con [Quarto](https://quarto.org)"
     right:
       - icon: github
