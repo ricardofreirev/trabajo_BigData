@@ -212,7 +212,6 @@ background: #0e577f;
   <li><a href="#industrias-que-dominan-linkedin" id="toc-industrias-que-dominan-linkedin" class="nav-link" data-scroll-target="#industrias-que-dominan-linkedin">2. Industrias que Dominan LinkedIn?</a></li>
   <li><a href="#top-skills-para-las-top-industrias" id="toc-top-skills-para-las-top-industrias" class="nav-link" data-scroll-target="#top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</a></li>
   <li><a href="#conclusi%C3%B3n" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusi%C3%B3n">Conclusión</a></li>
-  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   <li><a href="#informaci%C3%B3n-sobre-la-sesi%C3%B3n" id="toc-información-sobre-la-sesión" class="nav-link" data-scroll-target="#informaci%C3%B3n-sobre-la-sesi%C3%B3n">Información sobre la sesión</a></li>
   </ul>
 </li>
@@ -225,7 +224,7 @@ background: #0e577f;
 <main class="content quarto-banner-title-block column-page-right" id="quarto-document-content"><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>El objetivo de este proyecto es analizar y visualizar datos clave del mercado laboral actual (2023). Se pretende dar un corto vistazo y analizar tres puntos claves de este mercado: tendencias en la demanda laboral, las diferentes industrias y las habilidades más valoradas en el mercado.</p>
 <section id="datos" class="level3"><h3 class="anchored" data-anchor-id="datos">Datos</h3>
-<p>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los <em>postings</em> que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv" target="_blank"><strong>LinkedIn Job Postings-2023</strong></a>, conjunto de datasets disponibles en Kaggle y del estudio <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</p>
+<p>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los <em>postings</em> que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv" target="_blank"><strong>LinkedIn Job Postings-2023</strong></a>, conjunto de datasets disponibles en Kaggle y estudio <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</p>
 </section><section id="packages-y-carga-de-datos" class="level3"><h3 class="anchored" data-anchor-id="packages-y-carga-de-datos">Packages y Carga de Datos</h3>
 <p>Aquí se podran ver los paquetes y los datasets que han sido usados para el trabajo.</p>
 <div class="cell" data-layout-align="center">
@@ -254,21 +253,21 @@ background: #0e577f;
 <p><strong>Descripción de variables principales:</strong> En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:</p>
 <ul>
 <li>
-<code>job_id</code>, <code>title</code> : Identificador y título de trabajo que para cada post</li>
+<code>job_id</code>, <code>title</code> : Identificador y título de trabajo que para cada post.</li>
 <li>
-<code>max_salary</code>, <code>min_salary</code>: Salario maximo, Salario mínimo</li>
+<code>max_salary</code>, <code>min_salary</code>: Salario máximo, Salario mínimo.</li>
 <li>
-<code>skills_desc</code>: Habilidades requeridas para el puesto de trabajo</li>
+<code>skills_desc</code>: Habilidades requeridas para el puesto de trabajo.</li>
 <li>
-<code>benefit</code>: Beneficos ofrecidos para el trabajo correspondiente <br>
+<code>benefit</code>: Beneficos ofrecidos para el trabajo correspondiente. <br>
 </li>
 <li>
-<code>company_id</code>, <code>name</code>, <code>employee_count</code>: Identificador para una empresa, nombre y número de empleados respectivos</li>
+<code>company_id</code>, <code>name</code>, <code>employee_count</code>: Identificador para una empresa, nombre y número de empleados respectivos.</li>
 </ul>
 <p>En dataset <code>company_industries</code>: Clasificación de cada compania (por company_id) a una industria.</p>
 <ul>
 <li>
-<code>industry</code>: Nombre de la Industria.</li>
+<code>industry</code>: Nombre de la industria.</li>
 </ul>
 <p>El dataset <code>job_skills</code>: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las <em>skills</em> estan representadas con abreviaturas.</p>
 <ul>
@@ -360,26 +359,26 @@ background: #0e577f;
 <span id="cb3-17"><a href="#cb3-17"></a>t1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 
-<div id="ddhiqveyna" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gqrsjuqazz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ddhiqveyna table {
+#gqrsjuqazz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ddhiqveyna thead, #ddhiqveyna tbody, #ddhiqveyna tfoot, #ddhiqveyna tr, #ddhiqveyna td, #ddhiqveyna th {
+#gqrsjuqazz thead, #gqrsjuqazz tbody, #gqrsjuqazz tfoot, #gqrsjuqazz tr, #gqrsjuqazz td, #gqrsjuqazz th {
   border-style: none;
 }
 
-#ddhiqveyna p {
+#gqrsjuqazz p {
   margin: 0;
   padding: 0;
 }
 
-#ddhiqveyna .gt_table {
+#gqrsjuqazz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -405,12 +404,12 @@ background: #0e577f;
   border-left-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_caption {
+#gqrsjuqazz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ddhiqveyna .gt_title {
+#gqrsjuqazz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -422,7 +421,7 @@ background: #0e577f;
   border-bottom-width: 0;
 }
 
-#ddhiqveyna .gt_subtitle {
+#gqrsjuqazz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -434,7 +433,7 @@ background: #0e577f;
   border-top-width: 0;
 }
 
-#ddhiqveyna .gt_heading {
+#gqrsjuqazz .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -446,13 +445,13 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_bottom_border {
+#gqrsjuqazz .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_col_headings {
+#gqrsjuqazz .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -467,7 +466,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_col_heading {
+#gqrsjuqazz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -487,7 +486,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#ddhiqveyna .gt_column_spanner_outer {
+#gqrsjuqazz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -499,15 +498,15 @@ background: #0e577f;
   padding-right: 4px;
 }
 
-#ddhiqveyna .gt_column_spanner_outer:first-child {
+#gqrsjuqazz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ddhiqveyna .gt_column_spanner_outer:last-child {
+#gqrsjuqazz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ddhiqveyna .gt_column_spanner {
+#gqrsjuqazz .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -519,11 +518,11 @@ background: #0e577f;
   width: 100%;
 }
 
-#ddhiqveyna .gt_spanner_row {
+#gqrsjuqazz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ddhiqveyna .gt_group_heading {
+#gqrsjuqazz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -549,7 +548,7 @@ background: #0e577f;
   text-align: left;
 }
 
-#ddhiqveyna .gt_empty_group_heading {
+#gqrsjuqazz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -564,15 +563,15 @@ background: #0e577f;
   vertical-align: middle;
 }
 
-#ddhiqveyna .gt_from_md > :first-child {
+#gqrsjuqazz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ddhiqveyna .gt_from_md > :last-child {
+#gqrsjuqazz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ddhiqveyna .gt_row {
+#gqrsjuqazz .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -591,7 +590,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#ddhiqveyna .gt_stub {
+#gqrsjuqazz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,7 +603,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ddhiqveyna .gt_stub_row_group {
+#gqrsjuqazz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -618,15 +617,15 @@ background: #0e577f;
   vertical-align: top;
 }
 
-#ddhiqveyna .gt_row_group_first td {
+#gqrsjuqazz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ddhiqveyna .gt_row_group_first th {
+#gqrsjuqazz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ddhiqveyna .gt_summary_row {
+#gqrsjuqazz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -636,16 +635,16 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ddhiqveyna .gt_first_summary_row {
+#gqrsjuqazz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_first_summary_row.thick {
+#gqrsjuqazz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ddhiqveyna .gt_last_summary_row {
+#gqrsjuqazz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -655,7 +654,7 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_grand_summary_row {
+#gqrsjuqazz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -665,7 +664,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ddhiqveyna .gt_first_grand_summary_row {
+#gqrsjuqazz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -675,7 +674,7 @@ background: #0e577f;
   border-top-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_last_grand_summary_row_top {
+#gqrsjuqazz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -685,11 +684,11 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_striped {
+#gqrsjuqazz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ddhiqveyna .gt_table_body {
+#gqrsjuqazz .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -698,7 +697,7 @@ background: #0e577f;
   border-bottom-color: #FFFFFF;
 }
 
-#ddhiqveyna .gt_footnotes {
+#gqrsjuqazz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -712,7 +711,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_footnote {
+#gqrsjuqazz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -721,7 +720,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ddhiqveyna .gt_sourcenotes {
+#gqrsjuqazz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -735,7 +734,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ddhiqveyna .gt_sourcenote {
+#gqrsjuqazz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -743,63 +742,63 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ddhiqveyna .gt_left {
+#gqrsjuqazz .gt_left {
   text-align: left;
 }
 
-#ddhiqveyna .gt_center {
+#gqrsjuqazz .gt_center {
   text-align: center;
 }
 
-#ddhiqveyna .gt_right {
+#gqrsjuqazz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ddhiqveyna .gt_font_normal {
+#gqrsjuqazz .gt_font_normal {
   font-weight: normal;
 }
 
-#ddhiqveyna .gt_font_bold {
+#gqrsjuqazz .gt_font_bold {
   font-weight: bold;
 }
 
-#ddhiqveyna .gt_font_italic {
+#gqrsjuqazz .gt_font_italic {
   font-style: italic;
 }
 
-#ddhiqveyna .gt_super {
+#gqrsjuqazz .gt_super {
   font-size: 65%;
 }
 
-#ddhiqveyna .gt_footnote_marks {
+#gqrsjuqazz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ddhiqveyna .gt_asterisk {
+#gqrsjuqazz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ddhiqveyna .gt_indent_1 {
+#gqrsjuqazz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ddhiqveyna .gt_indent_2 {
+#gqrsjuqazz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ddhiqveyna .gt_indent_3 {
+#gqrsjuqazz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ddhiqveyna .gt_indent_4 {
+#gqrsjuqazz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ddhiqveyna .gt_indent_5 {
+#gqrsjuqazz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -899,7 +898,7 @@ background: #0e577f;
 </div>
 </div>
 </div>
-<p>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</p>
+<p>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Y como podemos obsevar el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja) con valores promedios de entre 125k - 350k USD , seguido por Controller y Project Manager. Mientras que aún dentro del top, Retails Associate y Customer Service Associate son las posiciones que ofrecen los salarios más bajos. Además se resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top, las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</p>
 <div class="cell" data-layout-align="center">
 <details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#---Plot------</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
@@ -990,8 +989,8 @@ background: #0e577f;
 <span id="cb5-57"><a href="#cb5-57"></a>    )</span>
 <span id="cb5-58"><a href="#cb5-58"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8b81d35ee85124e05d28" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-8b81d35ee85124e05d28">{"x":{"visdat":{"1028a69258017":["function () ","plotlyVisDat"]},"cur_data":"1028a69258017","attrs":{"1028a69258017":{"labels":{},"parents":{},"values":{},"ids":{},"marker":{"colors":"Viridis"},"textinfo":"label+percent entry","insidetextorientation":"radial","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":0,"l":0,"t":40,"r":0},"title":"Proporción de Postings en LinkedIn por Industria","subtitle":"Top 20 Industrias","font":{"size":14},"sunburstcolorway":["#3498db","#e43725","#3acc2e","#8f4bab","#f39c12","#1abc9c"],"paper_bgcolor":"white","plot_bgcolor":"black","hoverlabel":{"bgcolor":"white","font":{"size":14}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"parents":["","","","","","","","","","","","","","","","","","","",""],"values":[32078,19462,14371,7429,5755,3092,2790,1649,1570,1553,1435,1422,1400,1345,1242,1212,1168,1008,960,942],"ids":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"marker":{"color":"rgba(31,119,180,1)","colors":["Viridis"],"line":{"color":"rgba(255,255,255,1)"}},"textinfo":"label+percent entry","insidetextorientation":"radial","type":"sunburst","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-94a01f38d047280c029f" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-94a01f38d047280c029f">{"x":{"visdat":{"108d95866157c":["function () ","plotlyVisDat"]},"cur_data":"108d95866157c","attrs":{"108d95866157c":{"labels":{},"parents":{},"values":{},"ids":{},"marker":{"colors":"Viridis"},"textinfo":"label+percent entry","insidetextorientation":"radial","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":0,"l":0,"t":40,"r":0},"title":"Proporción de Postings en LinkedIn por Industria","subtitle":"Top 20 Industrias","font":{"size":14},"sunburstcolorway":["#3498db","#e43725","#3acc2e","#8f4bab","#f39c12","#1abc9c"],"paper_bgcolor":"white","plot_bgcolor":"black","hoverlabel":{"bgcolor":"white","font":{"size":14}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"parents":["","","","","","","","","","","","","","","","","","","",""],"values":[32078,19462,14371,7429,5755,3092,2790,1649,1570,1553,1435,1422,1400,1345,1242,1212,1168,1008,960,942],"ids":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"marker":{"color":"rgba(31,119,180,1)","colors":["Viridis"],"line":{"color":"rgba(255,255,255,1)"}},"textinfo":"label+percent entry","insidetextorientation":"radial","type":"sunburst","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <hr></section><section id="top-skills-para-las-top-industrias" class="level3"><h3 class="anchored" data-anchor-id="top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</h3>
@@ -1069,8 +1068,8 @@ background: #0e577f;
 <span id="cb6-70"><a href="#cb6-70"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
 <span id="cb6-71"><a href="#cb6-71"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1c03f08a9e8f5a48b14c" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1c03f08a9e8f5a48b14c">{"x":{"nodes":{"id":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"label":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"group":["Industry","Industry","Industry","Industry","Industry","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill"],"x":[-0.2433171184158922,0.5775658238200883,-0.5554143438372283,0.1807212024363354,0.5878896674440111,0.193680942514121,-0.5092079802864397,0.2300411615542752,-0.4666238114419007,-0.6823935205499159,0.4962423261670288,-0.002717716137251802,1,0.8756349163899935,-0.2935019866635992,-1,0.2608023956997962,0.9195134971083778],"y":[0.5232555654178848,-0.2354963632747261,-0.2250198046565723,-0.4619671780392246,0.4433208677946003,0.7289376337321938,0.2010522594600852,0.1172247875622725,1,0.2776518673297956,-0.04314224614298146,-0.3227804274017088,-0.5288487353211906,0.1339997470372016,-0.5933287520617581,-0.4416191985699319,-1,0.8358592379537333]},"edges":{"from":["HCPR","MGMT","IT","ADM","MNFC","IT","ENG","SALE","ANLS","FIN","SALE","BD","MGMT","MNFC","CUST","IT","ENG","SALE","BD","MRKT","IT","ACCT","FIN","ENG","HCPR"],"to":["Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","Retail","Retail","Retail","Retail","Retail","Software Development","Software Development","Software Development","Software Development","Software Development","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting"],"value":[8901,1516,1297,1248,1054,9657,4178,1372,1269,1134,2079,1618,1171,989,811,2713,2143,1468,1342,933,6995,6065,5517,3972,3855]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"width":"value","arrows":"to","smooth":false,"shadow":true},"physics":{"stabilization":false},"groups":{"Industry":{"shape":"circle"},"useDefaultGroups":true,"Skill":{"shape":"square"}}},"groups":["Industry","Skill"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Relación Skills-Industrias","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-79156f6df6a7850318a3" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-79156f6df6a7850318a3">{"x":{"nodes":{"id":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"label":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"group":["Industry","Industry","Industry","Industry","Industry","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill"],"x":[-0.05536722255452553,-0.1301826341542441,0.5892442363132917,0.2227663651495544,-0.5589950979553944,-0.4604266665855158,0.3113349384339459,-0.1372516973570862,-0.1852587369721526,0.369569262062629,-0.2284823366436121,0.2918757906231051,-0.2007009217099125,-0.5434623730341723,0.6115089561234164,1,0.4855937169408087,-1],"y":[0.5408235435298241,-0.5102876060927575,0.2970071985113834,-0.3642792510637077,-0.09727538434301619,0.3648583390156275,0.5255190645510304,-0.04551608264271156,1,0.6969250308032351,-0.3378013913865073,-0.1526557060575964,-1,-0.5020441460958046,-0.1208066060622945,0.4694724590114205,-0.7568652717022524,-0.09978922020356007]},"edges":{"from":["HCPR","MGMT","IT","ADM","MNFC","IT","ENG","SALE","ANLS","FIN","SALE","BD","MGMT","MNFC","CUST","IT","ENG","SALE","BD","MRKT","IT","ACCT","FIN","ENG","HCPR"],"to":["Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","Retail","Retail","Retail","Retail","Retail","Software Development","Software Development","Software Development","Software Development","Software Development","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting"],"value":[8901,1516,1297,1248,1054,9657,4178,1372,1269,1134,2079,1618,1171,989,811,2713,2143,1468,1342,933,6995,6065,5517,3972,3855]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"width":"value","arrows":"to","smooth":false,"shadow":true},"physics":{"stabilization":false},"groups":{"Industry":{"shape":"circle"},"useDefaultGroups":true,"Skill":{"shape":"square"}}},"groups":["Industry","Skill"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Relación Skills-Industrias","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br> Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</p>
@@ -1087,26 +1086,26 @@ background: #0e577f;
 <span id="cb7-10"><a href="#cb7-10"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 
-<div id="gjwcyshzvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wohmqsmgnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#gjwcyshzvy table {
+#wohmqsmgnt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gjwcyshzvy thead, #gjwcyshzvy tbody, #gjwcyshzvy tfoot, #gjwcyshzvy tr, #gjwcyshzvy td, #gjwcyshzvy th {
+#wohmqsmgnt thead, #wohmqsmgnt tbody, #wohmqsmgnt tfoot, #wohmqsmgnt tr, #wohmqsmgnt td, #wohmqsmgnt th {
   border-style: none;
 }
 
-#gjwcyshzvy p {
+#wohmqsmgnt p {
   margin: 0;
   padding: 0;
 }
 
-#gjwcyshzvy .gt_table {
+#wohmqsmgnt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1132,12 +1131,12 @@ background: #0e577f;
   border-left-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_caption {
+#wohmqsmgnt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gjwcyshzvy .gt_title {
+#wohmqsmgnt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1149,7 +1148,7 @@ background: #0e577f;
   border-bottom-width: 0;
 }
 
-#gjwcyshzvy .gt_subtitle {
+#wohmqsmgnt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1161,7 +1160,7 @@ background: #0e577f;
   border-top-width: 0;
 }
 
-#gjwcyshzvy .gt_heading {
+#wohmqsmgnt .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1173,13 +1172,13 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_bottom_border {
+#wohmqsmgnt .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_col_headings {
+#wohmqsmgnt .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1194,7 +1193,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_col_heading {
+#wohmqsmgnt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1214,7 +1213,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#gjwcyshzvy .gt_column_spanner_outer {
+#wohmqsmgnt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1226,15 +1225,15 @@ background: #0e577f;
   padding-right: 4px;
 }
 
-#gjwcyshzvy .gt_column_spanner_outer:first-child {
+#wohmqsmgnt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gjwcyshzvy .gt_column_spanner_outer:last-child {
+#wohmqsmgnt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gjwcyshzvy .gt_column_spanner {
+#wohmqsmgnt .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -1246,11 +1245,11 @@ background: #0e577f;
   width: 100%;
 }
 
-#gjwcyshzvy .gt_spanner_row {
+#wohmqsmgnt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gjwcyshzvy .gt_group_heading {
+#wohmqsmgnt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1276,7 +1275,7 @@ background: #0e577f;
   text-align: left;
 }
 
-#gjwcyshzvy .gt_empty_group_heading {
+#wohmqsmgnt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1291,15 +1290,15 @@ background: #0e577f;
   vertical-align: middle;
 }
 
-#gjwcyshzvy .gt_from_md > :first-child {
+#wohmqsmgnt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gjwcyshzvy .gt_from_md > :last-child {
+#wohmqsmgnt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gjwcyshzvy .gt_row {
+#wohmqsmgnt .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -1318,7 +1317,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#gjwcyshzvy .gt_stub {
+#wohmqsmgnt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1331,7 +1330,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#gjwcyshzvy .gt_stub_row_group {
+#wohmqsmgnt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1345,15 +1344,15 @@ background: #0e577f;
   vertical-align: top;
 }
 
-#gjwcyshzvy .gt_row_group_first td {
+#wohmqsmgnt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gjwcyshzvy .gt_row_group_first th {
+#wohmqsmgnt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gjwcyshzvy .gt_summary_row {
+#wohmqsmgnt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1363,16 +1362,16 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#gjwcyshzvy .gt_first_summary_row {
+#wohmqsmgnt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_first_summary_row.thick {
+#wohmqsmgnt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gjwcyshzvy .gt_last_summary_row {
+#wohmqsmgnt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1382,7 +1381,7 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_grand_summary_row {
+#wohmqsmgnt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1392,7 +1391,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#gjwcyshzvy .gt_first_grand_summary_row {
+#wohmqsmgnt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1402,7 +1401,7 @@ background: #0e577f;
   border-top-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_last_grand_summary_row_top {
+#wohmqsmgnt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1412,11 +1411,11 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_striped {
+#wohmqsmgnt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gjwcyshzvy .gt_table_body {
+#wohmqsmgnt .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1425,7 +1424,7 @@ background: #0e577f;
   border-bottom-color: #FFFFFF;
 }
 
-#gjwcyshzvy .gt_footnotes {
+#wohmqsmgnt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1439,7 +1438,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_footnote {
+#wohmqsmgnt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1448,7 +1447,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#gjwcyshzvy .gt_sourcenotes {
+#wohmqsmgnt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1462,7 +1461,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#gjwcyshzvy .gt_sourcenote {
+#wohmqsmgnt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1470,63 +1469,63 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#gjwcyshzvy .gt_left {
+#wohmqsmgnt .gt_left {
   text-align: left;
 }
 
-#gjwcyshzvy .gt_center {
+#wohmqsmgnt .gt_center {
   text-align: center;
 }
 
-#gjwcyshzvy .gt_right {
+#wohmqsmgnt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gjwcyshzvy .gt_font_normal {
+#wohmqsmgnt .gt_font_normal {
   font-weight: normal;
 }
 
-#gjwcyshzvy .gt_font_bold {
+#wohmqsmgnt .gt_font_bold {
   font-weight: bold;
 }
 
-#gjwcyshzvy .gt_font_italic {
+#wohmqsmgnt .gt_font_italic {
   font-style: italic;
 }
 
-#gjwcyshzvy .gt_super {
+#wohmqsmgnt .gt_super {
   font-size: 65%;
 }
 
-#gjwcyshzvy .gt_footnote_marks {
+#wohmqsmgnt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gjwcyshzvy .gt_asterisk {
+#wohmqsmgnt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gjwcyshzvy .gt_indent_1 {
+#wohmqsmgnt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gjwcyshzvy .gt_indent_2 {
+#wohmqsmgnt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gjwcyshzvy .gt_indent_3 {
+#wohmqsmgnt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gjwcyshzvy .gt_indent_4 {
+#wohmqsmgnt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gjwcyshzvy .gt_indent_5 {
+#wohmqsmgnt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1617,9 +1616,7 @@ background: #0e577f;
 </tr>
 </tbody>
 </table>
-<p><br></p>
-</section><section id="referencias" class="level3"><h3 class="anchored" data-anchor-id="referencias">Referencias</h3>
-<p><a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.</p>
+<p><br> ### Referencias <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del resultado del webscrapping.</p>
 </section><section id="información-sobre-la-sesión" class="level3"><h3 class="anchored" data-anchor-id="información-sobre-la-sesión">Información sobre la sesión</h3>
 <p>Abajo muestro mi entorno de trabajo y paquetes utilizados</p>
 <div class="cell" data-layout-align="center">
@@ -2056,7 +2053,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-31"><a href="#cb9-31"></a></span>
 <span id="cb9-32"><a href="#cb9-32"></a><span class="fu">### Datos</span></span>
 <span id="cb9-33"><a href="#cb9-33"></a></span>
-<span id="cb9-34"><a href="#cb9-34"></a>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</span>
+<span id="cb9-34"><a href="#cb9-34"></a>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</span>
 <span id="cb9-35"><a href="#cb9-35"></a></span>
 <span id="cb9-36"><a href="#cb9-36"></a><span class="fu">### Packages y Carga de Datos</span></span>
 <span id="cb9-37"><a href="#cb9-37"></a></span>
@@ -2089,16 +2086,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-66"><a href="#cb9-66"></a></span>
 <span id="cb9-67"><a href="#cb9-67"></a>**Descripción de variables principales:** En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:</span>
 <span id="cb9-68"><a href="#cb9-68"></a></span>
-<span id="cb9-69"><a href="#cb9-69"></a><span class="ss">- </span><span class="in">`job_id`</span>, <span class="in">`title`</span> : Identificador y título de trabajo que para cada post</span>
-<span id="cb9-70"><a href="#cb9-70"></a><span class="ss">- </span><span class="in">`max_salary`</span>, <span class="in">`min_salary`</span>: Salario maximo, Salario mínimo </span>
-<span id="cb9-71"><a href="#cb9-71"></a><span class="ss">- </span><span class="in">`skills_desc`</span>: Habilidades requeridas para el puesto de trabajo</span>
-<span id="cb9-72"><a href="#cb9-72"></a><span class="ss">- </span><span class="in">`benefit`</span>: Beneficos ofrecidos para el trabajo correspondiente</span>
+<span id="cb9-69"><a href="#cb9-69"></a><span class="ss">- </span><span class="in">`job_id`</span>, <span class="in">`title`</span> : Identificador y título de trabajo que para cada post.</span>
+<span id="cb9-70"><a href="#cb9-70"></a><span class="ss">- </span><span class="in">`max_salary`</span>, <span class="in">`min_salary`</span>: Salario máximo, Salario mínimo. </span>
+<span id="cb9-71"><a href="#cb9-71"></a><span class="ss">- </span><span class="in">`skills_desc`</span>: Habilidades requeridas para el puesto de trabajo.</span>
+<span id="cb9-72"><a href="#cb9-72"></a><span class="ss">- </span><span class="in">`benefit`</span>: Beneficos ofrecidos para el trabajo correspondiente.</span>
 <span id="cb9-73"><a href="#cb9-73"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb9-74"><a href="#cb9-74"></a><span class="ss">- </span><span class="in">`company_id`</span>, <span class="in">`name`</span>, <span class="in">`employee_count`</span>: Identificador para una empresa, nombre y número de empleados respectivos</span>
+<span id="cb9-74"><a href="#cb9-74"></a><span class="ss">- </span><span class="in">`company_id`</span>, <span class="in">`name`</span>, <span class="in">`employee_count`</span>: Identificador para una empresa, nombre y número de empleados respectivos.</span>
 <span id="cb9-75"><a href="#cb9-75"></a></span>
 <span id="cb9-76"><a href="#cb9-76"></a>En dataset <span class="in">`company_industries`</span>: Clasificación de cada compania (por company_id) a una industria.</span>
 <span id="cb9-77"><a href="#cb9-77"></a></span>
-<span id="cb9-78"><a href="#cb9-78"></a><span class="ss">- </span><span class="in">`industry`</span>: Nombre de la Industria.</span>
+<span id="cb9-78"><a href="#cb9-78"></a><span class="ss">- </span><span class="in">`industry`</span>: Nombre de la industria.</span>
 <span id="cb9-79"><a href="#cb9-79"></a></span>
 <span id="cb9-80"><a href="#cb9-80"></a>El dataset <span class="in">`job_skills`</span>: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las *skills* estan representadas con abreviaturas.</span>
 <span id="cb9-81"><a href="#cb9-81"></a></span>
@@ -2190,7 +2187,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-171"><a href="#cb9-171"></a>t1</span>
 <span id="cb9-172"><a href="#cb9-172"></a><span class="in">```</span></span>
 <span id="cb9-173"><a href="#cb9-173"></a></span>
-<span id="cb9-174"><a href="#cb9-174"></a>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</span>
+<span id="cb9-174"><a href="#cb9-174"></a>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Y como podemos obsevar el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja) con valores promedios de entre 125k - 350k USD , seguido por Controller y Project Manager. Mientras que aún dentro del top, Retails Associate y Customer Service Associate son las posiciones que ofrecen los salarios más bajos. Además se resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top, las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</span>
 <span id="cb9-175"><a href="#cb9-175"></a></span>
 <span id="cb9-178"><a href="#cb9-178"></a><span class="in">```{r}</span></span>
 <span id="cb9-179"><a href="#cb9-179"></a><span class="co">#| warning: false</span></span>
@@ -2410,20 +2407,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-399"><a href="#cb9-399"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
 <span id="cb9-400"><a href="#cb9-400"></a></span>
 <span id="cb9-401"><a href="#cb9-401"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb9-402"><a href="#cb9-402"></a></span>
-<span id="cb9-403"><a href="#cb9-403"></a></span>
-<span id="cb9-404"><a href="#cb9-404"></a><span class="fu">### Referencias</span></span>
-<span id="cb9-405"><a href="#cb9-405"></a><span class="co">[</span><span class="ot">**Decoding the Job Market: An In-depth Exploration**</span><span class="co">](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook)</span>{target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.</span>
+<span id="cb9-402"><a href="#cb9-402"></a><span class="fu">### Referencias</span></span>
+<span id="cb9-403"><a href="#cb9-403"></a><span class="co">[</span><span class="ot">**Decoding the Job Market: An In-depth Exploration**</span><span class="co">](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook)</span>{target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del resultado del webscrapping.</span>
+<span id="cb9-404"><a href="#cb9-404"></a></span>
+<span id="cb9-405"><a href="#cb9-405"></a><span class="fu">### Información sobre la sesión</span></span>
 <span id="cb9-406"><a href="#cb9-406"></a></span>
-<span id="cb9-407"><a href="#cb9-407"></a><span class="fu">### Información sobre la sesión</span></span>
+<span id="cb9-407"><a href="#cb9-407"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
 <span id="cb9-408"><a href="#cb9-408"></a></span>
-<span id="cb9-409"><a href="#cb9-409"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
-<span id="cb9-410"><a href="#cb9-410"></a></span>
-<span id="cb9-413"><a href="#cb9-413"></a><span class="in">```{r}</span></span>
-<span id="cb9-414"><a href="#cb9-414"></a><span class="co">#| echo: false</span></span>
-<span id="cb9-415"><a href="#cb9-415"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb9-416"><a href="#cb9-416"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
-<span id="cb9-417"><a href="#cb9-417"></a><span class="in">```</span></span>
+<span id="cb9-411"><a href="#cb9-411"></a><span class="in">```{r}</span></span>
+<span id="cb9-412"><a href="#cb9-412"></a><span class="co">#| echo: false</span></span>
+<span id="cb9-413"><a href="#cb9-413"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-414"><a href="#cb9-414"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
+<span id="cb9-415"><a href="#cb9-415"></a><span class="in">```</span></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

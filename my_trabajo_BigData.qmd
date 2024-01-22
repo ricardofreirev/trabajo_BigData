@@ -31,7 +31,7 @@ El objetivo de este proyecto es analizar y visualizar datos clave del mercado la
 
 ### Datos
 
-Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.
+Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y el estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.
 
 ### Packages y Carga de Datos
 
@@ -64,16 +64,16 @@ comp_industries <- rio::import("./data/company_details/company_industries.csv")
 
 **Descripción de variables principales:** En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:
 
-- `job_id`, `title` : Identificador y título de trabajo que para cada post
-- `max_salary`, `min_salary`: Salario maximo, Salario mínimo 
-- `skills_desc`: Habilidades requeridas para el puesto de trabajo
-- `benefit`: Beneficos ofrecidos para el trabajo correspondiente
+- `job_id`, `title` : Identificador y título de trabajo que para cada post.
+- `max_salary`, `min_salary`: Salario máximo, Salario mínimo. 
+- `skills_desc`: Habilidades requeridas para el puesto de trabajo.
+- `benefit`: Beneficos ofrecidos para el trabajo correspondiente.
 <br>
-- `company_id`, `name`, `employee_count`: Identificador para una empresa, nombre y número de empleados respectivos
+- `company_id`, `name`, `employee_count`: Identificador para una empresa, nombre y número de empleados respectivos.
 
 En dataset `company_industries`: Clasificación de cada compania (por company_id) a una industria.
 
-- `industry`: Nombre de la Industria.
+- `industry`: Nombre de la industria.
 
 El dataset `job_skills`: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las *skills* estan representadas con abreviaturas.
 
@@ -165,7 +165,7 @@ t1 <- high_demand_final %>%
 t1
 ```
 
-Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.
+Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Y como podemos obsevar el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja) con valores promedios de entre 125k - 350k USD , seguido por Controller y Project Manager. Mientras que aún dentro del top, Retails Associate y Customer Service Associate son las posiciones que ofrecen los salarios más bajos. Además se resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top, las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.
 
 ```{r}
 #| warning: false
@@ -385,10 +385,8 @@ Este análisis proporciona una visión integral para aquellos que buscan compren
 | <br>                                                                            |
 
 <br>
-
-
 ### Referencias
-[**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.
+[**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del resultado del webscrapping.
 
 ### Información sobre la sesión
 
