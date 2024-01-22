@@ -31,7 +31,7 @@ El objetivo de este proyecto es analizar y visualizar datos clave del mercado la
 
 ### Datos
 
-Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual ya habia tratado las observaciones con datos faltantes. Por último, es necesario mencionar que los salarios se enceuntran en USD y que la gran mayoría de las observaciones provienen de USA.
+Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.
 
 ### Packages y Carga de Datos
 
@@ -61,6 +61,24 @@ job_salaries <- rio::import("./data/job_details/salaries.csv")
 #- Companies
 comp_industries <- rio::import("./data/company_details/company_industries.csv")
 ```
+
+**Descripción de variables principales:** En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:
+
+- `job_id`, `title` : Identificador y título de trabajo que para cada post
+- `max_salary`, `min_salary`: Salario maximo, Salario mínimo 
+- `skills_desc`: Habilidades requeridas para el puesto de trabajo
+- `benefit`: Beneficos ofrecidos para el trabajo correspondiente
+<br>
+- `company_id`, `name`, `employee_count`: Identificador para una empresa, nombre y número de empleados respectivos
+
+En dataset `company_industries`: Clasificación de cada compania (por company_id) a una industria.
+
+- `industry`: Nombre de la Industria.
+
+El dataset `job_skills`: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las *skills* estan representadas con abreviaturas.
+
+- `skill_abr`: Habilidades requeridas para el puesto de trabajo (abreviatura).
+
 
 ------------------------------------------------------------------------
 
@@ -147,7 +165,7 @@ t1 <- high_demand_final %>%
 t1
 ```
 
-Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial, seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos.
+Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.
 
 ```{r}
 #| warning: false
@@ -174,9 +192,12 @@ p1
 
 ### 2. Industrias que Dominan LinkedIn?
 
-Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <br> Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.
+Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). 
+<br> 
 
-A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de *postings* que las industrias más presentes.
+Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.
+
+A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de *postings* que las industrias más presentes. Ejemplos de industrias con bajo número de publicaciones son la de bienes raices (2%) y la de seguros(1%).
 
 ```{r}
 #| warning: false
@@ -245,7 +266,7 @@ plot_ly(
 
 ### 3.TOP Skills para las TOP Industrias
 
-Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las *skills* más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las *skills*  y la importancia de cada habilidad para cada industria se representará con el *thickness* de las conexiones.
+Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las *skills* más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las *skills* y la importancia de cada habilidad para cada industria se representará con el *thickness* de las conexiones.
 
 ```{r}
 #|warning: false
@@ -322,8 +343,7 @@ visNetwork(
 
 ```
 
-<br>
-Adjunto una tabla que muestra la skill correspondiente para cada abreviación.
+<br> Adjunto una tabla que muestra la skill correspondiente para cada abreviación.
 
 ```{r}
 #- Añadimos el nombre completo para cada skill
@@ -346,26 +366,29 @@ Por otra parte, hechando una mirada en el ámbito de médico y de salud se obser
 
 Finalmente, resulta interesante e innegable que las habilidades en IT son claves en todas las industrias líderes en LinkedIn y que poseerlas es esencial para ser competitivo en el ámbito laboral.
 
-
 ### Conclusión
 
 En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.
 
-Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer  principalmente el mismo tipo de benefios.
+Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer principalmente el mismo tipo de benefios.
 
-Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puede que a primera vista sean obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing & Recruiment, los servicios IT y  los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Por ende, nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social y LinkedIn puede ser una herramienta más (o menos) efectiva dependiendo de la industria de interés. 
+Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puede que a primera vista sean obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing & Recruiment, los servicios IT y los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Por ende, nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social y LinkedIn puede ser una herramienta más (o menos) efectiva dependiendo de la industria de interés.
 
 Por último, se identificaron que las skills más relevantes para "Staffing and Recruitment," son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que las habilidades en IT son universales y necesarias para cualuqier industria en el top.
 
-Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día. 
+Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día.
 
 |                                                                                 |
-|:-----------------------|
+|:-----------------------------------------------------------------------|
 | <br>                                                                            |
 | Con esto acabo mi trabajo para la clase de Programación en la Era del BigData!! |
 | <br>                                                                            |
 
 <br>
+
+
+### Referencias
+[**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.
 
 ### Información sobre la sesión
 

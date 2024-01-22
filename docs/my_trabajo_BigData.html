@@ -212,6 +212,7 @@ background: #0e577f;
   <li><a href="#industrias-que-dominan-linkedin" id="toc-industrias-que-dominan-linkedin" class="nav-link" data-scroll-target="#industrias-que-dominan-linkedin">2. Industrias que Dominan LinkedIn?</a></li>
   <li><a href="#top-skills-para-las-top-industrias" id="toc-top-skills-para-las-top-industrias" class="nav-link" data-scroll-target="#top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</a></li>
   <li><a href="#conclusi%C3%B3n" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusi%C3%B3n">Conclusión</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   <li><a href="#informaci%C3%B3n-sobre-la-sesi%C3%B3n" id="toc-información-sobre-la-sesión" class="nav-link" data-scroll-target="#informaci%C3%B3n-sobre-la-sesi%C3%B3n">Información sobre la sesión</a></li>
   </ul>
 </li>
@@ -224,7 +225,7 @@ background: #0e577f;
 <main class="content quarto-banner-title-block column-page-right" id="quarto-document-content"><section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>El objetivo de este proyecto es analizar y visualizar datos clave del mercado laboral actual (2023). Se pretende dar un corto vistazo y analizar tres puntos claves de este mercado: tendencias en la demanda laboral, las diferentes industrias y las habilidades más valoradas en el mercado.</p>
 <section id="datos" class="level3"><h3 class="anchored" data-anchor-id="datos">Datos</h3>
-<p>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los <em>postings</em> que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv" target="_blank"><strong>LinkedIn Job Postings-2023</strong></a>, conjunto de datasets disponibles en Kaggle y del estudio <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual ya habia tratado las observaciones con datos faltantes. Por último, es necesario mencionar que los salarios se enceuntran en USD y que la gran mayoría de las observaciones provienen de USA.</p>
+<p>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los <em>postings</em> que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv" target="_blank"><strong>LinkedIn Job Postings-2023</strong></a>, conjunto de datasets disponibles en Kaggle y del estudio <a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</p>
 </section><section id="packages-y-carga-de-datos" class="level3"><h3 class="anchored" data-anchor-id="packages-y-carga-de-datos">Packages y Carga de Datos</h3>
 <p>Aquí se podran ver los paquetes y los datasets que han sido usados para el trabajo.</p>
 <div class="cell" data-layout-align="center">
@@ -250,6 +251,30 @@ background: #0e577f;
 <span id="cb1-20"><a href="#cb1-20"></a>comp_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/company_details/company_industries.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p><strong>Descripción de variables principales:</strong> En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:</p>
+<ul>
+<li>
+<code>job_id</code>, <code>title</code> : Identificador y título de trabajo que para cada post</li>
+<li>
+<code>max_salary</code>, <code>min_salary</code>: Salario maximo, Salario mínimo</li>
+<li>
+<code>skills_desc</code>: Habilidades requeridas para el puesto de trabajo</li>
+<li>
+<code>benefit</code>: Beneficos ofrecidos para el trabajo correspondiente <br>
+</li>
+<li>
+<code>company_id</code>, <code>name</code>, <code>employee_count</code>: Identificador para una empresa, nombre y número de empleados respectivos</li>
+</ul>
+<p>En dataset <code>company_industries</code>: Clasificación de cada compania (por company_id) a una industria.</p>
+<ul>
+<li>
+<code>industry</code>: Nombre de la Industria.</li>
+</ul>
+<p>El dataset <code>job_skills</code>: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las <em>skills</em> estan representadas con abreviaturas.</p>
+<ul>
+<li>
+<code>skill_abr</code>: Habilidades requeridas para el puesto de trabajo (abreviatura).</li>
+</ul>
 <hr></section><section id="overview-de-las-posiciones-con-más-demanda" class="level3"><h3 class="anchored" data-anchor-id="overview-de-las-posiciones-con-más-demanda">1. Overview de las Posiciones con más Demanda</h3>
 <p>Para comenzar, analizaremos una métrica simple pero muy importante. Descubriremos cuáles son los títulos que aparecen más frecuentemente en los postings y que, por lo tanto, consideraremos como los trabajos más demandados. La siguiente tabla muestra los títulos con más posts en LinkedIn, el rango de salarios promedio para cada posición, el nivel de experiencia requerido y los beneficios más comunes asociados a cada título. <br> El gráfico de barras muestra el promedio del salario máximo y mínimo para cada trabajo.</p>
 <div class="cell" data-layout-align="center">
@@ -335,26 +360,26 @@ background: #0e577f;
 <span id="cb3-17"><a href="#cb3-17"></a>t1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 
-<div id="ouidwtcqtm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ddhiqveyna" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ouidwtcqtm table {
+#ddhiqveyna table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ouidwtcqtm thead, #ouidwtcqtm tbody, #ouidwtcqtm tfoot, #ouidwtcqtm tr, #ouidwtcqtm td, #ouidwtcqtm th {
+#ddhiqveyna thead, #ddhiqveyna tbody, #ddhiqveyna tfoot, #ddhiqveyna tr, #ddhiqveyna td, #ddhiqveyna th {
   border-style: none;
 }
 
-#ouidwtcqtm p {
+#ddhiqveyna p {
   margin: 0;
   padding: 0;
 }
 
-#ouidwtcqtm .gt_table {
+#ddhiqveyna .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -380,12 +405,12 @@ background: #0e577f;
   border-left-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_caption {
+#ddhiqveyna .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ouidwtcqtm .gt_title {
+#ddhiqveyna .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -397,7 +422,7 @@ background: #0e577f;
   border-bottom-width: 0;
 }
 
-#ouidwtcqtm .gt_subtitle {
+#ddhiqveyna .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -409,7 +434,7 @@ background: #0e577f;
   border-top-width: 0;
 }
 
-#ouidwtcqtm .gt_heading {
+#ddhiqveyna .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -421,13 +446,13 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_bottom_border {
+#ddhiqveyna .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_col_headings {
+#ddhiqveyna .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -442,7 +467,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_col_heading {
+#ddhiqveyna .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -462,7 +487,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#ouidwtcqtm .gt_column_spanner_outer {
+#ddhiqveyna .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -474,15 +499,15 @@ background: #0e577f;
   padding-right: 4px;
 }
 
-#ouidwtcqtm .gt_column_spanner_outer:first-child {
+#ddhiqveyna .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ouidwtcqtm .gt_column_spanner_outer:last-child {
+#ddhiqveyna .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ouidwtcqtm .gt_column_spanner {
+#ddhiqveyna .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -494,11 +519,11 @@ background: #0e577f;
   width: 100%;
 }
 
-#ouidwtcqtm .gt_spanner_row {
+#ddhiqveyna .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ouidwtcqtm .gt_group_heading {
+#ddhiqveyna .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -524,7 +549,7 @@ background: #0e577f;
   text-align: left;
 }
 
-#ouidwtcqtm .gt_empty_group_heading {
+#ddhiqveyna .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -539,15 +564,15 @@ background: #0e577f;
   vertical-align: middle;
 }
 
-#ouidwtcqtm .gt_from_md > :first-child {
+#ddhiqveyna .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ouidwtcqtm .gt_from_md > :last-child {
+#ddhiqveyna .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ouidwtcqtm .gt_row {
+#ddhiqveyna .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -566,7 +591,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#ouidwtcqtm .gt_stub {
+#ddhiqveyna .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -579,7 +604,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ouidwtcqtm .gt_stub_row_group {
+#ddhiqveyna .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -593,15 +618,15 @@ background: #0e577f;
   vertical-align: top;
 }
 
-#ouidwtcqtm .gt_row_group_first td {
+#ddhiqveyna .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ouidwtcqtm .gt_row_group_first th {
+#ddhiqveyna .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ouidwtcqtm .gt_summary_row {
+#ddhiqveyna .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -611,16 +636,16 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ouidwtcqtm .gt_first_summary_row {
+#ddhiqveyna .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_first_summary_row.thick {
+#ddhiqveyna .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ouidwtcqtm .gt_last_summary_row {
+#ddhiqveyna .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -630,7 +655,7 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_grand_summary_row {
+#ddhiqveyna .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -640,7 +665,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ouidwtcqtm .gt_first_grand_summary_row {
+#ddhiqveyna .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +675,7 @@ background: #0e577f;
   border-top-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_last_grand_summary_row_top {
+#ddhiqveyna .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -660,11 +685,11 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_striped {
+#ddhiqveyna .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ouidwtcqtm .gt_table_body {
+#ddhiqveyna .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -673,7 +698,7 @@ background: #0e577f;
   border-bottom-color: #FFFFFF;
 }
 
-#ouidwtcqtm .gt_footnotes {
+#ddhiqveyna .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -687,7 +712,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_footnote {
+#ddhiqveyna .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -696,7 +721,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ouidwtcqtm .gt_sourcenotes {
+#ddhiqveyna .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -710,7 +735,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#ouidwtcqtm .gt_sourcenote {
+#ddhiqveyna .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -718,63 +743,63 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#ouidwtcqtm .gt_left {
+#ddhiqveyna .gt_left {
   text-align: left;
 }
 
-#ouidwtcqtm .gt_center {
+#ddhiqveyna .gt_center {
   text-align: center;
 }
 
-#ouidwtcqtm .gt_right {
+#ddhiqveyna .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ouidwtcqtm .gt_font_normal {
+#ddhiqveyna .gt_font_normal {
   font-weight: normal;
 }
 
-#ouidwtcqtm .gt_font_bold {
+#ddhiqveyna .gt_font_bold {
   font-weight: bold;
 }
 
-#ouidwtcqtm .gt_font_italic {
+#ddhiqveyna .gt_font_italic {
   font-style: italic;
 }
 
-#ouidwtcqtm .gt_super {
+#ddhiqveyna .gt_super {
   font-size: 65%;
 }
 
-#ouidwtcqtm .gt_footnote_marks {
+#ddhiqveyna .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ouidwtcqtm .gt_asterisk {
+#ddhiqveyna .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ouidwtcqtm .gt_indent_1 {
+#ddhiqveyna .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ouidwtcqtm .gt_indent_2 {
+#ddhiqveyna .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ouidwtcqtm .gt_indent_3 {
+#ddhiqveyna .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ouidwtcqtm .gt_indent_4 {
+#ddhiqveyna .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ouidwtcqtm .gt_indent_5 {
+#ddhiqveyna .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -874,7 +899,7 @@ background: #0e577f;
 </div>
 </div>
 </div>
-<p>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial, seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos.</p>
+<p>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</p>
 <div class="cell" data-layout-align="center">
 <details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#---Plot------</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
@@ -902,8 +927,9 @@ background: #0e577f;
 </div>
 <p><strong>Nota:</strong> Para mantener el mayor nivel de consistencia posible, para los salarios se consideraron únicamente las observaciones que presentaban salarios anuales y se excluyeron las observaciones con salarios por hora. Razón por la que el rol de “Area Supervisor” no presenta datos del sueldo. Para ello, se consideró un valor arbitrario de 500, ya que se espera que ningún empleo ofrezca un salario anual menor a 500.</p>
 </section><section id="industrias-que-dominan-linkedin" class="level3"><h3 class="anchored" data-anchor-id="industrias-que-dominan-linkedin">2. Industrias que Dominan LinkedIn?</h3>
-<p>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <br> Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</p>
-<p>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de <em>postings</em> que las industrias más presentes.</p>
+<p>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <br></p>
+<p>Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</p>
+<p>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de <em>postings</em> que las industrias más presentes. Ejemplos de industrias con bajo número de publicaciones son la de bienes raices (2%) y la de seguros(1%).</p>
 <div class="cell" data-layout-align="center">
 <details open=""><summary>Código</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>companies_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(company_id, name, employee_count)</span>
@@ -964,8 +990,8 @@ background: #0e577f;
 <span id="cb5-57"><a href="#cb5-57"></a>    )</span>
 <span id="cb5-58"><a href="#cb5-58"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3c5c23b30d85180ccebc" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-3c5c23b30d85180ccebc">{"x":{"visdat":{"135e479056c57":["function () ","plotlyVisDat"]},"cur_data":"135e479056c57","attrs":{"135e479056c57":{"labels":{},"parents":{},"values":{},"ids":{},"marker":{"colors":"Viridis"},"textinfo":"label+percent entry","insidetextorientation":"radial","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":0,"l":0,"t":40,"r":0},"title":"Proporción de Postings en LinkedIn por Industria","subtitle":"Top 20 Industrias","font":{"size":14},"sunburstcolorway":["#3498db","#e43725","#3acc2e","#8f4bab","#f39c12","#1abc9c"],"paper_bgcolor":"white","plot_bgcolor":"black","hoverlabel":{"bgcolor":"white","font":{"size":14}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"parents":["","","","","","","","","","","","","","","","","","","",""],"values":[32078,19462,14371,7429,5755,3092,2790,1649,1570,1553,1435,1422,1400,1345,1242,1212,1168,1008,960,942],"ids":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"marker":{"color":"rgba(31,119,180,1)","colors":["Viridis"],"line":{"color":"rgba(255,255,255,1)"}},"textinfo":"label+percent entry","insidetextorientation":"radial","type":"sunburst","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8b81d35ee85124e05d28" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-8b81d35ee85124e05d28">{"x":{"visdat":{"1028a69258017":["function () ","plotlyVisDat"]},"cur_data":"1028a69258017","attrs":{"1028a69258017":{"labels":{},"parents":{},"values":{},"ids":{},"marker":{"colors":"Viridis"},"textinfo":"label+percent entry","insidetextorientation":"radial","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":0,"l":0,"t":40,"r":0},"title":"Proporción de Postings en LinkedIn por Industria","subtitle":"Top 20 Industrias","font":{"size":14},"sunburstcolorway":["#3498db","#e43725","#3acc2e","#8f4bab","#f39c12","#1abc9c"],"paper_bgcolor":"white","plot_bgcolor":"black","hoverlabel":{"bgcolor":"white","font":{"size":14}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"parents":["","","","","","","","","","","","","","","","","","","",""],"values":[32078,19462,14371,7429,5755,3092,2790,1649,1570,1553,1435,1422,1400,1345,1242,1212,1168,1008,960,942],"ids":["Staffing & Recruiting","IT Services and IT Consulting","Hospital & Health Care","Software Development","Retail","Financial Services","Human Resources","Hospitality","Construction","Real Estate","Insurance","Truck Transportation","Higher Education","Transportation/Trucking/Railroad","Non-profit Organizations",null,"Telecommunications","Motor Vehicle Manufacturing","Non-profit Organization Management","Business Consulting and Services"],"marker":{"color":"rgba(31,119,180,1)","colors":["Viridis"],"line":{"color":"rgba(255,255,255,1)"}},"textinfo":"label+percent entry","insidetextorientation":"radial","type":"sunburst","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <hr></section><section id="top-skills-para-las-top-industrias" class="level3"><h3 class="anchored" data-anchor-id="top-skills-para-las-top-industrias">3.TOP Skills para las TOP Industrias</h3>
@@ -1043,8 +1069,8 @@ background: #0e577f;
 <span id="cb6-70"><a href="#cb6-70"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
 <span id="cb6-71"><a href="#cb6-71"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-daa91047c6ec6d6e6758" style="width:95%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-daa91047c6ec6d6e6758">{"x":{"nodes":{"id":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"label":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"group":["Industry","Industry","Industry","Industry","Industry","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill"],"x":[-0.5048815654363585,0.4479196120414879,0.0392075900612141,0.5015575312250331,-0.1315926245060197,-0.5217091278112669,-0.4446506504106511,0.01737249865958357,-1,-0.3143962752390754,0.2484839224979825,0.3148836559486456,0.8541577952291839,0.239158775025474,0.4495345098923111,0.07239298259636717,1,-0.3433755947248682],"y":[-0.08421381114041071,0.386080339167568,-0.5651326947101647,-0.00356833615203167,0.6012148454535498,0.3463535985029342,-0.5251388136464257,0.2023075264560765,-0.1389689966085534,-0.4053925663713277,0.3845340873454148,-0.1288837809644038,0.6503746381385025,0.7480377995280934,-0.443108839602262,-1,-0.09465317768480863,1]},"edges":{"from":["HCPR","MGMT","IT","ADM","MNFC","IT","ENG","SALE","ANLS","FIN","SALE","BD","MGMT","MNFC","CUST","IT","ENG","SALE","BD","MRKT","IT","ACCT","FIN","ENG","HCPR"],"to":["Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","Retail","Retail","Retail","Retail","Retail","Software Development","Software Development","Software Development","Software Development","Software Development","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting"],"value":[8901,1516,1297,1248,1054,9657,4178,1372,1269,1134,2079,1618,1171,989,811,2713,2143,1468,1342,933,6995,6065,5517,3972,3855]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"width":"value","arrows":"to","smooth":false,"shadow":true},"physics":{"stabilization":false},"groups":{"Industry":{"shape":"circle"},"useDefaultGroups":true,"Skill":{"shape":"square"}}},"groups":["Industry","Skill"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Relación Skills-Industrias","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1c03f08a9e8f5a48b14c" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1c03f08a9e8f5a48b14c">{"x":{"nodes":{"id":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"label":["Hospital & Health Care","IT Services and IT Consulting","Retail","Software Development","Staffing & Recruiting","HCPR","MGMT","IT","ADM","MNFC","ENG","SALE","ANLS","FIN","BD","CUST","MRKT","ACCT"],"group":["Industry","Industry","Industry","Industry","Industry","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill","Skill"],"x":[-0.2433171184158922,0.5775658238200883,-0.5554143438372283,0.1807212024363354,0.5878896674440111,0.193680942514121,-0.5092079802864397,0.2300411615542752,-0.4666238114419007,-0.6823935205499159,0.4962423261670288,-0.002717716137251802,1,0.8756349163899935,-0.2935019866635992,-1,0.2608023956997962,0.9195134971083778],"y":[0.5232555654178848,-0.2354963632747261,-0.2250198046565723,-0.4619671780392246,0.4433208677946003,0.7289376337321938,0.2010522594600852,0.1172247875622725,1,0.2776518673297956,-0.04314224614298146,-0.3227804274017088,-0.5288487353211906,0.1339997470372016,-0.5933287520617581,-0.4416191985699319,-1,0.8358592379537333]},"edges":{"from":["HCPR","MGMT","IT","ADM","MNFC","IT","ENG","SALE","ANLS","FIN","SALE","BD","MGMT","MNFC","CUST","IT","ENG","SALE","BD","MRKT","IT","ACCT","FIN","ENG","HCPR"],"to":["Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","Hospital & Health Care","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","IT Services and IT Consulting","Retail","Retail","Retail","Retail","Retail","Software Development","Software Development","Software Development","Software Development","Software Development","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting","Staffing & Recruiting"],"value":[8901,1516,1297,1248,1054,9657,4178,1372,1269,1134,2079,1618,1171,989,811,2713,2143,1468,1342,933,6995,6065,5517,3972,3855]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"width":"value","arrows":"to","smooth":false,"shadow":true},"physics":{"stabilization":false},"groups":{"Industry":{"shape":"circle"},"useDefaultGroups":true,"Skill":{"shape":"square"}}},"groups":["Industry","Skill"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Relación Skills-Industrias","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br> Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</p>
@@ -1061,26 +1087,26 @@ background: #0e577f;
 <span id="cb7-10"><a href="#cb7-10"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 
-<div id="hkfeomdier" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gjwcyshzvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#hkfeomdier table {
+#gjwcyshzvy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hkfeomdier thead, #hkfeomdier tbody, #hkfeomdier tfoot, #hkfeomdier tr, #hkfeomdier td, #hkfeomdier th {
+#gjwcyshzvy thead, #gjwcyshzvy tbody, #gjwcyshzvy tfoot, #gjwcyshzvy tr, #gjwcyshzvy td, #gjwcyshzvy th {
   border-style: none;
 }
 
-#hkfeomdier p {
+#gjwcyshzvy p {
   margin: 0;
   padding: 0;
 }
 
-#hkfeomdier .gt_table {
+#gjwcyshzvy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1106,12 +1132,12 @@ background: #0e577f;
   border-left-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_caption {
+#gjwcyshzvy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hkfeomdier .gt_title {
+#gjwcyshzvy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1123,7 +1149,7 @@ background: #0e577f;
   border-bottom-width: 0;
 }
 
-#hkfeomdier .gt_subtitle {
+#gjwcyshzvy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1135,7 +1161,7 @@ background: #0e577f;
   border-top-width: 0;
 }
 
-#hkfeomdier .gt_heading {
+#gjwcyshzvy .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1147,13 +1173,13 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_bottom_border {
+#gjwcyshzvy .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_col_headings {
+#gjwcyshzvy .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1168,7 +1194,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_col_heading {
+#gjwcyshzvy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1188,7 +1214,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#hkfeomdier .gt_column_spanner_outer {
+#gjwcyshzvy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 12px;
@@ -1200,15 +1226,15 @@ background: #0e577f;
   padding-right: 4px;
 }
 
-#hkfeomdier .gt_column_spanner_outer:first-child {
+#gjwcyshzvy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hkfeomdier .gt_column_spanner_outer:last-child {
+#gjwcyshzvy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hkfeomdier .gt_column_spanner {
+#gjwcyshzvy .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 1px;
   border-bottom-color: #334422;
@@ -1220,11 +1246,11 @@ background: #0e577f;
   width: 100%;
 }
 
-#hkfeomdier .gt_spanner_row {
+#gjwcyshzvy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hkfeomdier .gt_group_heading {
+#gjwcyshzvy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1250,7 +1276,7 @@ background: #0e577f;
   text-align: left;
 }
 
-#hkfeomdier .gt_empty_group_heading {
+#gjwcyshzvy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1265,15 +1291,15 @@ background: #0e577f;
   vertical-align: middle;
 }
 
-#hkfeomdier .gt_from_md > :first-child {
+#gjwcyshzvy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hkfeomdier .gt_from_md > :last-child {
+#gjwcyshzvy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hkfeomdier .gt_row {
+#gjwcyshzvy .gt_row {
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 5px;
@@ -1292,7 +1318,7 @@ background: #0e577f;
   overflow-x: hidden;
 }
 
-#hkfeomdier .gt_stub {
+#gjwcyshzvy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1305,7 +1331,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#hkfeomdier .gt_stub_row_group {
+#gjwcyshzvy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1319,15 +1345,15 @@ background: #0e577f;
   vertical-align: top;
 }
 
-#hkfeomdier .gt_row_group_first td {
+#gjwcyshzvy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hkfeomdier .gt_row_group_first th {
+#gjwcyshzvy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hkfeomdier .gt_summary_row {
+#gjwcyshzvy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1337,16 +1363,16 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#hkfeomdier .gt_first_summary_row {
+#gjwcyshzvy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_first_summary_row.thick {
+#gjwcyshzvy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hkfeomdier .gt_last_summary_row {
+#gjwcyshzvy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1356,7 +1382,7 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_grand_summary_row {
+#gjwcyshzvy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1366,7 +1392,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#hkfeomdier .gt_first_grand_summary_row {
+#gjwcyshzvy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1376,7 +1402,7 @@ background: #0e577f;
   border-top-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_last_grand_summary_row_top {
+#gjwcyshzvy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1386,11 +1412,11 @@ background: #0e577f;
   border-bottom-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_striped {
+#gjwcyshzvy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hkfeomdier .gt_table_body {
+#gjwcyshzvy .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1399,7 +1425,7 @@ background: #0e577f;
   border-bottom-color: #FFFFFF;
 }
 
-#hkfeomdier .gt_footnotes {
+#gjwcyshzvy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1413,7 +1439,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_footnote {
+#gjwcyshzvy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1422,7 +1448,7 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#hkfeomdier .gt_sourcenotes {
+#gjwcyshzvy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1436,7 +1462,7 @@ background: #0e577f;
   border-right-color: #D3D3D3;
 }
 
-#hkfeomdier .gt_sourcenote {
+#gjwcyshzvy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1444,63 +1470,63 @@ background: #0e577f;
   padding-right: 5px;
 }
 
-#hkfeomdier .gt_left {
+#gjwcyshzvy .gt_left {
   text-align: left;
 }
 
-#hkfeomdier .gt_center {
+#gjwcyshzvy .gt_center {
   text-align: center;
 }
 
-#hkfeomdier .gt_right {
+#gjwcyshzvy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hkfeomdier .gt_font_normal {
+#gjwcyshzvy .gt_font_normal {
   font-weight: normal;
 }
 
-#hkfeomdier .gt_font_bold {
+#gjwcyshzvy .gt_font_bold {
   font-weight: bold;
 }
 
-#hkfeomdier .gt_font_italic {
+#gjwcyshzvy .gt_font_italic {
   font-style: italic;
 }
 
-#hkfeomdier .gt_super {
+#gjwcyshzvy .gt_super {
   font-size: 65%;
 }
 
-#hkfeomdier .gt_footnote_marks {
+#gjwcyshzvy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hkfeomdier .gt_asterisk {
+#gjwcyshzvy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hkfeomdier .gt_indent_1 {
+#gjwcyshzvy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hkfeomdier .gt_indent_2 {
+#gjwcyshzvy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hkfeomdier .gt_indent_3 {
+#gjwcyshzvy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hkfeomdier .gt_indent_4 {
+#gjwcyshzvy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hkfeomdier .gt_indent_5 {
+#gjwcyshzvy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1574,8 +1600,8 @@ background: #0e577f;
 </section><section id="conclusión" class="level3"><h3 class="anchored" data-anchor-id="conclusión">Conclusión</h3>
 <p>En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.</p>
 <p>Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer principalmente el mismo tipo de benefios.</p>
-<p>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puedes a primera vista ser obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Aquí también nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social.</p>
-<p>Por último, se identificaron que las skills más relevantes para “Staffing and Recruitment,” son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que habilidades en IT son universales y necesarias.</p>
+<p>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puede que a primera vista sean obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Por ende, nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social y LinkedIn puede ser una herramienta más (o menos) efectiva dependiendo de la industria de interés.</p>
+<p>Por último, se identificaron que las skills más relevantes para “Staffing and Recruitment,” son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que las habilidades en IT son universales y necesarias para cualuqier industria en el top.</p>
 <p>Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día.</p>
 <table class="table">
 <colgroup><col style="width: 100%"></colgroup>
@@ -1592,6 +1618,8 @@ background: #0e577f;
 </tbody>
 </table>
 <p><br></p>
+</section><section id="referencias" class="level3"><h3 class="anchored" data-anchor-id="referencias">Referencias</h3>
+<p><a href="https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook" target="_blank"><strong>Decoding the Job Market: An In-depth Exploration</strong></a>: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.</p>
 </section><section id="información-sobre-la-sesión" class="level3"><h3 class="anchored" data-anchor-id="información-sobre-la-sesión">Información sobre la sesión</h3>
 <p>Abajo muestro mi entorno de trabajo y paquetes utilizados</p>
 <div class="cell" data-layout-align="center">
@@ -1601,14 +1629,14 @@ background: #0e577f;
 <span id="cb8-2"><a href="#cb8-2"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
 <span id="cb8-3"><a href="#cb8-3"></a> setting  value</span>
 <span id="cb8-4"><a href="#cb8-4"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a> os       macOS Sonoma <span class="fl">14.2</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a> os       macOS Sonoma <span class="dv">14</span>.<span class="fl">2.1</span></span>
 <span id="cb8-6"><a href="#cb8-6"></a> system   aarch64, darwin20</span>
 <span id="cb8-7"><a href="#cb8-7"></a> ui       X11</span>
 <span id="cb8-8"><a href="#cb8-8"></a> <span class="fu">language</span> (EN)</span>
 <span id="cb8-9"><a href="#cb8-9"></a> collate  en_US.UTF<span class="dv">-8</span></span>
 <span id="cb8-10"><a href="#cb8-10"></a> ctype    en_US.UTF<span class="dv">-8</span></span>
 <span id="cb8-11"><a href="#cb8-11"></a> tz       Europe<span class="sc">/</span>Madrid</span>
-<span id="cb8-12"><a href="#cb8-12"></a> date     <span class="dv">2024-01-08</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a> date     <span class="dv">2024-01-22</span></span>
 <span id="cb8-13"><a href="#cb8-13"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> <span class="er">/</span>Applications<span class="sc">/</span>RStudio.app<span class="sc">/</span>Contents<span class="sc">/</span>Resources<span class="sc">/</span>app<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
 <span id="cb8-14"><a href="#cb8-14"></a></span>
 <span id="cb8-15"><a href="#cb8-15"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
@@ -2028,7 +2056,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-31"><a href="#cb9-31"></a></span>
 <span id="cb9-32"><a href="#cb9-32"></a><span class="fu">### Datos</span></span>
 <span id="cb9-33"><a href="#cb9-33"></a></span>
-<span id="cb9-34"><a href="#cb9-34"></a>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual ya habia tratado las observaciones con datos faltantes. Por último, es necesario mencionar que los salarios se enceuntran en USD y que la gran mayoría de las observaciones provienen de USA.</span>
+<span id="cb9-34"><a href="#cb9-34"></a>Para realizar este análisis nos baseremos en la oferta laboral existente en LinkedIn. Más concretamente, nos centraremos en los *postings* que han sido públicados en la plataforma durante este año. La fuente principal recursos sera la carpeta [**LinkedIn Job Postings-2023**](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings?select=job_postings.csv){target="_blank"}, conjunto de datasets disponibles en Kaggle y del estudio [**Decoding the Job Market: An In-depth Exploration**](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook){target="_blank"}. Las tablas contienen información de 33 000+ postings de empleos en LinkedIn que han sido recolectados en diferentes periodos a lo largo de diferentes meses, así como datos complementarios asociadas a cada post sobre beneficios, skills, industrias, companías, etc. Ya que los datos fueron obtenidos a través de webscraping, existen muchos vacíos de información para ciertas observaciones. Este hecho ha hecho el trabajo un poco más desafiante y es un punto importante a considerar al momento de evaluar nuestros resultados. Para minimizar el impacto de la falta de información, se tomó un dataframe del estudio mencionado anteriormente el cual uso Python para resolver el problema de la inconsistencia de datos resultante del proceso de recolección (webscrapping). Por último, es necesario mencionar que la gran mayoría de las observaciones provienen de USA y que los salarios estan en USD.</span>
 <span id="cb9-35"><a href="#cb9-35"></a></span>
 <span id="cb9-36"><a href="#cb9-36"></a><span class="fu">### Packages y Carga de Datos</span></span>
 <span id="cb9-37"><a href="#cb9-37"></a></span>
@@ -2059,325 +2087,348 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-64"><a href="#cb9-64"></a>comp_industries <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/company_details/company_industries.csv"</span>)</span>
 <span id="cb9-65"><a href="#cb9-65"></a><span class="in">```</span></span>
 <span id="cb9-66"><a href="#cb9-66"></a></span>
-<span id="cb9-67"><a href="#cb9-67"></a>------------------------------------------------------------------------</span>
+<span id="cb9-67"><a href="#cb9-67"></a>**Descripción de variables principales:** En todos los datasets, cada fila representa un post publicado en LinkedIn. Las características más importantes de cada post y que seran analizadas son:</span>
 <span id="cb9-68"><a href="#cb9-68"></a></span>
-<span id="cb9-69"><a href="#cb9-69"></a><span class="fu">### 1. Overview de las Posiciones con más Demanda</span></span>
-<span id="cb9-70"><a href="#cb9-70"></a></span>
-<span id="cb9-71"><a href="#cb9-71"></a>Para comenzar, analizaremos una métrica simple pero muy importante. Descubriremos cuáles son los títulos que aparecen más frecuentemente en los postings y que, por lo tanto, consideraremos como los trabajos más demandados. La siguiente tabla muestra los títulos con más posts en LinkedIn, el rango de salarios promedio para cada posición, el nivel de experiencia requerido y los beneficios más comunes asociados a cada título. <span class="kw">&lt;br&gt;</span> El gráfico de barras muestra el promedio del salario máximo y mínimo para cada trabajo.</span>
-<span id="cb9-72"><a href="#cb9-72"></a></span>
-<span id="cb9-75"><a href="#cb9-75"></a><span class="in">```{r}</span></span>
-<span id="cb9-76"><a href="#cb9-76"></a><span class="co">#- Tidying</span></span>
-<span id="cb9-77"><a href="#cb9-77"></a><span class="co">#- 1)Sacamos top jobs</span></span>
-<span id="cb9-78"><a href="#cb9-78"></a>high_demand_vector <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
-<span id="cb9-79"><a href="#cb9-79"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">"Sales Director [Owner/Operator]"</span>) <span class="sc">%&gt;%</span> <span class="co">#Contiene datos vacios</span></span>
-<span id="cb9-80"><a href="#cb9-80"></a>  <span class="fu">count</span>(title, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-81"><a href="#cb9-81"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-82"><a href="#cb9-82"></a>  <span class="fu">pull</span>(title)</span>
-<span id="cb9-83"><a href="#cb9-83"></a>high_demand_vector</span>
+<span id="cb9-69"><a href="#cb9-69"></a><span class="ss">- </span><span class="in">`job_id`</span>, <span class="in">`title`</span> : Identificador y título de trabajo que para cada post</span>
+<span id="cb9-70"><a href="#cb9-70"></a><span class="ss">- </span><span class="in">`max_salary`</span>, <span class="in">`min_salary`</span>: Salario maximo, Salario mínimo </span>
+<span id="cb9-71"><a href="#cb9-71"></a><span class="ss">- </span><span class="in">`skills_desc`</span>: Habilidades requeridas para el puesto de trabajo</span>
+<span id="cb9-72"><a href="#cb9-72"></a><span class="ss">- </span><span class="in">`benefit`</span>: Beneficos ofrecidos para el trabajo correspondiente</span>
+<span id="cb9-73"><a href="#cb9-73"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb9-74"><a href="#cb9-74"></a><span class="ss">- </span><span class="in">`company_id`</span>, <span class="in">`name`</span>, <span class="in">`employee_count`</span>: Identificador para una empresa, nombre y número de empleados respectivos</span>
+<span id="cb9-75"><a href="#cb9-75"></a></span>
+<span id="cb9-76"><a href="#cb9-76"></a>En dataset <span class="in">`company_industries`</span>: Clasificación de cada compania (por company_id) a una industria.</span>
+<span id="cb9-77"><a href="#cb9-77"></a></span>
+<span id="cb9-78"><a href="#cb9-78"></a><span class="ss">- </span><span class="in">`industry`</span>: Nombre de la Industria.</span>
+<span id="cb9-79"><a href="#cb9-79"></a></span>
+<span id="cb9-80"><a href="#cb9-80"></a>El dataset <span class="in">`job_skills`</span>: Contiene las habilidades requeridas para cada trabajo/post (por job_id). Las *skills* estan representadas con abreviaturas.</span>
+<span id="cb9-81"><a href="#cb9-81"></a></span>
+<span id="cb9-82"><a href="#cb9-82"></a><span class="ss">- </span><span class="in">`skill_abr`</span>: Habilidades requeridas para el puesto de trabajo (abreviatura).</span>
+<span id="cb9-83"><a href="#cb9-83"></a></span>
 <span id="cb9-84"><a href="#cb9-84"></a></span>
-<span id="cb9-85"><a href="#cb9-85"></a>high_demand <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
-<span id="cb9-86"><a href="#cb9-86"></a>  <span class="fu">filter</span>(title <span class="sc">%in%</span> high_demand_vector) <span class="sc">%&gt;%</span></span>
-<span id="cb9-87"><a href="#cb9-87"></a>  <span class="fu">select</span>(title, min_salary, max_salary, benefit, level) </span>
+<span id="cb9-85"><a href="#cb9-85"></a>------------------------------------------------------------------------</span>
+<span id="cb9-86"><a href="#cb9-86"></a></span>
+<span id="cb9-87"><a href="#cb9-87"></a><span class="fu">### 1. Overview de las Posiciones con más Demanda</span></span>
 <span id="cb9-88"><a href="#cb9-88"></a></span>
-<span id="cb9-89"><a href="#cb9-89"></a><span class="co">#-2) Sacamos los Datos que necesitamos</span></span>
-<span id="cb9-90"><a href="#cb9-90"></a><span class="co">#- Calculamos el promedio de (min-max salary)  </span></span>
-<span id="cb9-91"><a href="#cb9-91"></a>salary_ranges <span class="ot">&lt;-</span>   high_demand <span class="sc">%&gt;%</span></span>
-<span id="cb9-92"><a href="#cb9-92"></a>  <span class="fu">filter</span>(min_salary <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> max_salary <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> <span class="co">#Consideramos salarios anueles</span></span>
-<span id="cb9-93"><a href="#cb9-93"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
-<span id="cb9-94"><a href="#cb9-94"></a>  <span class="fu">mutate</span>(<span class="at">min_salary_mean =</span> <span class="fu">median</span>(min_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-95"><a href="#cb9-95"></a>  <span class="fu">mutate</span>(<span class="at">max_salary_mean =</span> <span class="fu">median</span>(max_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-96"><a href="#cb9-96"></a>  <span class="fu">select</span>(title, min_salary_mean,max_salary_mean) <span class="sc">%&gt;%</span></span>
-<span id="cb9-97"><a href="#cb9-97"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb9-98"><a href="#cb9-98"></a></span>
-<span id="cb9-99"><a href="#cb9-99"></a></span>
-<span id="cb9-100"><a href="#cb9-100"></a><span class="co">#- Creamos var benefit más común para cada title</span></span>
-<span id="cb9-101"><a href="#cb9-101"></a><span class="co">#- El mismo approach que antes</span></span>
+<span id="cb9-89"><a href="#cb9-89"></a>Para comenzar, analizaremos una métrica simple pero muy importante. Descubriremos cuáles son los títulos que aparecen más frecuentemente en los postings y que, por lo tanto, consideraremos como los trabajos más demandados. La siguiente tabla muestra los títulos con más posts en LinkedIn, el rango de salarios promedio para cada posición, el nivel de experiencia requerido y los beneficios más comunes asociados a cada título. <span class="kw">&lt;br&gt;</span> El gráfico de barras muestra el promedio del salario máximo y mínimo para cada trabajo.</span>
+<span id="cb9-90"><a href="#cb9-90"></a></span>
+<span id="cb9-93"><a href="#cb9-93"></a><span class="in">```{r}</span></span>
+<span id="cb9-94"><a href="#cb9-94"></a><span class="co">#- Tidying</span></span>
+<span id="cb9-95"><a href="#cb9-95"></a><span class="co">#- 1)Sacamos top jobs</span></span>
+<span id="cb9-96"><a href="#cb9-96"></a>high_demand_vector <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-97"><a href="#cb9-97"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">"Sales Director [Owner/Operator]"</span>) <span class="sc">%&gt;%</span> <span class="co">#Contiene datos vacios</span></span>
+<span id="cb9-98"><a href="#cb9-98"></a>  <span class="fu">count</span>(title, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-99"><a href="#cb9-99"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-100"><a href="#cb9-100"></a>  <span class="fu">pull</span>(title)</span>
+<span id="cb9-101"><a href="#cb9-101"></a>high_demand_vector</span>
 <span id="cb9-102"><a href="#cb9-102"></a></span>
-<span id="cb9-103"><a href="#cb9-103"></a><span class="co">#- df con los job_titles y los 3 beneficios más comunes</span></span>
-<span id="cb9-104"><a href="#cb9-104"></a>high_demand_benefit <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
-<span id="cb9-105"><a href="#cb9-105"></a>  <span class="fu">filter</span>(benefit <span class="sc">!=</span> <span class="st">"Not Specified"</span>) <span class="sc">%&gt;%</span> <span class="co">#Quitamos los que no nos dan info. de los beneficios</span></span>
-<span id="cb9-106"><a href="#cb9-106"></a>  <span class="fu">count</span>(title, benefit, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-107"><a href="#cb9-107"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
-<span id="cb9-108"><a href="#cb9-108"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-109"><a href="#cb9-109"></a>  <span class="fu">summarize</span>(<span class="at">most_common_benefits =</span> <span class="fu">toString</span>(benefit)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-110"><a href="#cb9-110"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb9-111"><a href="#cb9-111"></a></span>
-<span id="cb9-112"><a href="#cb9-112"></a><span class="co"># Creamos var level más común para cada title</span></span>
-<span id="cb9-113"><a href="#cb9-113"></a>high_demand_level <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
-<span id="cb9-114"><a href="#cb9-114"></a>  <span class="fu">count</span>(title, level, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-115"><a href="#cb9-115"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
-<span id="cb9-116"><a href="#cb9-116"></a>  <span class="fu">mutate</span>(<span class="at">most_common_level =</span> <span class="fu">if_else</span>(level <span class="sc">==</span> <span class="st">"Not Specified"</span>, <span class="fu">lead</span>(level), level)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-117"><a href="#cb9-117"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-118"><a href="#cb9-118"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-119"><a href="#cb9-119"></a>  <span class="fu">select</span>(title, most_common_level)</span>
+<span id="cb9-103"><a href="#cb9-103"></a>high_demand <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-104"><a href="#cb9-104"></a>  <span class="fu">filter</span>(title <span class="sc">%in%</span> high_demand_vector) <span class="sc">%&gt;%</span></span>
+<span id="cb9-105"><a href="#cb9-105"></a>  <span class="fu">select</span>(title, min_salary, max_salary, benefit, level) </span>
+<span id="cb9-106"><a href="#cb9-106"></a></span>
+<span id="cb9-107"><a href="#cb9-107"></a><span class="co">#-2) Sacamos los Datos que necesitamos</span></span>
+<span id="cb9-108"><a href="#cb9-108"></a><span class="co">#- Calculamos el promedio de (min-max salary)  </span></span>
+<span id="cb9-109"><a href="#cb9-109"></a>salary_ranges <span class="ot">&lt;-</span>   high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-110"><a href="#cb9-110"></a>  <span class="fu">filter</span>(min_salary <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> max_salary <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span> <span class="co">#Consideramos salarios anueles</span></span>
+<span id="cb9-111"><a href="#cb9-111"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-112"><a href="#cb9-112"></a>  <span class="fu">mutate</span>(<span class="at">min_salary_mean =</span> <span class="fu">median</span>(min_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-113"><a href="#cb9-113"></a>  <span class="fu">mutate</span>(<span class="at">max_salary_mean =</span> <span class="fu">median</span>(max_salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-114"><a href="#cb9-114"></a>  <span class="fu">select</span>(title, min_salary_mean,max_salary_mean) <span class="sc">%&gt;%</span></span>
+<span id="cb9-115"><a href="#cb9-115"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-116"><a href="#cb9-116"></a></span>
+<span id="cb9-117"><a href="#cb9-117"></a></span>
+<span id="cb9-118"><a href="#cb9-118"></a><span class="co">#- Creamos var benefit más común para cada title</span></span>
+<span id="cb9-119"><a href="#cb9-119"></a><span class="co">#- El mismo approach que antes</span></span>
 <span id="cb9-120"><a href="#cb9-120"></a></span>
-<span id="cb9-121"><a href="#cb9-121"></a><span class="co">#- 3)Join</span></span>
-<span id="cb9-122"><a href="#cb9-122"></a>high_demand <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
-<span id="cb9-123"><a href="#cb9-123"></a>  <span class="fu">select</span>(title) <span class="sc">%&gt;%</span></span>
-<span id="cb9-124"><a href="#cb9-124"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
-<span id="cb9-125"><a href="#cb9-125"></a>  <span class="fu">distinct</span>()</span>
-<span id="cb9-126"><a href="#cb9-126"></a></span>
-<span id="cb9-127"><a href="#cb9-127"></a>high_demand_final <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
-<span id="cb9-128"><a href="#cb9-128"></a>  <span class="fu">left_join</span>(high_demand_benefit, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-129"><a href="#cb9-129"></a>  <span class="fu">left_join</span>(high_demand_level, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-130"><a href="#cb9-130"></a>  <span class="fu">left_join</span>(salary_ranges, <span class="at">by =</span> <span class="st">"title"</span>) </span>
-<span id="cb9-131"><a href="#cb9-131"></a></span>
-<span id="cb9-132"><a href="#cb9-132"></a><span class="in">```</span></span>
-<span id="cb9-133"><a href="#cb9-133"></a></span>
-<span id="cb9-136"><a href="#cb9-136"></a><span class="in">```{r}</span></span>
-<span id="cb9-137"><a href="#cb9-137"></a><span class="co">#----Tabla-------</span></span>
-<span id="cb9-138"><a href="#cb9-138"></a>t1 <span class="ot">&lt;-</span> high_demand_final <span class="sc">%&gt;%</span></span>
-<span id="cb9-139"><a href="#cb9-139"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"title"</span>, <span class="at">groupname_col =</span> <span class="st">"most_common_level"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-140"><a href="#cb9-140"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()  <span class="sc">%&gt;%</span></span>
-<span id="cb9-141"><a href="#cb9-141"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb9-142"><a href="#cb9-142"></a>    <span class="at">title =</span> <span class="st">"Trabajos con más Postings"</span>,</span>
-<span id="cb9-143"><a href="#cb9-143"></a>    <span class="at">subtitle =</span> <span class="st">"Información General. Ordenado por Niveles"</span></span>
-<span id="cb9-144"><a href="#cb9-144"></a>  )<span class="sc">%&gt;%</span> <span class="fu">tab_footnote</span>(</span>
-<span id="cb9-145"><a href="#cb9-145"></a>    <span class="at">footnote =</span> <span class="st">"*Salarios en USD"</span></span>
-<span id="cb9-146"><a href="#cb9-146"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_label</span>(</span>
-<span id="cb9-147"><a href="#cb9-147"></a>    <span class="at">title =</span> <span class="st">"Título"</span>,</span>
-<span id="cb9-148"><a href="#cb9-148"></a>    <span class="at">most_common_benefits =</span> <span class="st">"Beneficios Usuaes"</span>, </span>
-<span id="cb9-149"><a href="#cb9-149"></a>    <span class="at">most_common_level =</span> <span class="st">"Nivel"</span>,</span>
-<span id="cb9-150"><a href="#cb9-150"></a>    <span class="at">min_salary_mean =</span> <span class="st">"Sal_Min"</span>,</span>
-<span id="cb9-151"><a href="#cb9-151"></a>    <span class="at">max_salary_mean =</span> <span class="st">"Sal_Max"</span></span>
-<span id="cb9-152"><a href="#cb9-152"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_move_to_end</span>(<span class="at">columns =</span> most_common_benefits)</span>
-<span id="cb9-153"><a href="#cb9-153"></a>t1</span>
-<span id="cb9-154"><a href="#cb9-154"></a><span class="in">```</span></span>
-<span id="cb9-155"><a href="#cb9-155"></a></span>
-<span id="cb9-156"><a href="#cb9-156"></a>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial, seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos.</span>
-<span id="cb9-157"><a href="#cb9-157"></a></span>
-<span id="cb9-160"><a href="#cb9-160"></a><span class="in">```{r}</span></span>
-<span id="cb9-161"><a href="#cb9-161"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-162"><a href="#cb9-162"></a><span class="co">#---Plot------</span></span>
-<span id="cb9-163"><a href="#cb9-163"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
-<span id="cb9-164"><a href="#cb9-164"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Customer Service Representative"</span>, <span class="st">"C.S. Rep."</span>, high_demand_final<span class="sc">$</span>title)</span>
-<span id="cb9-165"><a href="#cb9-165"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Retail Sales Associate"</span>, <span class="st">"Retail Sales Asso"</span>, high_demand_final<span class="sc">$</span>title)</span>
-<span id="cb9-166"><a href="#cb9-166"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Administrative Assistant"</span>, <span class="st">"Adm. Assitant"</span>, high_demand_final<span class="sc">$</span>title)</span>
-<span id="cb9-167"><a href="#cb9-167"></a></span>
-<span id="cb9-168"><a href="#cb9-168"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(high_demand_final, <span class="fu">aes</span>(<span class="at">x =</span> title, <span class="at">y =</span> min_salary_mean<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">+</span></span>
-<span id="cb9-169"><a href="#cb9-169"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb9-170"><a href="#cb9-170"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb9-171"><a href="#cb9-171"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> title, <span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">10</span>), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb9-172"><a href="#cb9-172"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Puestos de Trabajo con más Postings en LinkedIn"</span>,</span>
-<span id="cb9-173"><a href="#cb9-173"></a>       <span class="at">subtitle =</span> <span class="st">"Rango salarial en Miles USD"</span>,</span>
-<span id="cb9-174"><a href="#cb9-174"></a>       <span class="at">x =</span> <span class="st">"Puesto de Trabajo"</span>,</span>
-<span id="cb9-175"><a href="#cb9-175"></a>       <span class="at">y =</span> <span class="st">"Salario Min./Max."</span>) <span class="sc">+</span> </span>
-<span id="cb9-176"><a href="#cb9-176"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="st">"blank"</span>),</span>
-<span id="cb9-177"><a href="#cb9-177"></a>                                                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb9-178"><a href="#cb9-178"></a>p1</span>
-<span id="cb9-179"><a href="#cb9-179"></a><span class="in">```</span></span>
-<span id="cb9-180"><a href="#cb9-180"></a></span>
-<span id="cb9-181"><a href="#cb9-181"></a>**Nota:** Para mantener el mayor nivel de consistencia posible, para los salarios se consideraron únicamente las observaciones que presentaban salarios anuales y se excluyeron las observaciones con salarios por hora. Razón por la que el rol de "Area Supervisor" no presenta datos del sueldo. Para ello, se consideró un valor arbitrario de 500, ya que se espera que ningún empleo ofrezca un salario anual menor a 500.</span>
-<span id="cb9-182"><a href="#cb9-182"></a></span>
-<span id="cb9-183"><a href="#cb9-183"></a><span class="fu">### 2. Industrias que Dominan LinkedIn?</span></span>
-<span id="cb9-184"><a href="#cb9-184"></a></span>
-<span id="cb9-185"><a href="#cb9-185"></a>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). <span class="kw">&lt;br&gt;</span> Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</span>
-<span id="cb9-186"><a href="#cb9-186"></a></span>
-<span id="cb9-187"><a href="#cb9-187"></a>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de *postings* que las industrias más presentes.</span>
-<span id="cb9-188"><a href="#cb9-188"></a></span>
-<span id="cb9-191"><a href="#cb9-191"></a><span class="in">```{r}</span></span>
-<span id="cb9-192"><a href="#cb9-192"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-193"><a href="#cb9-193"></a>companies_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
-<span id="cb9-194"><a href="#cb9-194"></a>  <span class="fu">select</span>(company_id, name, employee_count)</span>
-<span id="cb9-195"><a href="#cb9-195"></a></span>
-<span id="cb9-196"><a href="#cb9-196"></a><span class="co">#- Join</span></span>
-<span id="cb9-197"><a href="#cb9-197"></a>companies_data <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-198"><a href="#cb9-198"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>)</span>
-<span id="cb9-199"><a href="#cb9-199"></a></span>
-<span id="cb9-200"><a href="#cb9-200"></a><span class="co">#- Función para ordenar los nombres de las industrias y evitar duplicados.</span></span>
-<span id="cb9-201"><a href="#cb9-201"></a>tidy_industrie_names <span class="ot">&lt;-</span> <span class="cf">function</span>(datos) {</span>
-<span id="cb9-202"><a href="#cb9-202"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Staffing and Recruiting"</span>, <span class="st">"Staffing &amp; Recruiting"</span>, datos<span class="sc">$</span>industry)</span>
-<span id="cb9-203"><a href="#cb9-203"></a></span>
-<span id="cb9-204"><a href="#cb9-204"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Human Resources Services"</span>, <span class="st">"SHuman Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-121"><a href="#cb9-121"></a><span class="co">#- df con los job_titles y los 3 beneficios más comunes</span></span>
+<span id="cb9-122"><a href="#cb9-122"></a>high_demand_benefit <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-123"><a href="#cb9-123"></a>  <span class="fu">filter</span>(benefit <span class="sc">!=</span> <span class="st">"Not Specified"</span>) <span class="sc">%&gt;%</span> <span class="co">#Quitamos los que no nos dan info. de los beneficios</span></span>
+<span id="cb9-124"><a href="#cb9-124"></a>  <span class="fu">count</span>(title, benefit, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-125"><a href="#cb9-125"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-126"><a href="#cb9-126"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-127"><a href="#cb9-127"></a>  <span class="fu">summarize</span>(<span class="at">most_common_benefits =</span> <span class="fu">toString</span>(benefit)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-128"><a href="#cb9-128"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb9-129"><a href="#cb9-129"></a></span>
+<span id="cb9-130"><a href="#cb9-130"></a><span class="co"># Creamos var level más común para cada title</span></span>
+<span id="cb9-131"><a href="#cb9-131"></a>high_demand_level <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-132"><a href="#cb9-132"></a>  <span class="fu">count</span>(title, level, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-133"><a href="#cb9-133"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-134"><a href="#cb9-134"></a>  <span class="fu">mutate</span>(<span class="at">most_common_level =</span> <span class="fu">if_else</span>(level <span class="sc">==</span> <span class="st">"Not Specified"</span>, <span class="fu">lead</span>(level), level)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-135"><a href="#cb9-135"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-136"><a href="#cb9-136"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-137"><a href="#cb9-137"></a>  <span class="fu">select</span>(title, most_common_level)</span>
+<span id="cb9-138"><a href="#cb9-138"></a></span>
+<span id="cb9-139"><a href="#cb9-139"></a><span class="co">#- 3)Join</span></span>
+<span id="cb9-140"><a href="#cb9-140"></a>high_demand <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-141"><a href="#cb9-141"></a>  <span class="fu">select</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-142"><a href="#cb9-142"></a>  <span class="fu">group_by</span>(title) <span class="sc">%&gt;%</span></span>
+<span id="cb9-143"><a href="#cb9-143"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-144"><a href="#cb9-144"></a></span>
+<span id="cb9-145"><a href="#cb9-145"></a>high_demand_final <span class="ot">&lt;-</span> high_demand <span class="sc">%&gt;%</span></span>
+<span id="cb9-146"><a href="#cb9-146"></a>  <span class="fu">left_join</span>(high_demand_benefit, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-147"><a href="#cb9-147"></a>  <span class="fu">left_join</span>(high_demand_level, <span class="at">by =</span> <span class="st">"title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-148"><a href="#cb9-148"></a>  <span class="fu">left_join</span>(salary_ranges, <span class="at">by =</span> <span class="st">"title"</span>) </span>
+<span id="cb9-149"><a href="#cb9-149"></a></span>
+<span id="cb9-150"><a href="#cb9-150"></a><span class="in">```</span></span>
+<span id="cb9-151"><a href="#cb9-151"></a></span>
+<span id="cb9-154"><a href="#cb9-154"></a><span class="in">```{r}</span></span>
+<span id="cb9-155"><a href="#cb9-155"></a><span class="co">#----Tabla-------</span></span>
+<span id="cb9-156"><a href="#cb9-156"></a>t1 <span class="ot">&lt;-</span> high_demand_final <span class="sc">%&gt;%</span></span>
+<span id="cb9-157"><a href="#cb9-157"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"title"</span>, <span class="at">groupname_col =</span> <span class="st">"most_common_level"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-158"><a href="#cb9-158"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()  <span class="sc">%&gt;%</span></span>
+<span id="cb9-159"><a href="#cb9-159"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb9-160"><a href="#cb9-160"></a>    <span class="at">title =</span> <span class="st">"Trabajos con más Postings"</span>,</span>
+<span id="cb9-161"><a href="#cb9-161"></a>    <span class="at">subtitle =</span> <span class="st">"Información General. Ordenado por Niveles"</span></span>
+<span id="cb9-162"><a href="#cb9-162"></a>  )<span class="sc">%&gt;%</span> <span class="fu">tab_footnote</span>(</span>
+<span id="cb9-163"><a href="#cb9-163"></a>    <span class="at">footnote =</span> <span class="st">"*Salarios en USD"</span></span>
+<span id="cb9-164"><a href="#cb9-164"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_label</span>(</span>
+<span id="cb9-165"><a href="#cb9-165"></a>    <span class="at">title =</span> <span class="st">"Título"</span>,</span>
+<span id="cb9-166"><a href="#cb9-166"></a>    <span class="at">most_common_benefits =</span> <span class="st">"Beneficios Usuaes"</span>, </span>
+<span id="cb9-167"><a href="#cb9-167"></a>    <span class="at">most_common_level =</span> <span class="st">"Nivel"</span>,</span>
+<span id="cb9-168"><a href="#cb9-168"></a>    <span class="at">min_salary_mean =</span> <span class="st">"Sal_Min"</span>,</span>
+<span id="cb9-169"><a href="#cb9-169"></a>    <span class="at">max_salary_mean =</span> <span class="st">"Sal_Max"</span></span>
+<span id="cb9-170"><a href="#cb9-170"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_move_to_end</span>(<span class="at">columns =</span> most_common_benefits)</span>
+<span id="cb9-171"><a href="#cb9-171"></a>t1</span>
+<span id="cb9-172"><a href="#cb9-172"></a><span class="in">```</span></span>
+<span id="cb9-173"><a href="#cb9-173"></a></span>
+<span id="cb9-174"><a href="#cb9-174"></a>Como muestra la tabla, los empleos más comunes en LinkedIn están en el ámbito ejecutivo. Vale la pena mencionar que el título de Sales Manager ofrece el mejor rango salarial (con una clara ventaja), seguido por Controller y Project Manager. Mientras que en la cima, Retails Associate y Customer Service Associate ofrecen los salarios más bajos. Además resalta que los beneficios más comúnmente ofrecidos son 401(k) (plan de jubilación para empleados activos en USA) y diferentes ventajas con seguros médicos. Finalmente se observa, que dentro de nuestro top,las posiciones que requieren un nivel de expertise de nivel medio-senior ofrecen más ofertas de trabajo.</span>
+<span id="cb9-175"><a href="#cb9-175"></a></span>
+<span id="cb9-178"><a href="#cb9-178"></a><span class="in">```{r}</span></span>
+<span id="cb9-179"><a href="#cb9-179"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-180"><a href="#cb9-180"></a><span class="co">#---Plot------</span></span>
+<span id="cb9-181"><a href="#cb9-181"></a><span class="co">#- Modifico los Nombres muy largos</span></span>
+<span id="cb9-182"><a href="#cb9-182"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Customer Service Representative"</span>, <span class="st">"C.S. Rep."</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-183"><a href="#cb9-183"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Retail Sales Associate"</span>, <span class="st">"Retail Sales Asso"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-184"><a href="#cb9-184"></a>high_demand_final<span class="sc">$</span>title <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(high_demand_final<span class="sc">$</span>title <span class="sc">==</span> <span class="st">"Administrative Assistant"</span>, <span class="st">"Adm. Assitant"</span>, high_demand_final<span class="sc">$</span>title)</span>
+<span id="cb9-185"><a href="#cb9-185"></a></span>
+<span id="cb9-186"><a href="#cb9-186"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(high_demand_final, <span class="fu">aes</span>(<span class="at">x =</span> title, <span class="at">y =</span> min_salary_mean<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb9-187"><a href="#cb9-187"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-188"><a href="#cb9-188"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-189"><a href="#cb9-189"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> title, <span class="at">y =</span> max_salary_mean<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">10</span>), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-190"><a href="#cb9-190"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Puestos de Trabajo con más Postings en LinkedIn"</span>,</span>
+<span id="cb9-191"><a href="#cb9-191"></a>       <span class="at">subtitle =</span> <span class="st">"Rango salarial en Miles USD"</span>,</span>
+<span id="cb9-192"><a href="#cb9-192"></a>       <span class="at">x =</span> <span class="st">"Puesto de Trabajo"</span>,</span>
+<span id="cb9-193"><a href="#cb9-193"></a>       <span class="at">y =</span> <span class="st">"Salario Min./Max."</span>) <span class="sc">+</span> </span>
+<span id="cb9-194"><a href="#cb9-194"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="st">"blank"</span>),</span>
+<span id="cb9-195"><a href="#cb9-195"></a>                                                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb9-196"><a href="#cb9-196"></a>p1</span>
+<span id="cb9-197"><a href="#cb9-197"></a><span class="in">```</span></span>
+<span id="cb9-198"><a href="#cb9-198"></a></span>
+<span id="cb9-199"><a href="#cb9-199"></a>**Nota:** Para mantener el mayor nivel de consistencia posible, para los salarios se consideraron únicamente las observaciones que presentaban salarios anuales y se excluyeron las observaciones con salarios por hora. Razón por la que el rol de "Area Supervisor" no presenta datos del sueldo. Para ello, se consideró un valor arbitrario de 500, ya que se espera que ningún empleo ofrezca un salario anual menor a 500.</span>
+<span id="cb9-200"><a href="#cb9-200"></a></span>
+<span id="cb9-201"><a href="#cb9-201"></a><span class="fu">### 2. Industrias que Dominan LinkedIn?</span></span>
+<span id="cb9-202"><a href="#cb9-202"></a></span>
+<span id="cb9-203"><a href="#cb9-203"></a>Después de haber analizado cuáles son los trabajos que más comúnmente se ofrecen en LinkedIn, es importante entender que no todas las industrias tienen el mismo nivel de presencia en la plataforma. Por ese motivo, aquí presentamos las top 20 industrias que han sido más activas en LinkedIn (Basado en número de postings). </span>
+<span id="cb9-204"><a href="#cb9-204"></a><span class="kw">&lt;br&gt;</span> </span>
 <span id="cb9-205"><a href="#cb9-205"></a></span>
-<span id="cb9-206"><a href="#cb9-206"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Hospitals and Health Care"</span>, <span class="st">"Hospital &amp; Health Care"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-206"><a href="#cb9-206"></a>Como podemos observar, existen industrias que prácticamente monopolizan la plataforma. De hecho, si analizamos el gráfico nos daremos cuenta de que los trabajos relacionados con Staffing, IT y cuidados médicos (Healthcare) ocupan cerca del 70% del top 20.</span>
 <span id="cb9-207"><a href="#cb9-207"></a></span>
-<span id="cb9-208"><a href="#cb9-208"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Information Technology &amp; Services"</span>, <span class="st">"IT Services and IT Consulting"</span>, datos<span class="sc">$</span>industry)</span>
-<span id="cb9-209"><a href="#cb9-209"></a>  </span>
-<span id="cb9-210"><a href="#cb9-210"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Computer Software"</span>, <span class="st">"Software Development"</span>, datos<span class="sc">$</span>industry)</span>
-<span id="cb9-211"><a href="#cb9-211"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"SHuman Resources"</span>, <span class="st">"Human Resources"</span>, datos<span class="sc">$</span>industry)</span>
-<span id="cb9-212"><a href="#cb9-212"></a></span>
-<span id="cb9-213"><a href="#cb9-213"></a><span class="fu">return</span>(datos)  </span>
-<span id="cb9-214"><a href="#cb9-214"></a>}</span>
-<span id="cb9-215"><a href="#cb9-215"></a></span>
-<span id="cb9-216"><a href="#cb9-216"></a>companies_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(companies_data)</span>
-<span id="cb9-217"><a href="#cb9-217"></a></span>
-<span id="cb9-218"><a href="#cb9-218"></a></span>
-<span id="cb9-219"><a href="#cb9-219"></a><span class="co">#- Tidying</span></span>
-<span id="cb9-220"><a href="#cb9-220"></a>comp_plot_df <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-221"><a href="#cb9-221"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
-<span id="cb9-222"><a href="#cb9-222"></a>  <span class="fu">summarise</span>(<span class="at">Total_Posts_Industry =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb9-223"><a href="#cb9-223"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span><span class="dv">20</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb9-208"><a href="#cb9-208"></a>A pesar de que muchas otras industrias estan en el top 20, se puede observar que su presencia en esta red es casi muy baja en comparación a las industrias dominantes y que por lo tanto no cuentan con el mismo nivel de *postings* que las industrias más presentes. Ejemplos de industrias con bajo número de publicaciones son la de bienes raices (2%) y la de seguros(1%).</span>
+<span id="cb9-209"><a href="#cb9-209"></a></span>
+<span id="cb9-212"><a href="#cb9-212"></a><span class="in">```{r}</span></span>
+<span id="cb9-213"><a href="#cb9-213"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-214"><a href="#cb9-214"></a>companies_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-215"><a href="#cb9-215"></a>  <span class="fu">select</span>(company_id, name, employee_count)</span>
+<span id="cb9-216"><a href="#cb9-216"></a></span>
+<span id="cb9-217"><a href="#cb9-217"></a><span class="co">#- Join</span></span>
+<span id="cb9-218"><a href="#cb9-218"></a>companies_data <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-219"><a href="#cb9-219"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>)</span>
+<span id="cb9-220"><a href="#cb9-220"></a></span>
+<span id="cb9-221"><a href="#cb9-221"></a><span class="co">#- Función para ordenar los nombres de las industrias y evitar duplicados.</span></span>
+<span id="cb9-222"><a href="#cb9-222"></a>tidy_industrie_names <span class="ot">&lt;-</span> <span class="cf">function</span>(datos) {</span>
+<span id="cb9-223"><a href="#cb9-223"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Staffing and Recruiting"</span>, <span class="st">"Staffing &amp; Recruiting"</span>, datos<span class="sc">$</span>industry)</span>
 <span id="cb9-224"><a href="#cb9-224"></a></span>
-<span id="cb9-225"><a href="#cb9-225"></a></span>
-<span id="cb9-226"><a href="#cb9-226"></a><span class="co">#------ Pie Chart ---------</span></span>
-<span id="cb9-227"><a href="#cb9-227"></a><span class="fu">plot_ly</span>(</span>
-<span id="cb9-228"><a href="#cb9-228"></a>  comp_plot_df,</span>
-<span id="cb9-229"><a href="#cb9-229"></a>  <span class="at">labels =</span> <span class="sc">~</span>industry,</span>
-<span id="cb9-230"><a href="#cb9-230"></a>  <span class="at">parents =</span> <span class="sc">~</span><span class="st">""</span>,</span>
-<span id="cb9-231"><a href="#cb9-231"></a>  <span class="at">values =</span> <span class="sc">~</span>Total_Posts_Industry, <span class="co">#Se muestra cuando pones maus encima</span></span>
-<span id="cb9-232"><a href="#cb9-232"></a>  <span class="at">ids =</span> <span class="sc">~</span>industry,</span>
-<span id="cb9-233"><a href="#cb9-233"></a>  <span class="at">type =</span> <span class="st">"sunburst"</span>,</span>
-<span id="cb9-234"><a href="#cb9-234"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">colors =</span> <span class="st">'Viridis'</span>),</span>
-<span id="cb9-235"><a href="#cb9-235"></a>  <span class="at">textinfo =</span> <span class="st">"label+percent entry"</span>,</span>
-<span id="cb9-236"><a href="#cb9-236"></a>  <span class="at">insidetextorientation =</span> <span class="st">"radial"</span></span>
-<span id="cb9-237"><a href="#cb9-237"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-238"><a href="#cb9-238"></a>  <span class="fu">layout</span>(</span>
-<span id="cb9-239"><a href="#cb9-239"></a>    <span class="at">title =</span> <span class="st">"Proporción de Postings en LinkedIn por Industria"</span>,</span>
-<span id="cb9-240"><a href="#cb9-240"></a>    <span class="at">subtitle =</span> <span class="st">"Top 20 Industrias"</span>,</span>
-<span id="cb9-241"><a href="#cb9-241"></a>    <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb9-242"><a href="#cb9-242"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">l =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">t =</span> <span class="dv">40</span>),</span>
-<span id="cb9-243"><a href="#cb9-243"></a>    <span class="at">sunburstcolorway =</span> <span class="fu">c</span>(<span class="st">"#3498db"</span>, <span class="st">"#e43725"</span>, <span class="st">"#3acc2e"</span>, <span class="st">"#8f4bab"</span>, <span class="st">"#f39c12"</span>, <span class="st">"#1abc9c"</span>),</span>
-<span id="cb9-244"><a href="#cb9-244"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"white"</span>,</span>
-<span id="cb9-245"><a href="#cb9-245"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"black"</span>,</span>
-<span id="cb9-246"><a href="#cb9-246"></a>    <span class="at">hoverlabel =</span> <span class="fu">list</span>(</span>
-<span id="cb9-247"><a href="#cb9-247"></a>      <span class="at">bgcolor =</span> <span class="st">"white"</span>,</span>
-<span id="cb9-248"><a href="#cb9-248"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
-<span id="cb9-249"><a href="#cb9-249"></a>    )</span>
-<span id="cb9-250"><a href="#cb9-250"></a>  )</span>
-<span id="cb9-251"><a href="#cb9-251"></a></span>
-<span id="cb9-252"><a href="#cb9-252"></a><span class="in">```</span></span>
-<span id="cb9-253"><a href="#cb9-253"></a></span>
-<span id="cb9-254"><a href="#cb9-254"></a>------------------------------------------------------------------------</span>
-<span id="cb9-255"><a href="#cb9-255"></a></span>
-<span id="cb9-256"><a href="#cb9-256"></a><span class="fu">### 3.TOP Skills para las TOP Industrias</span></span>
-<span id="cb9-257"><a href="#cb9-257"></a></span>
-<span id="cb9-258"><a href="#cb9-258"></a>Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las *skills* más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las *skills*  y la importancia de cada habilidad para cada industria se representará con el *thickness* de las conexiones.</span>
-<span id="cb9-259"><a href="#cb9-259"></a></span>
-<span id="cb9-262"><a href="#cb9-262"></a><span class="in">```{r}</span></span>
-<span id="cb9-263"><a href="#cb9-263"></a><span class="co">#|warning: false</span></span>
-<span id="cb9-264"><a href="#cb9-264"></a><span class="co"># Network Graph Interactivo------</span></span>
-<span id="cb9-265"><a href="#cb9-265"></a></span>
-<span id="cb9-266"><a href="#cb9-266"></a><span class="co">#- Join</span></span>
-<span id="cb9-267"><a href="#cb9-267"></a>skills_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
-<span id="cb9-268"><a href="#cb9-268"></a>  <span class="fu">select</span>(job_id, title, company_id, name, employee_count) <span class="sc">%&gt;%</span></span>
-<span id="cb9-269"><a href="#cb9-269"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-270"><a href="#cb9-270"></a>  <span class="fu">left_join</span>(job_skills, <span class="at">by =</span> <span class="st">"job_id"</span>)</span>
-<span id="cb9-271"><a href="#cb9-271"></a></span>
-<span id="cb9-272"><a href="#cb9-272"></a><span class="co">#- Reformat names </span></span>
-<span id="cb9-273"><a href="#cb9-273"></a>skills_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(skills_data)</span>
+<span id="cb9-225"><a href="#cb9-225"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Human Resources Services"</span>, <span class="st">"SHuman Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-226"><a href="#cb9-226"></a></span>
+<span id="cb9-227"><a href="#cb9-227"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Hospitals and Health Care"</span>, <span class="st">"Hospital &amp; Health Care"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-228"><a href="#cb9-228"></a></span>
+<span id="cb9-229"><a href="#cb9-229"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Information Technology &amp; Services"</span>, <span class="st">"IT Services and IT Consulting"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-230"><a href="#cb9-230"></a>  </span>
+<span id="cb9-231"><a href="#cb9-231"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"Computer Software"</span>, <span class="st">"Software Development"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-232"><a href="#cb9-232"></a>  datos<span class="sc">$</span>industry <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>industry <span class="sc">==</span> <span class="st">"SHuman Resources"</span>, <span class="st">"Human Resources"</span>, datos<span class="sc">$</span>industry)</span>
+<span id="cb9-233"><a href="#cb9-233"></a></span>
+<span id="cb9-234"><a href="#cb9-234"></a><span class="fu">return</span>(datos)  </span>
+<span id="cb9-235"><a href="#cb9-235"></a>}</span>
+<span id="cb9-236"><a href="#cb9-236"></a></span>
+<span id="cb9-237"><a href="#cb9-237"></a>companies_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(companies_data)</span>
+<span id="cb9-238"><a href="#cb9-238"></a></span>
+<span id="cb9-239"><a href="#cb9-239"></a></span>
+<span id="cb9-240"><a href="#cb9-240"></a><span class="co">#- Tidying</span></span>
+<span id="cb9-241"><a href="#cb9-241"></a>comp_plot_df <span class="ot">&lt;-</span> companies_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-242"><a href="#cb9-242"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb9-243"><a href="#cb9-243"></a>  <span class="fu">summarise</span>(<span class="at">Total_Posts_Industry =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb9-244"><a href="#cb9-244"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span><span class="dv">20</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb9-245"><a href="#cb9-245"></a></span>
+<span id="cb9-246"><a href="#cb9-246"></a></span>
+<span id="cb9-247"><a href="#cb9-247"></a><span class="co">#------ Pie Chart ---------</span></span>
+<span id="cb9-248"><a href="#cb9-248"></a><span class="fu">plot_ly</span>(</span>
+<span id="cb9-249"><a href="#cb9-249"></a>  comp_plot_df,</span>
+<span id="cb9-250"><a href="#cb9-250"></a>  <span class="at">labels =</span> <span class="sc">~</span>industry,</span>
+<span id="cb9-251"><a href="#cb9-251"></a>  <span class="at">parents =</span> <span class="sc">~</span><span class="st">""</span>,</span>
+<span id="cb9-252"><a href="#cb9-252"></a>  <span class="at">values =</span> <span class="sc">~</span>Total_Posts_Industry, <span class="co">#Se muestra cuando pones maus encima</span></span>
+<span id="cb9-253"><a href="#cb9-253"></a>  <span class="at">ids =</span> <span class="sc">~</span>industry,</span>
+<span id="cb9-254"><a href="#cb9-254"></a>  <span class="at">type =</span> <span class="st">"sunburst"</span>,</span>
+<span id="cb9-255"><a href="#cb9-255"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">colors =</span> <span class="st">'Viridis'</span>),</span>
+<span id="cb9-256"><a href="#cb9-256"></a>  <span class="at">textinfo =</span> <span class="st">"label+percent entry"</span>,</span>
+<span id="cb9-257"><a href="#cb9-257"></a>  <span class="at">insidetextorientation =</span> <span class="st">"radial"</span></span>
+<span id="cb9-258"><a href="#cb9-258"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-259"><a href="#cb9-259"></a>  <span class="fu">layout</span>(</span>
+<span id="cb9-260"><a href="#cb9-260"></a>    <span class="at">title =</span> <span class="st">"Proporción de Postings en LinkedIn por Industria"</span>,</span>
+<span id="cb9-261"><a href="#cb9-261"></a>    <span class="at">subtitle =</span> <span class="st">"Top 20 Industrias"</span>,</span>
+<span id="cb9-262"><a href="#cb9-262"></a>    <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb9-263"><a href="#cb9-263"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">l =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">t =</span> <span class="dv">40</span>),</span>
+<span id="cb9-264"><a href="#cb9-264"></a>    <span class="at">sunburstcolorway =</span> <span class="fu">c</span>(<span class="st">"#3498db"</span>, <span class="st">"#e43725"</span>, <span class="st">"#3acc2e"</span>, <span class="st">"#8f4bab"</span>, <span class="st">"#f39c12"</span>, <span class="st">"#1abc9c"</span>),</span>
+<span id="cb9-265"><a href="#cb9-265"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-266"><a href="#cb9-266"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"black"</span>,</span>
+<span id="cb9-267"><a href="#cb9-267"></a>    <span class="at">hoverlabel =</span> <span class="fu">list</span>(</span>
+<span id="cb9-268"><a href="#cb9-268"></a>      <span class="at">bgcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-269"><a href="#cb9-269"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb9-270"><a href="#cb9-270"></a>    )</span>
+<span id="cb9-271"><a href="#cb9-271"></a>  )</span>
+<span id="cb9-272"><a href="#cb9-272"></a></span>
+<span id="cb9-273"><a href="#cb9-273"></a><span class="in">```</span></span>
 <span id="cb9-274"><a href="#cb9-274"></a></span>
-<span id="cb9-275"><a href="#cb9-275"></a><span class="co">#- Tidying: Sacamos las top 5 industries</span></span>
-<span id="cb9-276"><a href="#cb9-276"></a><span class="co">#Basandonos en número de posts</span></span>
-<span id="cb9-277"><a href="#cb9-277"></a>top5_ind <span class="ot">&lt;-</span> comp_plot_df <span class="sc">%&gt;%</span></span>
-<span id="cb9-278"><a href="#cb9-278"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
-<span id="cb9-279"><a href="#cb9-279"></a></span>
-<span id="cb9-280"><a href="#cb9-280"></a>top5_ind_vector <span class="ot">&lt;-</span> top5_ind<span class="sc">$</span>industry </span>
-<span id="cb9-281"><a href="#cb9-281"></a></span>
-<span id="cb9-282"><a href="#cb9-282"></a><span class="co">#- Filtramos las skills que estén en las top 5 indus.</span></span>
-<span id="cb9-283"><a href="#cb9-283"></a>skills_data <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-284"><a href="#cb9-284"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">!=</span> <span class="st">"OTHR"</span>) <span class="sc">%&gt;%</span>  </span>
-<span id="cb9-285"><a href="#cb9-285"></a>  <span class="fu">filter</span>(industry <span class="sc">%in%</span> top5_ind_vector)</span>
+<span id="cb9-275"><a href="#cb9-275"></a>------------------------------------------------------------------------</span>
+<span id="cb9-276"><a href="#cb9-276"></a></span>
+<span id="cb9-277"><a href="#cb9-277"></a><span class="fu">### 3.TOP Skills para las TOP Industrias</span></span>
+<span id="cb9-278"><a href="#cb9-278"></a></span>
+<span id="cb9-279"><a href="#cb9-279"></a>Finalmente, ahora que conocemos cuáles son las industrias con más presencia en LinkedIn, el paso final es descubrir cuáles son las *skills* más demandadas dentro de cada industria. Para ello, crearemos una red que mostrará las relaciones entre cada habilidad y las industrias mencionadas anteriormente. Para cada industria, se han calculado las 5 habilidades más relevantes. Los círculos representan las industrias principales, los cuadrados las *skills* y la importancia de cada habilidad para cada industria se representará con el *thickness* de las conexiones.</span>
+<span id="cb9-280"><a href="#cb9-280"></a></span>
+<span id="cb9-283"><a href="#cb9-283"></a><span class="in">```{r}</span></span>
+<span id="cb9-284"><a href="#cb9-284"></a><span class="co">#|warning: false</span></span>
+<span id="cb9-285"><a href="#cb9-285"></a><span class="co"># Network Graph Interactivo------</span></span>
 <span id="cb9-286"><a href="#cb9-286"></a></span>
-<span id="cb9-287"><a href="#cb9-287"></a><span class="co">#- Cuantas veces aparece cada skill dentro de cada top industria. (Degree centrality) </span></span>
-<span id="cb9-288"><a href="#cb9-288"></a>industry_degrees <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-289"><a href="#cb9-289"></a>  <span class="fu">group_by</span>(industry, skill_abr) <span class="sc">%&gt;%</span></span>
-<span id="cb9-290"><a href="#cb9-290"></a>  <span class="fu">summarise</span>(<span class="at">Degree =</span> <span class="fu">n</span>())</span>
-<span id="cb9-291"><a href="#cb9-291"></a></span>
-<span id="cb9-292"><a href="#cb9-292"></a><span class="co">#- Top N skills para cada industria</span></span>
-<span id="cb9-293"><a href="#cb9-293"></a>top_skills_by_industry <span class="ot">&lt;-</span> industry_degrees <span class="sc">%&gt;%</span></span>
-<span id="cb9-294"><a href="#cb9-294"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
-<span id="cb9-295"><a href="#cb9-295"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Degree)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-296"><a href="#cb9-296"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)  </span>
-<span id="cb9-297"><a href="#cb9-297"></a></span>
-<span id="cb9-298"><a href="#cb9-298"></a></span>
-<span id="cb9-299"><a href="#cb9-299"></a><span class="co">#------NETWROK --------------------</span></span>
-<span id="cb9-300"><a href="#cb9-300"></a><span class="co">#-Vignette: https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html</span></span>
-<span id="cb9-301"><a href="#cb9-301"></a></span>
-<span id="cb9-302"><a href="#cb9-302"></a><span class="co">#- Nodes</span></span>
-<span id="cb9-303"><a href="#cb9-303"></a><span class="co">#- Creamos nodes a partir de las columnas industry y skills</span></span>
-<span id="cb9-304"><a href="#cb9-304"></a>my_nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb9-305"><a href="#cb9-305"></a>    <span class="at">id =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
-<span id="cb9-306"><a href="#cb9-306"></a>    <span class="at">label =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
-<span id="cb9-307"><a href="#cb9-307"></a>   <span class="at">group =</span> <span class="fu">ifelse</span>(<span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)) <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>industry, <span class="st">"Industry"</span>, <span class="st">"Skill"</span>)) </span>
-<span id="cb9-308"><a href="#cb9-308"></a></span>
-<span id="cb9-309"><a href="#cb9-309"></a><span class="co">#-My edges</span></span>
-<span id="cb9-310"><a href="#cb9-310"></a><span class="co">#-Creamos edges</span></span>
-<span id="cb9-311"><a href="#cb9-311"></a>my_edges <span class="ot">&lt;-</span> top_skills_by_industry <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">from =</span> skill_abr, <span class="at">to =</span> industry, <span class="at">value =</span> Degree)</span>
+<span id="cb9-287"><a href="#cb9-287"></a><span class="co">#- Join</span></span>
+<span id="cb9-288"><a href="#cb9-288"></a>skills_data <span class="ot">&lt;-</span> job_posts_f <span class="sc">%&gt;%</span></span>
+<span id="cb9-289"><a href="#cb9-289"></a>  <span class="fu">select</span>(job_id, title, company_id, name, employee_count) <span class="sc">%&gt;%</span></span>
+<span id="cb9-290"><a href="#cb9-290"></a>  <span class="fu">left_join</span>(comp_industries, <span class="at">by =</span> <span class="st">"company_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-291"><a href="#cb9-291"></a>  <span class="fu">left_join</span>(job_skills, <span class="at">by =</span> <span class="st">"job_id"</span>)</span>
+<span id="cb9-292"><a href="#cb9-292"></a></span>
+<span id="cb9-293"><a href="#cb9-293"></a><span class="co">#- Reformat names </span></span>
+<span id="cb9-294"><a href="#cb9-294"></a>skills_data <span class="ot">&lt;-</span> <span class="fu">tidy_industrie_names</span>(skills_data)</span>
+<span id="cb9-295"><a href="#cb9-295"></a></span>
+<span id="cb9-296"><a href="#cb9-296"></a><span class="co">#- Tidying: Sacamos las top 5 industries</span></span>
+<span id="cb9-297"><a href="#cb9-297"></a><span class="co">#Basandonos en número de posts</span></span>
+<span id="cb9-298"><a href="#cb9-298"></a>top5_ind <span class="ot">&lt;-</span> comp_plot_df <span class="sc">%&gt;%</span></span>
+<span id="cb9-299"><a href="#cb9-299"></a>  <span class="fu">slice_max</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">order_by =</span> Total_Posts_Industry)</span>
+<span id="cb9-300"><a href="#cb9-300"></a></span>
+<span id="cb9-301"><a href="#cb9-301"></a>top5_ind_vector <span class="ot">&lt;-</span> top5_ind<span class="sc">$</span>industry </span>
+<span id="cb9-302"><a href="#cb9-302"></a></span>
+<span id="cb9-303"><a href="#cb9-303"></a><span class="co">#- Filtramos las skills que estén en las top 5 indus.</span></span>
+<span id="cb9-304"><a href="#cb9-304"></a>skills_data <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-305"><a href="#cb9-305"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">!=</span> <span class="st">"OTHR"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb9-306"><a href="#cb9-306"></a>  <span class="fu">filter</span>(industry <span class="sc">%in%</span> top5_ind_vector)</span>
+<span id="cb9-307"><a href="#cb9-307"></a></span>
+<span id="cb9-308"><a href="#cb9-308"></a><span class="co">#- Cuantas veces aparece cada skill dentro de cada top industria. (Degree centrality) </span></span>
+<span id="cb9-309"><a href="#cb9-309"></a>industry_degrees <span class="ot">&lt;-</span> skills_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-310"><a href="#cb9-310"></a>  <span class="fu">group_by</span>(industry, skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb9-311"><a href="#cb9-311"></a>  <span class="fu">summarise</span>(<span class="at">Degree =</span> <span class="fu">n</span>())</span>
 <span id="cb9-312"><a href="#cb9-312"></a></span>
-<span id="cb9-313"><a href="#cb9-313"></a><span class="fu">visNetwork</span>(</span>
-<span id="cb9-314"><a href="#cb9-314"></a>  <span class="at">nodes =</span> my_nodes,</span>
-<span id="cb9-315"><a href="#cb9-315"></a>  <span class="at">edges =</span> my_edges,</span>
-<span id="cb9-316"><a href="#cb9-316"></a>  <span class="at">main =</span> <span class="st">"Relación Skills-Industrias"</span></span>
-<span id="cb9-317"><a href="#cb9-317"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-318"><a href="#cb9-318"></a>  <span class="fu">visIgraphLayout</span>(<span class="at">layout =</span> <span class="st">"layout_nicely"</span>) <span class="sc">%&gt;%</span> <span class="co">#default</span></span>
-<span id="cb9-319"><a href="#cb9-319"></a>  <span class="fu">visEdges</span>(</span>
-<span id="cb9-320"><a href="#cb9-320"></a>    <span class="at">arrows =</span> <span class="st">'to'</span>,</span>
-<span id="cb9-321"><a href="#cb9-321"></a>    <span class="at">smooth =</span> <span class="cn">FALSE</span>,  </span>
-<span id="cb9-322"><a href="#cb9-322"></a>    <span class="at">width =</span> <span class="st">"value"</span>,  <span class="co"># Degree indica que tan fuerte es la relación skill_industria</span></span>
-<span id="cb9-323"><a href="#cb9-323"></a>    <span class="at">shadow =</span> <span class="cn">TRUE</span>  <span class="co">#</span></span>
-<span id="cb9-324"><a href="#cb9-324"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb9-325"><a href="#cb9-325"></a>  <span class="fu">visOptions</span>(<span class="at">highlightNearest =</span> <span class="cn">TRUE</span>,<span class="at">nodesIdSelection =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co">#Permite seleccionar por ID</span></span>
-<span id="cb9-326"><a href="#cb9-326"></a>  <span class="fu">visGroups</span>(</span>
-<span id="cb9-327"><a href="#cb9-327"></a>    <span class="at">groupname =</span> <span class="st">"Industry"</span>,</span>
-<span id="cb9-328"><a href="#cb9-328"></a>    <span class="at">shape =</span> <span class="st">"circle"</span></span>
-<span id="cb9-329"><a href="#cb9-329"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb9-330"><a href="#cb9-330"></a>  <span class="fu">visGroups</span>(</span>
-<span id="cb9-331"><a href="#cb9-331"></a>    <span class="at">groupname =</span> <span class="st">"Skill"</span>,</span>
-<span id="cb9-332"><a href="#cb9-332"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
-<span id="cb9-333"><a href="#cb9-333"></a>  )</span>
-<span id="cb9-334"><a href="#cb9-334"></a></span>
-<span id="cb9-335"><a href="#cb9-335"></a><span class="in">```</span></span>
-<span id="cb9-336"><a href="#cb9-336"></a></span>
-<span id="cb9-337"><a href="#cb9-337"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb9-338"><a href="#cb9-338"></a>Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</span>
-<span id="cb9-339"><a href="#cb9-339"></a></span>
-<span id="cb9-342"><a href="#cb9-342"></a><span class="in">```{r}</span></span>
-<span id="cb9-343"><a href="#cb9-343"></a><span class="co">#- Añadimos el nombre completo para cada skill</span></span>
-<span id="cb9-344"><a href="#cb9-344"></a>skill_map <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/maps/skills.csv"</span>)</span>
-<span id="cb9-345"><a href="#cb9-345"></a>skill_map <span class="sc">%&gt;%</span></span>
-<span id="cb9-346"><a href="#cb9-346"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>skill_abr) <span class="sc">%&gt;%</span></span>
-<span id="cb9-347"><a href="#cb9-347"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-348"><a href="#cb9-348"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb9-349"><a href="#cb9-349"></a>    <span class="at">skill_abr =</span> <span class="st">"Abr."</span>,</span>
-<span id="cb9-350"><a href="#cb9-350"></a>    <span class="at">skill_name =</span> <span class="st">"Skill"</span></span>
-<span id="cb9-351"><a href="#cb9-351"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb9-352"><a href="#cb9-352"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span>
-<span id="cb9-353"><a href="#cb9-353"></a><span class="in">```</span></span>
-<span id="cb9-354"><a href="#cb9-354"></a></span>
-<span id="cb9-355"><a href="#cb9-355"></a>Observando nuestro gráfico, se evidencia que en la industria de "Staffing and Recruitment, las habilidades más valoradas comprenden aspectos de IT, así como competencias financieras, tales como contabilidad (ACCT) y finazas (FIN). Adicionalmente, el conocimiento en ingeniería (ENG) también desempeña un papel significativo.</span>
-<span id="cb9-356"><a href="#cb9-356"></a></span>
-<span id="cb9-357"><a href="#cb9-357"></a>Es relevante destacar que la ingeniería adquiere una aún mayor relevancia en las empresas dedicadas a servicios de IT y desarrollo de software. Este segmento, en particular, busca *hard skill* en técnológias específicas (IT), ventas (SALE) y analítica de negocios (ANLS).</span>
-<span id="cb9-358"><a href="#cb9-358"></a></span>
-<span id="cb9-359"><a href="#cb9-359"></a>Por otra parte, hechando una mirada en el ámbito de médico y de salud se observa de manera clara que exeperiencia previa en la industria (HCPR) emerge como un requisito preeminente. En esta industria, también se valora considerablemente las habilidades empresariales (ADM y MNGM) y de producción industrial (MNFC).</span>
-<span id="cb9-360"><a href="#cb9-360"></a></span>
-<span id="cb9-361"><a href="#cb9-361"></a>Finalmente, resulta interesante e innegable que las habilidades en IT son claves en todas las industrias líderes en LinkedIn y que poseerlas es esencial para ser competitivo en el ámbito laboral.</span>
-<span id="cb9-362"><a href="#cb9-362"></a></span>
-<span id="cb9-363"><a href="#cb9-363"></a></span>
-<span id="cb9-364"><a href="#cb9-364"></a><span class="fu">### Conclusión</span></span>
-<span id="cb9-365"><a href="#cb9-365"></a></span>
-<span id="cb9-366"><a href="#cb9-366"></a>En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.</span>
-<span id="cb9-367"><a href="#cb9-367"></a></span>
-<span id="cb9-368"><a href="#cb9-368"></a>Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer  principalmente el mismo tipo de benefios.</span>
-<span id="cb9-369"><a href="#cb9-369"></a></span>
-<span id="cb9-370"><a href="#cb9-370"></a>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puedes a primera vista ser obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y  los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Aquí también nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social. </span>
-<span id="cb9-371"><a href="#cb9-371"></a></span>
-<span id="cb9-372"><a href="#cb9-372"></a>Por último, se identificaron que las skills más relevantes para "Staffing and Recruitment," son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que habilidades en IT son universales y necesarias.</span>
-<span id="cb9-373"><a href="#cb9-373"></a></span>
-<span id="cb9-374"><a href="#cb9-374"></a>Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día. </span>
-<span id="cb9-375"><a href="#cb9-375"></a></span>
-<span id="cb9-376"><a href="#cb9-376"></a>|                                                                                 |</span>
-<span id="cb9-377"><a href="#cb9-377"></a>|:-----------------------|</span>
-<span id="cb9-378"><a href="#cb9-378"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
-<span id="cb9-379"><a href="#cb9-379"></a>| Con esto acabo mi trabajo para la clase de Programación en la Era del BigData!! |</span>
-<span id="cb9-380"><a href="#cb9-380"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
-<span id="cb9-381"><a href="#cb9-381"></a></span>
-<span id="cb9-382"><a href="#cb9-382"></a><span class="kw">&lt;br&gt;</span></span>
-<span id="cb9-383"><a href="#cb9-383"></a></span>
-<span id="cb9-384"><a href="#cb9-384"></a><span class="fu">### Información sobre la sesión</span></span>
-<span id="cb9-385"><a href="#cb9-385"></a></span>
-<span id="cb9-386"><a href="#cb9-386"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
-<span id="cb9-387"><a href="#cb9-387"></a></span>
-<span id="cb9-390"><a href="#cb9-390"></a><span class="in">```{r}</span></span>
-<span id="cb9-391"><a href="#cb9-391"></a><span class="co">#| echo: false</span></span>
-<span id="cb9-392"><a href="#cb9-392"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb9-393"><a href="#cb9-393"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
-<span id="cb9-394"><a href="#cb9-394"></a><span class="in">```</span></span>
+<span id="cb9-313"><a href="#cb9-313"></a><span class="co">#- Top N skills para cada industria</span></span>
+<span id="cb9-314"><a href="#cb9-314"></a>top_skills_by_industry <span class="ot">&lt;-</span> industry_degrees <span class="sc">%&gt;%</span></span>
+<span id="cb9-315"><a href="#cb9-315"></a>  <span class="fu">group_by</span>(industry) <span class="sc">%&gt;%</span></span>
+<span id="cb9-316"><a href="#cb9-316"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Degree)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-317"><a href="#cb9-317"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)  </span>
+<span id="cb9-318"><a href="#cb9-318"></a></span>
+<span id="cb9-319"><a href="#cb9-319"></a></span>
+<span id="cb9-320"><a href="#cb9-320"></a><span class="co">#------NETWROK --------------------</span></span>
+<span id="cb9-321"><a href="#cb9-321"></a><span class="co">#-Vignette: https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html</span></span>
+<span id="cb9-322"><a href="#cb9-322"></a></span>
+<span id="cb9-323"><a href="#cb9-323"></a><span class="co">#- Nodes</span></span>
+<span id="cb9-324"><a href="#cb9-324"></a><span class="co">#- Creamos nodes a partir de las columnas industry y skills</span></span>
+<span id="cb9-325"><a href="#cb9-325"></a>my_nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-326"><a href="#cb9-326"></a>    <span class="at">id =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb9-327"><a href="#cb9-327"></a>    <span class="at">label =</span> <span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)),</span>
+<span id="cb9-328"><a href="#cb9-328"></a>   <span class="at">group =</span> <span class="fu">ifelse</span>(<span class="fu">unique</span>(<span class="fu">c</span>(top_skills_by_industry<span class="sc">$</span>industry, top_skills_by_industry<span class="sc">$</span>skill_abr)) <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>industry, <span class="st">"Industry"</span>, <span class="st">"Skill"</span>)) </span>
+<span id="cb9-329"><a href="#cb9-329"></a></span>
+<span id="cb9-330"><a href="#cb9-330"></a><span class="co">#-My edges</span></span>
+<span id="cb9-331"><a href="#cb9-331"></a><span class="co">#-Creamos edges</span></span>
+<span id="cb9-332"><a href="#cb9-332"></a>my_edges <span class="ot">&lt;-</span> top_skills_by_industry <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">from =</span> skill_abr, <span class="at">to =</span> industry, <span class="at">value =</span> Degree)</span>
+<span id="cb9-333"><a href="#cb9-333"></a></span>
+<span id="cb9-334"><a href="#cb9-334"></a><span class="fu">visNetwork</span>(</span>
+<span id="cb9-335"><a href="#cb9-335"></a>  <span class="at">nodes =</span> my_nodes,</span>
+<span id="cb9-336"><a href="#cb9-336"></a>  <span class="at">edges =</span> my_edges,</span>
+<span id="cb9-337"><a href="#cb9-337"></a>  <span class="at">main =</span> <span class="st">"Relación Skills-Industrias"</span></span>
+<span id="cb9-338"><a href="#cb9-338"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-339"><a href="#cb9-339"></a>  <span class="fu">visIgraphLayout</span>(<span class="at">layout =</span> <span class="st">"layout_nicely"</span>) <span class="sc">%&gt;%</span> <span class="co">#default</span></span>
+<span id="cb9-340"><a href="#cb9-340"></a>  <span class="fu">visEdges</span>(</span>
+<span id="cb9-341"><a href="#cb9-341"></a>    <span class="at">arrows =</span> <span class="st">'to'</span>,</span>
+<span id="cb9-342"><a href="#cb9-342"></a>    <span class="at">smooth =</span> <span class="cn">FALSE</span>,  </span>
+<span id="cb9-343"><a href="#cb9-343"></a>    <span class="at">width =</span> <span class="st">"value"</span>,  <span class="co"># Degree indica que tan fuerte es la relación skill_industria</span></span>
+<span id="cb9-344"><a href="#cb9-344"></a>    <span class="at">shadow =</span> <span class="cn">TRUE</span>  <span class="co">#</span></span>
+<span id="cb9-345"><a href="#cb9-345"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-346"><a href="#cb9-346"></a>  <span class="fu">visOptions</span>(<span class="at">highlightNearest =</span> <span class="cn">TRUE</span>,<span class="at">nodesIdSelection =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co">#Permite seleccionar por ID</span></span>
+<span id="cb9-347"><a href="#cb9-347"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb9-348"><a href="#cb9-348"></a>    <span class="at">groupname =</span> <span class="st">"Industry"</span>,</span>
+<span id="cb9-349"><a href="#cb9-349"></a>    <span class="at">shape =</span> <span class="st">"circle"</span></span>
+<span id="cb9-350"><a href="#cb9-350"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-351"><a href="#cb9-351"></a>  <span class="fu">visGroups</span>(</span>
+<span id="cb9-352"><a href="#cb9-352"></a>    <span class="at">groupname =</span> <span class="st">"Skill"</span>,</span>
+<span id="cb9-353"><a href="#cb9-353"></a>    <span class="at">shape =</span> <span class="st">"square"</span></span>
+<span id="cb9-354"><a href="#cb9-354"></a>  )</span>
+<span id="cb9-355"><a href="#cb9-355"></a></span>
+<span id="cb9-356"><a href="#cb9-356"></a><span class="in">```</span></span>
+<span id="cb9-357"><a href="#cb9-357"></a></span>
+<span id="cb9-358"><a href="#cb9-358"></a><span class="kw">&lt;br&gt;</span> Adjunto una tabla que muestra la skill correspondiente para cada abreviación.</span>
+<span id="cb9-359"><a href="#cb9-359"></a></span>
+<span id="cb9-362"><a href="#cb9-362"></a><span class="in">```{r}</span></span>
+<span id="cb9-363"><a href="#cb9-363"></a><span class="co">#- Añadimos el nombre completo para cada skill</span></span>
+<span id="cb9-364"><a href="#cb9-364"></a>skill_map <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"./data/maps/skills.csv"</span>)</span>
+<span id="cb9-365"><a href="#cb9-365"></a>skill_map <span class="sc">%&gt;%</span></span>
+<span id="cb9-366"><a href="#cb9-366"></a>  <span class="fu">filter</span>(skill_abr <span class="sc">%in%</span> top_skills_by_industry<span class="sc">$</span>skill_abr) <span class="sc">%&gt;%</span></span>
+<span id="cb9-367"><a href="#cb9-367"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-368"><a href="#cb9-368"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb9-369"><a href="#cb9-369"></a>    <span class="at">skill_abr =</span> <span class="st">"Abr."</span>,</span>
+<span id="cb9-370"><a href="#cb9-370"></a>    <span class="at">skill_name =</span> <span class="st">"Skill"</span></span>
+<span id="cb9-371"><a href="#cb9-371"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-372"><a href="#cb9-372"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_nytimes</span>()</span>
+<span id="cb9-373"><a href="#cb9-373"></a><span class="in">```</span></span>
+<span id="cb9-374"><a href="#cb9-374"></a></span>
+<span id="cb9-375"><a href="#cb9-375"></a>Observando nuestro gráfico, se evidencia que en la industria de "Staffing and Recruitment, las habilidades más valoradas comprenden aspectos de IT, así como competencias financieras, tales como contabilidad (ACCT) y finazas (FIN). Adicionalmente, el conocimiento en ingeniería (ENG) también desempeña un papel significativo.</span>
+<span id="cb9-376"><a href="#cb9-376"></a></span>
+<span id="cb9-377"><a href="#cb9-377"></a>Es relevante destacar que la ingeniería adquiere una aún mayor relevancia en las empresas dedicadas a servicios de IT y desarrollo de software. Este segmento, en particular, busca *hard skill* en técnológias específicas (IT), ventas (SALE) y analítica de negocios (ANLS).</span>
+<span id="cb9-378"><a href="#cb9-378"></a></span>
+<span id="cb9-379"><a href="#cb9-379"></a>Por otra parte, hechando una mirada en el ámbito de médico y de salud se observa de manera clara que exeperiencia previa en la industria (HCPR) emerge como un requisito preeminente. En esta industria, también se valora considerablemente las habilidades empresariales (ADM y MNGM) y de producción industrial (MNFC).</span>
+<span id="cb9-380"><a href="#cb9-380"></a></span>
+<span id="cb9-381"><a href="#cb9-381"></a>Finalmente, resulta interesante e innegable que las habilidades en IT son claves en todas las industrias líderes en LinkedIn y que poseerlas es esencial para ser competitivo en el ámbito laboral.</span>
+<span id="cb9-382"><a href="#cb9-382"></a></span>
+<span id="cb9-383"><a href="#cb9-383"></a><span class="fu">### Conclusión</span></span>
+<span id="cb9-384"><a href="#cb9-384"></a></span>
+<span id="cb9-385"><a href="#cb9-385"></a>En este proyecto, hemos explorado datos clave del mercado laboral actual en 2023, centrándonos en las tendencias de la demanda laboral, las industrias dominantes y las skills más valoradas. Aquí hemos descubierto varias tendencias de acuerdo a diferentes perspectivas.</span>
+<span id="cb9-386"><a href="#cb9-386"></a></span>
+<span id="cb9-387"><a href="#cb9-387"></a>Primero, se reveló que roles ejecutivos como Sales Manager, Controller y Project Manager, poseen gran demanda y ofrecen salarios anuales competitivos. Además, los trabajos más comúnes tienen a ofrecer principalmente el mismo tipo de benefios.</span>
+<span id="cb9-388"><a href="#cb9-388"></a></span>
+<span id="cb9-389"><a href="#cb9-389"></a>Segundo, pudimos ver que no todas las industrias estan presentes en LinkedIn al mismo nivel y que hay que tener cuidado al observar tendencias que puede que a primera vista sean obvias pero que pueden estar perjudicadas por factores externos (aquí el nivel de uso que cada industria le ha dado a la red). Descubrimos que sectores como Staffing &amp; Recruiment, los servicios IT y los de cuidados médicos lideran la plataforma, siendo los sectores que ofrecen más número de oportunidades para encontrar empleo dentro de LinkedIn. Por ende, nos dimos cuenta de la importancia de comprender la dinámica de busca de empleos dentro de una red social y LinkedIn puede ser una herramienta más (o menos) efectiva dependiendo de la industria de interés.</span>
+<span id="cb9-390"><a href="#cb9-390"></a></span>
+<span id="cb9-391"><a href="#cb9-391"></a>Por último, se identificaron que las skills más relevantes para "Staffing and Recruitment," son IT, contabilidad (ACCT), finanzas (FIN) e ingeniería (ENG). En serevicios de IT, se valoran habilidades técnicas y de ventas. En salud, experiencia (HCPR), habilidades empresariales y producción industrial (MNFC) son esenciales. Como punto muy esperado considerando el contexto de hoy en día, se llego a la conclusión que las habilidades en IT son universales y necesarias para cualuqier industria en el top.</span>
+<span id="cb9-392"><a href="#cb9-392"></a></span>
+<span id="cb9-393"><a href="#cb9-393"></a>Este análisis proporciona una visión integral para aquellos que buscan comprender como una red social para profesionales puede ser una herramienta muy útil en un mercado laboral tan dinámico como el de hoy en día.</span>
+<span id="cb9-394"><a href="#cb9-394"></a></span>
+<span id="cb9-395"><a href="#cb9-395"></a>|                                                                                 |</span>
+<span id="cb9-396"><a href="#cb9-396"></a>|:-----------------------------------------------------------------------|</span>
+<span id="cb9-397"><a href="#cb9-397"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
+<span id="cb9-398"><a href="#cb9-398"></a>| Con esto acabo mi trabajo para la clase de Programación en la Era del BigData!! |</span>
+<span id="cb9-399"><a href="#cb9-399"></a>| <span class="kw">&lt;br&gt;</span>                                                                            |</span>
+<span id="cb9-400"><a href="#cb9-400"></a></span>
+<span id="cb9-401"><a href="#cb9-401"></a><span class="kw">&lt;br&gt;</span></span>
+<span id="cb9-402"><a href="#cb9-402"></a></span>
+<span id="cb9-403"><a href="#cb9-403"></a></span>
+<span id="cb9-404"><a href="#cb9-404"></a><span class="fu">### Referencias</span></span>
+<span id="cb9-405"><a href="#cb9-405"></a><span class="co">[</span><span class="ot">**Decoding the Job Market: An In-depth Exploration**</span><span class="co">](https://www.kaggle.com/code/pratul007/decoding-the-job-market-an-in-depth-exploration/notebook)</span>{target="_blank"}: Para minimizar el impacto de la asymetria de información, se tomó un dataframe de este estudio, el cual uso Python para mejorar la usabilidad  del conjunto de datos de las publicaciones de LinkedIn al tratar inconsistencias y observaciones con datos faltantes del processo de webscrapping.</span>
+<span id="cb9-406"><a href="#cb9-406"></a></span>
+<span id="cb9-407"><a href="#cb9-407"></a><span class="fu">### Información sobre la sesión</span></span>
+<span id="cb9-408"><a href="#cb9-408"></a></span>
+<span id="cb9-409"><a href="#cb9-409"></a>Abajo muestro mi entorno de trabajo y paquetes utilizados</span>
+<span id="cb9-410"><a href="#cb9-410"></a></span>
+<span id="cb9-413"><a href="#cb9-413"></a><span class="in">```{r}</span></span>
+<span id="cb9-414"><a href="#cb9-414"></a><span class="co">#| echo: false</span></span>
+<span id="cb9-415"><a href="#cb9-415"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-416"><a href="#cb9-416"></a>  details<span class="sc">::</span><span class="fu">details</span>(<span class="at">summary =</span> <span class="st">'current session info'</span>) </span>
+<span id="cb9-417"><a href="#cb9-417"></a><span class="in">```</span></span>
 </code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">© 2023 Ricardo Freire</div>   
+    <div class="nav-footer-left">© 2024 Ricardo Freire</div>   
     <div class="nav-footer-center">Hecho con <a href="https://quarto.org">Quarto</a></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
